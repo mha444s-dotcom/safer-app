@@ -1,0 +1,11 @@
+﻿62: const documentStub = {
+68:   documentElement: makeEl('html'),
+74:   document: documentStub,
+93:   vm.runInContext(fs.readFileSync(path.join(DIR, 'flags.js'), 'utf8'), sandbox, { filename: 'flags.js' });
+103:   code = fs.readFileSync(path.join(DIR, 'app.js'), 'utf8');
+301: if (documentStub.body.classList.contains('modal-open')) ok('body اتقفل عليه السكرول');
+307: if (!documentStub.body.classList.contains('modal-open')) ok('السكرول اتفكّ بعد الإغلاق');
+535: const htmlFile = fs.readFileSync(path.join(DIR, 'index.html'), 'utf8');
+546:   ["switchPage('profile')", 'زر 👤 → حسابي'],
+557: const cssFile = fs.readFileSync(path.join(DIR, 'styles.css'), 'utf8');
+594: const swFile = fs.readFileSync(path.join(DIR, 'service-worker.js'), 'utf8');

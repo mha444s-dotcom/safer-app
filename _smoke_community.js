@@ -592,8 +592,8 @@ const cssFile = fs.readFileSync(path.join(DIR, 'styles.css'), 'utf8');
 });
 
 const swFile = fs.readFileSync(path.join(DIR, 'service-worker.js'), 'utf8');
-if (swFile.indexOf("'v1.0.16'") !== -1) ok('SW_VERSION اترفع لـ v1.0.16');
-else bad('SW_VERSION ما اترفعش لـ v1.0.16');
+if (swFile.indexOf("'v1.0.17'") !== -1) ok('SW_VERSION اترفع لـ v1.0.17');
+else bad('SW_VERSION ما اترفعش لـ v1.0.17');
 
 /* فحص بنية index.html: مفيش تكرار في الـ id + كل الصفحات الجديدة موجودة */
 const idsAll = (htmlFile.match(/id="([^"]+)"/g) || []).map(function (s) { return s.slice(4, -1); });

@@ -952,104 +952,221 @@
        PAGE 4: PROFILE
        ========================================================== -->
   <div class="page" id="page-profile">
-    <header class="profile-hero">
-      <div class="profile-avatar">م</div>
-      <h2><span id="profileName">محمد أحمد</span> <span class="badge-v"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span></h2>
-      <p class="email">mohamed@example.com</p>
-      <span class="member">عضو منذ 2024</span>
+    <!-- Header -->
+    <header class="profile-header">
+      <div class="ph-top">
+        <button class="ph-btn" onclick="switchPage('home')" aria-label="الرئيسية">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21V12h6v9"/></svg>
+        </button>
+        <h2>حسابي</h2>
+        <button class="ph-btn" onclick="openEditProfile()" aria-label="تعديل البروفايل">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </button>
+      </div>
     </header>
 
-    <div class="profile-stats">
-      <div class="profile-stat"><span class="num">8</span><span class="lbl">دولة</span></div>
-      <div class="profile-stat"><span class="num">24</span><span class="lbl">منشور</span></div>
-      <div class="profile-stat"><span class="num">156</span><span class="lbl">إعجاب</span></div>
+    <!-- Profile Info Card -->
+    <div class="profile-info-card">
+      <div class="profile-avatar-large" id="profileAvatarLarge">
+        <img id="profileAvatarImg" alt="صورة البروفايل" style="display:none">
+        <span id="profileInitial">م</span>
+        <button class="avatar-edit-btn" onclick="openEditProfile()" aria-label="تغيير الصورة">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </button>
+      </div>
+
+      <h1 id="profileName">م</h1>
+      <p class="profile-username" id="profileUsername">@</p>
+      <p class="profile-email" id="profileEmail"></p>
+
+      <div class="profile-tags">
+        <span class="profile-tag">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="profileLocation">مصر</span>
+        </span>
+        <span class="profile-tag">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span id="profileMemberSince">عضو منذ أكتوبر 2024</span>
+        </span>
+      </div>
+
+      <div class="profile-actions">
+        <button class="profile-btn primary" onclick="openEditProfile()">تعديل البروفايل</button>
+        <button class="profile-btn secondary" onclick="shareProfile()">مشاركة</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="profile-stats-new">
+        <div class="stat-item" onclick="showFollowers()">
+          <span class="stat-num" id="statFollowers">0</span>
+          <span class="stat-lbl">متابع</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" onclick="showFollowing()">
+          <span class="stat-num" id="statFollowing">0</span>
+          <span class="stat-lbl">يتابع</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" onclick="showMyPosts()">
+          <span class="stat-num" id="statPosts">0</span>
+          <span class="stat-lbl">منشور</span>
+        </div>
+      </div>
     </div>
 
-    <section class="section">
-      <div class="section-head">
-        <h3><span class="emoji">💱</span> أسعار الصرف</h3>
-      </div>
-      <div class="rates-status" id="ratesStatus">
-        <span class="rs-dot loading" id="ratesDot"></span>
-        <span id="ratesStatusText">آخر تحديث للأسعار: جاري التحديث...</span>
-      </div>
-    </section>
+    <!-- Activity Section -->
+    <div class="profile-section">
+      <h3 class="section-title">نشاطي</h3>
+      <div class="activity-grid">
+        <button class="activity-card" onclick="showMyPosts()">
+          <div class="activity-icon c-blue">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          </div>
+          <span class="activity-num" id="activityPosts">0</span>
+          <span class="activity-lbl">منشوراتي</span>
+        </button>
 
-    <section class="section">
-      <div class="section-head">
-        <h3><span class="emoji">⚙️</span> الإعدادات</h3>
-      </div>
-      <div class="menu-list">
-        <button class="menu-item" onclick="showToast('هتفتح: بياناتي الشخصية')">
-          <div class="menu-icon c-blue">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
+        <button class="activity-card" onclick="showMyLikes()">
+          <div class="activity-icon c-red">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
-          <div class="menu-text"><h5>بياناتي الشخصية</h5><p>الاسم، الإيميل، الصورة</p></div>
-          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+          <span class="activity-num" id="activityLikes">0</span>
+          <span class="activity-lbl">إعجاباتي</span>
         </button>
-        <button class="menu-item" onclick="showToast('هتفتح: الدول المفضلة')">
-          <div class="menu-icon c-gold">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-          </div>
-          <div class="menu-text"><h5>الدول المفضلة</h5><p>الدول اللي حفظتها</p></div>
-          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="menu-item" onclick="showToast('هتفتح: الإشعارات')">
-          <div class="menu-icon c-green">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-              <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-            </svg>
-          </div>
-          <div class="menu-text"><h5>الإشعارات</h5><p>تنبيهات المنح والتأشيرات</p></div>
-          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="menu-item" onclick="showToast('هتفتح: اللغة')">
-          <div class="menu-icon c-purple">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-          </div>
-          <div class="menu-text"><h5>اللغة</h5><p>العربية</p></div>
-          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="menu-item" onclick="showToast('هتفتح: المساعدة والدعم')">
-          <div class="menu-icon c-teal">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
-            </svg>
-          </div>
-          <div class="menu-text"><h5>المساعدة والدعم</h5><p>الأسئلة الشائعة والتواصل</p></div>
-          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="menu-item" onclick="showToast('هتفتح: عن التطبيق')">
-          <div class="menu-icon c-red">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 16v-4M12 8h.01"/>
-            </svg>
-          </div>
-          <div class="menu-text"><h5>عن التطبيق</h5><p>النسخة 1.0.0</p></div>
-          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-      </div>
-    </section>
 
-    <section class="section">
-      <button class="menu-item" style="background:#fff;border:1px solid var(--border);border-radius:16px;justify-content:center;color:var(--red);font-weight:800;font-size:14px;padding:16px" onclick="handleLogout()">
-        <svg style="width:18px;height:18px;stroke:var(--red);fill:none;stroke-width:2.2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
-        </svg>
+        <button class="activity-card" onclick="showSaved()">
+          <div class="activity-icon c-gold">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <span class="activity-num" id="activitySaved">0</span>
+          <span class="activity-lbl">المحفوظات</span>
+        </button>
+
+        <button class="activity-card" onclick="showFavorites()">
+          <div class="activity-icon c-green">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="activity-num" id="activityFavorites">0</span>
+          <span class="activity-lbl">دول مفضلة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Settings Section -->
+    <div class="profile-section">
+      <h3 class="section-title">الإعدادات</h3>
+      <div class="settings-list">
+
+        <button class="setting-item" onclick="openEditProfile()">
+          <div class="setting-icon c-blue">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="setting-text">
+            <h4>بياناتي الشخصية</h4>
+            <p>الاسم، الإيميل، الصورة</p>
+          </div>
+          <svg class="setting-arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+
+        <button class="setting-item" onclick="switchPage('notifications')">
+          <div class="setting-icon c-gold">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          </div>
+          <div class="setting-text">
+            <h4>الإشعارات</h4>
+            <p>تنبيهات المنح والتأشيرات</p>
+          </div>
+          <svg class="setting-arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+
+        <button class="setting-item" onclick="openLanguageSetting()">
+          <div class="setting-icon c-purple">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="setting-text">
+            <h4>اللغة</h4>
+            <p>العربية</p>
+          </div>
+          <svg class="setting-arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+
+        <button class="setting-item" onclick="openPrivacySetting()">
+          <div class="setting-icon c-teal">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="setting-text">
+            <h4>الخصوصية والأمان</h4>
+            <p>كلمة المرور، الجلسات</p>
+          </div>
+          <svg class="setting-arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+
+        <button class="setting-item" onclick="openAbout()">
+          <div class="setting-icon c-green">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div class="setting-text">
+            <h4>عن التطبيق</h4>
+            <p>النسخة 1.0.0</p>
+          </div>
+          <svg class="setting-arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <div class="profile-section">
+      <button class="logout-btn" onclick="handleLogout()">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
         تسجيل الخروج
       </button>
-    </section>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       EDIT PROFILE MODAL (تعديل البروفايل)
+       ========================================================== -->
+  <div class="profile-edit-modal" id="editProfileModal" onclick="if(event.target===this)closeEditProfile()">
+    <div class="pem-content">
+      <div class="pem-header">
+        <h3>تعديل البروفايل</h3>
+        <button type="button" onclick="closeEditProfile()" aria-label="إغلاق">✕</button>
+      </div>
+
+      <div class="pem-body">
+        <div class="pem-avatar-section">
+          <div class="pem-avatar" id="pemAvatar">م</div>
+          <button class="pem-change-photo" type="button" onclick="changeProfilePhoto()">تغيير الصورة</button>
+          <input type="file" id="pemPhotoInput" accept="image/*" style="display:none">
+        </div>
+
+        <div class="pem-form-group">
+          <label for="pemName">الاسم الكامل</label>
+          <input type="text" id="pemName" placeholder="محمد أحمد">
+        </div>
+
+        <div class="pem-form-group">
+          <label for="pemUsername">اسم المستخدم</label>
+          <input type="text" id="pemUsername" placeholder="@username" dir="ltr">
+        </div>
+
+        <div class="pem-form-group">
+          <label for="pemLocation">الموقع</label>
+          <input type="text" id="pemLocation" placeholder="ألمانيا - برلين">
+        </div>
+
+        <div class="pem-form-group">
+          <label for="pemBio">نبذة عني</label>
+          <textarea id="pemBio" placeholder="اكتب نبذة قصيرة عنك..." rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="pem-footer">
+        <button class="pem-cancel" type="button" onclick="closeEditProfile()">إلغاء</button>
+        <button class="pem-save" type="button" onclick="saveProfileChanges()">حفظ</button>
+      </div>
+    </div>
   </div>
 
   <!-- ==========================================================

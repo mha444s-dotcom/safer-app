@@ -1,0 +1,40 @@
+﻿
+Name                  Length
+----                  ------
+app.js                117386
+config.js               3478
+data.js               118101
+flags.js               19889
+icon-192.png           19120
+icon-512.png           54726
+icon-maskable-512.png  54726
+icon.svg                2247
+index.html             70182
+manifest.json           1142
+map.js                  5431
+rates.js               14789
+service-worker.js      13144
+styles.css             95468
+tourism.js            139734
+visa-data.js           19701
+_hdr.txt                2328
+_icons_log.txt           226
+_icons_ls.txt             64
+_icons_report.txt        108
+_icon_ascii.js          1723
+_ic_chk.txt               19
+_ls_p.txt                  0
+_make_icons.js          7391
+_pt_chk.txt               19
+_pwa_report.txt         5226
+_pwa_run.txt               0
+_pwa_test.js           13205
+_server.js              1433
+_smoke_community.js    31348
+_srv_state.txt            47
+_sw.txt                    8
+_sw_check.txt             11
+_tail.txt               4267
+_zz2.txt                   6
+
+

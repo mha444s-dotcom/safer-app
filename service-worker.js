@@ -14,7 +14,7 @@
    • Clerk (المصادقة) ................... Network Only (بدون كاش — ردود حساسة)
    ============================================================ */
 
-const SW_VERSION = 'v1.0.16';  // ← اترفعت: إشعارات + رسائل + أصدقاء + مجتمعات + عارض صور/قصص + إصلاح التداخل
+const SW_VERSION = 'v1.0.17';  // ← اترفعت: صفحة حسابي (بروفايل) جديدة + تعديل البروفايل (Clerk + localStorage)
 
 const STATIC_CACHE = 'safr-static-' + SW_VERSION;   // ملفات التطبيق
 const LIB_CACHE    = 'safr-libs-' + SW_VERSION;     // Leaflet وغيرها

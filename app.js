@@ -2572,8 +2572,8 @@ function switchPage(page) {
   }
 
   if (page === 'profile') {
-    // شريط "آخر تحديث للأسعار" بقى بيظهر في صفحة "حسابي" بس
-    renderRatesStatus();
+    // صفحة حسابي (التصميم الجديد) — البيانات من Clerk + localStorage
+    renderProfilePage();
   }
 
   // صفحة التأشيرات: نرسم الملخّص + التابات + الكروت
@@ -2845,16 +2845,8 @@ function updateUIWithUser(clerkUser) {
   var modalAuthor = document.getElementById('modalAuthor');
   if (modalAuthor) modalAuthor.textContent = user.name;
 
-  // صفحة حسابي
-  var profileAvatar = document.querySelector('.profile-avatar');
-  if (profileAvatar) profileAvatar.textContent = user.initials;
-
-  var profileName = document.getElementById('profileName') ||
-    document.querySelector('.profile-hero h2');
-  if (profileName) profileName.textContent = user.name;
-
-  var profileEmail = document.querySelector('.profile-hero .email');
-  if (profileEmail && user.email) profileEmail.textContent = user.email;
+  // صفحة حسابي (التصميم الجديد) — تُرسم من safr_user / Clerk
+  if (typeof renderProfilePage === 'function') renderProfilePage();
 
   // إعادة رسم المنشورات عشان (أنت) وخيارات "⋯" تظهر على منشورات المستخدم
   if (typeof renderPosts === 'function') renderPosts();
@@ -2893,6 +2885,306 @@ async function handleLogout() {
 
   try { localStorage.removeItem('safr_user'); } catch (e) {}
   window.location.reload();
+}
+
+/* ============================================================
+   10.B PROFILE PAGE (صفحة حسابي)
+   عرض بيانات المستخدم + تعديل البروفايل (Clerk + localStorage)
+   ============================================================ */
+
+/* أول حرف من الاسم (للأفاتار) */
+function profileInitial(name) {
+  var n = String(name || '').trim();
+  return n ? n.charAt(0) : 'م';
+}
+
+/* كتابة حقول البروفايل في safr_user (دمج مع الموجود) */
+function persistProfileFields(fields) {
+  var user = null;
+  try { user = JSON.parse(localStorage.getItem(USER_KEY) || 'null'); } catch (e) { user = null; }
+  if (!user || typeof user !== 'object') user = { id: getGuestId() };
+
+  Object.keys(fields || {}).forEach(function (k) { user[k] = fields[k]; });
+  if (!user.initials) user.initials = profileInitial(user.name);
+
+  try { localStorage.setItem(USER_KEY, JSON.stringify(user)); } catch (e) {}
+  return user;
+}
+
+/* تعيين نص عنصر بالمعرّف (لو موجود) */
+function setText(id, value) {
+  var el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+/* رسم صفحة حسابي بالكامل (بيانات حقيقية من Clerk + localStorage) */
+function renderProfilePage() {
+  var user = getCurrentUser();
+  var initial = user.initials || profileInitial(user.name);
+
+  var initialEl = document.getElementById('profileInitial');
+  var avatarImg = document.getElementById('profileAvatarImg');
+  if (initialEl) initialEl.textContent = initial;
+  if (avatarImg) {
+    if (user.avatar) {
+      avatarImg.src = user.avatar;
+      avatarImg.style.display = 'block';
+      if (initialEl) initialEl.style.display = 'none';
+    } else {
+      avatarImg.removeAttribute('src');
+      avatarImg.style.display = 'none';
+      if (initialEl) initialEl.style.display = '';
+    }
+  }
+
+  setText('profileName', user.name || 'مستخدم');
+
+  var usernameEl = document.getElementById('profileUsername');
+  if (usernameEl) {
+    usernameEl.textContent = user.username ||
+      (user.email ? '@' + String(user.email).split('@')[0] : '@' + (user.id || 'user'));
+  }
+  setText('profileEmail', user.email || 'غير مسجّل');
+  setText('profileLocation', user.location || 'لم تُحدَّد');
+
+  var sinceEl = document.getElementById('profileMemberSince');
+  if (sinceEl) {
+    var d = user.loginAt ? new Date(user.loginAt) : new Date();
+    sinceEl.textContent = 'عضو منذ ' + d.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long' });
+  }
+
+  var allPosts = (typeof posts !== 'undefined' && Array.isArray(posts)) ? posts : [];
+  var myPosts = allPosts.filter(function (p) { return p.authorId === user.id; });
+  var myLikes = allPosts.filter(function (p) {
+    return Array.isArray(p.likes) && p.likes.indexOf(user.id) !== -1;
+  });
+  var savedCount = (typeof savedPosts !== 'undefined' && Array.isArray(savedPosts)) ? savedPosts.length : 0;
+  var favCount = (typeof favorites !== 'undefined' && Array.isArray(favorites)) ? favorites.length : 0;
+  var friendList = (typeof friends !== 'undefined' && Array.isArray(friends)) ? friends : [];
+
+  setText('statFollowers', friendList.filter(function (f) { return f.isFollower; }).length);
+  setText('statFollowing', friendList.filter(function (f) { return f.isFollowing; }).length);
+  setText('statPosts', myPosts.length);
+  setText('activityPosts', myPosts.length);
+  setText('activityLikes', myLikes.length);
+  setText('activitySaved', savedCount);
+  setText('activityFavorites', favCount);
+}
+
+/* فتح مودال تعديل البروفايل */
+function openEditProfile() {
+  var user = getCurrentUser();
+
+  var nameInput = document.getElementById('pemName');
+  if (nameInput) nameInput.value = user.name || '';
+
+  var usernameInput = document.getElementById('pemUsername');
+  if (usernameInput) {
+    usernameInput.value = user.username ||
+      (user.email ? '@' + String(user.email).split('@')[0] : '');
+  }
+
+  var locInput = document.getElementById('pemLocation');
+  if (locInput) locInput.value = user.location || '';
+
+  var bioInput = document.getElementById('pemBio');
+  if (bioInput) bioInput.value = user.bio || '';
+
+  var avatarEl = document.getElementById('pemAvatar');
+  if (avatarEl) {
+    if (user.avatar) avatarEl.innerHTML = '<img src="' + user.avatar + '" alt="صورة البروفايل">';
+    else avatarEl.textContent = user.initials || profileInitial(user.name);
+  }
+
+  var modal = document.getElementById('editProfileModal');
+  if (modal) modal.classList.add('show');
+  if (document.body) document.body.classList.add('modal-open');
+}
+
+/* غلق مودال تعديل البروفايل */
+function closeEditProfile() {
+  var modal = document.getElementById('editProfileModal');
+  if (modal) modal.classList.remove('show');
+  if (document.body) document.body.classList.remove('modal-open');
+  resetPendingAvatar();
+}
+
+/* الصورة المختارة مؤقتاً (Base64) قبل الحفظ */
+let pendingProfileAvatar = null;
+
+function resetPendingAvatar() {
+  pendingProfileAvatar = null;
+  var input = document.getElementById('pemPhotoInput');
+  if (input) { try { input.value = ''; } catch (e) {} }
+}
+
+/* اختيار صورة جديدة للبروفايل */
+function changeProfilePhoto() {
+  var input = document.getElementById('pemPhotoInput');
+  if (!input) return;
+
+  input.onchange = function () {
+    var file = input.files && input.files[0];
+    if (!file) return;
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      pendingProfileAvatar = e.target.result;
+      var avatarEl = document.getElementById('pemAvatar');
+      if (avatarEl) avatarEl.innerHTML = '<img src="' + pendingProfileAvatar + '" alt="صورة البروفايل">';
+    };
+    reader.readAsDataURL(file);
+  };
+
+  if (input.files && input.files[0]) input.onchange();
+  else input.click();
+}
+
+/* تحويل Data URL إلى Blob (لمزامنة الصورة مع Clerk) */
+function dataURLtoBlob(dataURL) {
+  try {
+    var parts = String(dataURL).split(',');
+    var mimeMatch = parts[0].match(/:(.*?);/);
+    var mime = mimeMatch ? mimeMatch[1] : 'image/png';
+    var bin = (typeof atob === 'function') ? atob(parts[1]) : '';
+    var len = bin.length;
+    var arr = new Uint8Array(len);
+    for (var i = 0; i < len; i++) arr[i] = bin.charCodeAt(i);
+    return new Blob([arr], { type: mime });
+  } catch (e) { return null; }
+}
+
+/* حفظ التعديلات: Clerk (لو موجود) + localStorage */
+async function saveProfileChanges() {
+  var nameInput = document.getElementById('pemName');
+  var usernameInput = document.getElementById('pemUsername');
+  var locInput = document.getElementById('pemLocation');
+  var bioInput = document.getElementById('pemBio');
+
+  var name = nameInput ? nameInput.value.trim() : '';
+  var username = usernameInput ? usernameInput.value.trim() : '';
+  var location = locInput ? locInput.value.trim() : '';
+  var bio = bioInput ? bioInput.value.trim() : '';
+
+  if (!name) { showToast('اكتب الاسم الأول 🙏'); return; }
+
+  // (1) مزامنة مع Clerk لو متاح
+  if (window.Clerk && window.Clerk.user) {
+    try {
+      if (typeof window.Clerk.user.update === 'function') {
+        var parts = name.split(' ');
+        await window.Clerk.user.update({
+          firstName: parts[0] || '',
+          lastName: parts.slice(1).join(' ')
+        });
+      }
+      if (pendingProfileAvatar && typeof window.Clerk.user.setProfileImage === 'function') {
+        var blob = dataURLtoBlob(pendingProfileAvatar);
+        if (blob) await window.Clerk.user.setProfileImage({ file: blob });
+      }
+    } catch (err) {
+      console.warn('⚠️ فشل تحديث Clerk:', err && err.message);
+    }
+  }
+
+  // (2) الحفظ محلياً
+  var fields = {
+    name: name,
+    username: username,
+    location: location,
+    bio: bio,
+    initials: profileInitial(name)
+  };
+  if (pendingProfileAvatar) fields.avatar = pendingProfileAvatar;
+
+  var user = persistProfileFields(fields);
+
+  // (3) تحديث الواجهات
+  if (typeof updateUIWithUser === 'function') updateUIWithUser(user);
+  renderProfilePage();
+  closeEditProfile();
+  showToast('تم حفظ بياناتك بنجاح ✅');
+}
+
+/* مشاركة البروفايل */
+async function shareProfile() {
+  var user = getCurrentUser();
+  var text = 'شوف حساب ' + (user.name || 'مستخدم') + ' على تطبيق سافر ✈️';
+
+  try {
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      await navigator.share({ title: 'حسابي على سافر', text: text });
+      return;
+    }
+  } catch (e) { /* المستخدم قفل المشاركة */ }
+
+  try {
+    if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      showToast('تم نسخ بيانات البروفايل 📋');
+      return;
+    }
+  } catch (e) {}
+
+  showToast('المشاركة مش مدعومة على الجهاز ده');
+}
+
+/* منشوراتي */
+function showMyPosts() {
+  switchPage('community');
+  showToast('دي منشوراتك في المجتمع 👤');
+}
+
+/* إعجاباتي */
+function showMyLikes() {
+  var user = getCurrentUser();
+  var allPosts = (typeof posts !== 'undefined' && Array.isArray(posts)) ? posts : [];
+  var count = allPosts.filter(function (p) {
+    return Array.isArray(p.likes) && p.likes.indexOf(user.id) !== -1;
+  }).length;
+  showToast(count ? ('أعجبك ' + count + ' منشور ❤️') : 'لسه معملتش إعجاب بأي منشور');
+}
+
+/* المحفوظات */
+function showSaved() {
+  var count = (typeof savedPosts !== 'undefined' && Array.isArray(savedPosts)) ? savedPosts.length : 0;
+  showToast(count ? ('عندك ' + count + ' منشور محفوظ 🔖') : 'لسه مفيش منشورات محفوظة');
+}
+
+/* الدول المفضلة */
+function showFavorites() {
+  switchPage('home');
+  if (typeof renderHomeFavorites === 'function') renderHomeFavorites();
+  showToast('دي دولك المفضلة على الرئيسية ⭐');
+}
+
+/* المتابعين */
+function showFollowers() {
+  switchPage('friends');
+  if (typeof filterFriends === 'function') filterFriends('followers', null);
+  showToast('دي قائمة متابعينك 👥');
+}
+
+/* اللي بتتابعهم */
+function showFollowing() {
+  switchPage('friends');
+  if (typeof filterFriends === 'function') filterFriends('following', null);
+  showToast('دي قائمة اللي بتتابعهم 👥');
+}
+
+/* إعدادات: اللغة */
+function openLanguageSetting() {
+  showToast('التطبيق حالياً بالعربية 🇪🇬');
+}
+
+/* إعدادات: الخصوصية والأمان */
+function openPrivacySetting() {
+  showToast('بياناتك محفوظة على جهازك — تقدر تسجّل خروج بأمان 🔒');
+}
+
+/* إعدادات: عن التطبيق */
+function openAbout() {
+  showToast('سافر — نسخة 1.0.0 ✈️');
 }
 
 /* تهيئة المصادقة عند بدء التطبيق */

@@ -1,0 +1,29 @@
+﻿7:    1. ROOT VARIABLES
+28:    2. GLOBAL RESET
+48:    3. SPLASH SCREEN
+188:    4. APP SHELL & PAGES
+213:    5. HEADERS
+320:    6. SEARCH BOX
+363:    7. SECTIONS
+392:    8. SERVICES GRID
+446:    9. EXPLORE HERO
+512:    10. MAP
+725:    11. CONTINENT TABS
+771:    12. CONTINENT SECTIONS
+807:    13. COUNTRIES GRID
+929:    14. EMPTY STATE
+952:    15. COMMUNITY PAGE
+1130:    16. PROFILE PAGE
+1308:    17. COUNTRY DETAIL PAGE
+1720:    18. BOTTOM NAVIGATION
+1776:    19. TOAST
+1802:    20. RESPONSIVE
+1994:    21. OFFLINE / PWA
+2327:    17. TOURISM PAGE (صفحة السياحة المستقلة)
+2521:    21. SPACING FIXES (توحيد المسافات + منع تغطية الـ Bottom Nav)
+2600:    22. COMMUNITY PAGE — تـصـمـيـم فـيـسـبـوك
+3410:    22.B COMMUNITY EXTRA — عارض الصور + عارض القصص
+3569:    22.C COMMUNITY EXTRA — الهيدر الفرعي + الإشعارات
+3701:    22.D COMMUNITY EXTRA — الرسائل + المحادثة
+3842:    22.E COMMUNITY EXTRA — الأصدقاء + المجتمعات
+3966:    23. AUTH (CLERK) — تسجيل الدخول

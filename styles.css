@@ -204,6 +204,31 @@ body{
   display:block;
   animation:fadePage .3s ease;
 }
+
+/* ضمان: الصفحة اللي مش active مخفية تماماً — حتى لو حصل خطأ في الكلاسات
+   (ده اللي بيمنع محتوى الرئيسية إنه يبان تحت أي صفحة مفتوحة) */
+.page:not(.active){display:none !important;}
+
+/* ============================================================
+   S.WIPE BACK (معاينة السحب للرجوع)
+   - .swipe-active  : الصفحة الحالية اللي بتتسحب (فوق)
+   - .swipe-preview : الصفحة اللي قبلها (ورا — بتدخل من الجنب)
+   ============================================================ */
+.page.swipe-active{
+  position:relative;
+  z-index:1;
+  background:var(--bg);
+  will-change:transform,opacity;
+}
+.page.swipe-preview{
+  display:block !important;
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+  background:var(--bg);
+}
 @keyframes fadePage{
   from{opacity:0;transform:translateY(8px)}
   to{opacity:1;transform:none}

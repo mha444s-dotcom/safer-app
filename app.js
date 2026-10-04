@@ -2759,12 +2759,16 @@ function openEmbassyDetail(code, type) {
 /* صفحات قسم السياحة: صفحة الـHub + الخدمات الفرعية + السفارات وتفاصيلها */
 const TOURISM_PAGES = ['tourism', 'visas', 'flights', 'hotels', 'documents', 'insurance', 'currency', 'emergency', 'embassies', 'embassy-detail'];
 
+/* صفحات قسم السفارات والقنصليات:
+   بتفتح من كارت «السفارات والقنصليات» في الرئيسية + من كارت جوّه صفحة السياحة */
+const EMBASSY_PAGES = ['embassies', 'embassy-detail'];
 
 /* صفحات فرعية بتفتح من مجتمع سافر (زيارة/رسائل/أصدقاء/مجتمعات) */
 const COMMUNITY_SUB_PAGES = ['notifications', 'messages', 'chat', 'friends', 'groups'];
 
-/* أي صفحة جوّه القسمين دول → زرار «الرئيسية» في الـBottom Nav بيفضل مضيء */
-const PAGES_WITH_HOME_ACTIVE = TOURISM_PAGES.concat(COMMUNITY_SUB_PAGES);
+/* أي صفحة جوّه الأقسام دول → زرار «الرئيسية» في الـBottom Nav بيفضل مضيء
+   (صفحات السفارات متكررة هنا عن قصد: هي جوّه TOURISM_PAGES وكمان بتفتح من الرئيسية) */
+const PAGES_WITH_HOME_ACTIVE = TOURISM_PAGES.concat(COMMUNITY_SUB_PAGES, EMBASSY_PAGES);
 
 /* التنقل من الـHub لصفحة خدمة فرعية */
 function switchTourismPage(subpage) {
@@ -2772,13 +2776,46 @@ function switchTourismPage(subpage) {
   switchPage(subpage);
 }
 
-function switchPage(page) {
-  // إخفاء كل الصفحات
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+/* الصفحة الحالية — بنتتبّعها بنفسنا عشان نمنع أي تنقل غير مقصود
+   (Clerk بيحدّث الجلسة كل شوية وبينادي showAppHome — وكان بيرجّع المستخدم للرئيسية بالغلط) */
+let currentPage = '';
 
-  // إظهار الصفحة المطلوبة
-  const target = document.getElementById('page-' + page);
-  if (target) target.classList.add('active');
+/* اسم الصفحة الظاهرة حالياً (من الـDOM — مضمون إنه مطابق للواقع) */
+function getActivePageName() {
+  const el = document.querySelector('.page.active');
+  return el ? el.id.replace('page-', '') : '';
+}
+
+/* تنظيف أي styles مؤقتة سايبها السحب للرجوع (transform/opacity/transition) */
+function clearSwipeStyles(el) {
+  if (!el || !el.style) return;
+  el.style.transform = '';
+  el.style.opacity = '';
+  el.style.transition = '';
+  el.style.willChange = '';
+}
+
+function switchPage(page) {
+  let target = document.getElementById('page-' + page);
+
+  // حماية: لو الصفحة مش موجودة → الرئيسية (بدل ما تبقى الشاشة فاضية)
+  if (!target) {
+    console.warn('⚠️ switchPage: مفيش صفحة اسمها «' + page + '» — نرجع للرئيسية');
+    page = 'home';
+    target = document.getElementById('page-home');
+    if (!target) return false;
+  }
+
+  // (1) إخفاء كل الصفحات: نشيل active من الكل + ننضّف أي styles من السحب
+  //     ⚠️ ده اللي بيمنع ظهور محتوى الرئيسية تحت الصفحة المفتوحة
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    clearSwipeStyles(p);
+  });
+
+  // (2) إظهار الصفحة المطلوبة (صفحة واحدة بس ظاهرة في نفس الوقت)
+  target.classList.add('active');
+  currentPage = page;
 
   // تحديث الـ bottom nav
   // (كل صفحات قسم السياحة بتُعدّ جزء من الرئيسية، فبنخلّي زرار «الرئيسية» مضيء)
@@ -2835,55 +2872,110 @@ function switchPage(page) {
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
+
+  return true;
 }
 
 /* ============================================================
    8.1 BACK NAVIGATION (الرجوع للخلف + السحب من حرف الشاشة)
    ============================================================ */
 
+/* خريطة الرجوع: كل صفحة بترجع لمين (بنستخدمها في goBack وفي السحب للرجوع)
+   الرئيسية مالهاش رجوع (null) → مفيش تنقل لو إحنا في الرئيسية */
+const BACK_TARGETS = {
+  visas: 'tourism',
+  flights: 'tourism',
+  hotels: 'tourism',
+  documents: 'tourism',
+  insurance: 'tourism',
+  currency: 'tourism',
+  emergency: 'tourism',
+  embassies: 'home',
+  'embassy-detail': 'embassies',
+  tourism: 'home',
+  explore: 'home',
+  community: 'home',
+  profile: 'home',
+  detail: 'explore',
+  home: null,
+  auth: null,
+  // صفحات مجتمع سافر الفرعية
+  notifications: 'community',
+  messages: 'community',
+  chat: 'messages',
+  friends: 'community',
+  groups: 'community'
+};
+
 /* الرجوع للصفحة السابقة حسب الصفحة الحالية */
 function goBack() {
-  const activePage = document.querySelector('.page.active');
-  const pageName = activePage ? activePage.id.replace('page-', '') : '';
+  // نقرأ الصفحة الحالية من الـDOM (أدق من أي متغيّر)
+  const pageName = getActivePageName() || currentPage;
+  const target = BACK_TARGETS[pageName];
 
-  // خريطة الرجوع: كل صفحة بترجع لمين
-  const backTargets = {
-    visas: 'tourism',
-    flights: 'tourism',
-    hotels: 'tourism',
-    documents: 'tourism',
-    insurance: 'tourism',
-    currency: 'tourism',
-    emergency: 'tourism',
-    embassies: 'tourism',
-    'embassy-detail': 'embassies',
-    tourism: 'home',
-    explore: 'home',
-    community: 'home',
-    profile: 'home',
-    detail: 'explore',
-    // صفحات مجتمع سافر الفرعية
-    notifications: 'community',
-    messages: 'community',
-    chat: 'messages',
-    friends: 'community',
-    groups: 'community'
-  };
+  // مفيش مكان نرجع له (إحنا في الرئيسية / شاشة الدخول) → مفيش تنقل ولا رفّة
+  if (!target) return false;
 
-  switchPage(backTargets[pageName] || 'home');
+  return switchPage(target);
 }
 
-/* السحب للرجوع (Swipe Back): من حرف الشاشة اليمين لليسار — لأن التطبيق RTL */
+/* ============================================================
+   السحب للرجوع (Swipe Back) — من حرف الشاشة اليمين لليسار (RTL)
+   ------------------------------------------------------------------
+   • معاينة بصرية: الصفحة الحالية تتبع الصبع، والصفحة اللي قبلها
+     بتدخل من اليمين في نفس الوقت (زي أي تطبيق أصلي)
+   • الرجوع لو: سحب 80px+ أو سحب سريع (velocity)
+   • أنيميشن 250ms cubic-bezier(.4,0,.2,1)
+   ============================================================ */
 (function enableSwipeBack() {
-  const EDGE_ZONE = 30;  // عرض منطقة الحرف اليمين (px)
-  const MIN_DX = 100;    // أقل مسافة سحب أفقي مطلوبة (px)
-  const MAX_DY = 40;     // فوق كده يبقى سحب رأسي (سكرول) مش رجوع
+  const EDGE_ZONE = 25;      // عرض منطقة الحرف اليمين (px) — حساسية أعلى (كانت 30)
+  const MIN_DX = 80;         // أقل مسافة سحب أفقي للرجوع (px) — كانت 100
+  const MAX_DY = 50;         // فوق كده يبقى سحب رأسي (سكرول) مش رجوع
+  const MIN_VELOCITY = 0.5;  // سحب سريع (px/ms) يرجع حتى لو المسافة قليلة
+  const ANIM_MS = 250;       // مدة الأنيميشن (متوحّدة)
+  const EASE = 'transform .25s cubic-bezier(.4,0,.2,1), opacity .25s cubic-bezier(.4,0,.2,1)';
 
   let startX = 0;
   let startY = 0;
+  let startTime = 0;
   let isSwiping = false;
+  let activeEl = null;   // الصفحة الحالية (اللي بتتسحب)
+  let prevEl = null;     // الصفحة اللي قبلها (المعاينة)
+
+  /* رجوع الحالة لأصلها من غير أنيميشن (لو السحب اتلغى) */
+  function resetPreview() {
+    if (activeEl) { activeEl.classList.remove('swipe-active'); clearSwipeStyles(activeEl); }
+    if (prevEl) { prevEl.classList.remove('swipe-preview'); clearSwipeStyles(prevEl); }
+    activeEl = null;
+    prevEl = null;
+  }
+
+  /* إلغاء السحب بحركة ناعمة (لما المستخدم يسحب رأسي → يبقى سكرول عادي) */
+  function cancelWithAnimation() {
+    if (!activeEl) { resetPreview(); return; }
+
+    const el = activeEl;
+    const pv = prevEl;
+    activeEl = null;
+    prevEl = null;
+
+    el.style.transition = EASE;
+    if (pv) pv.style.transition = EASE;
+    el.style.transform = 'translateX(0)';
+    el.style.opacity = 1;
+    if (pv) pv.style.transform = 'translateX(100%)';
+
+    setTimeout(() => {
+      if (activeEl || prevEl) return;   // فيه سحب جديد بدأ → مانلمسش حاجة
+      el.classList.remove('swipe-active');
+      if (pv) pv.classList.remove('swipe-preview');
+      clearSwipeStyles(el);
+      clearSwipeStyles(pv);
+    }, ANIM_MS);
+  }
 
   document.addEventListener('touchstart', (e) => {
+    if (isSwiping || e.touches.length !== 1) return;
     const touch = e.touches[0];
     if (!touch) return;
 
@@ -2891,45 +2983,119 @@ function goBack() {
     const splash = document.getElementById('splash');
     if (splash && !splash.classList.contains('hide')) return;
 
-    // مش شغّال وفيه نافذة تفاصيل التأشيرة مفتوحة
-    if (document.querySelector('.visa-modal-overlay')) return;
+    // مش شغّال وفيه نافذة مفتوحة (تفاصيل تأشيرة / مودال / عارض صور / قائمة ⋯)
+    if (document.querySelector('.visa-modal-overlay, .fb-modal, .fb-image-viewer, .fb-story-viewer, .fb-more-menu')) return;
 
     // منع التعارض مع العناصر اللي بتتسحب أفقي (تابات / خريطة)
     const target = e.target;
     if (target && target.closest &&
         target.closest('.visa-tabs, .embassy-tabs, .detail-tabs, .continent-tabs, .leaflet-container')) return;
 
-    // بس من الحرف اليمين (أول 30px) عشان RTL
-    if (touch.clientX >= window.innerWidth - EDGE_ZONE) {
-      startX = touch.clientX;
-      startY = touch.clientY;
-      isSwiping = true;
-    }
+    // بس من الحرف اليمين (أول 25px) عشان RTL
+    if (touch.clientX < window.innerWidth - EDGE_ZONE) return;
+
+    // لازم يكون فيه صفحة نرجع لها فعلاً (مفيش سحب-رجوع من الرئيسية أو شاشة الدخول)
+    const toName = BACK_TARGETS[getActivePageName()];
+    const toEl = toName ? document.getElementById('page-' + toName) : null;
+    if (!toEl) return;
+
+    activeEl = document.querySelector('.page.active');
+    if (!activeEl || activeEl === toEl) return;
+
+    startX = touch.clientX;
+    startY = touch.clientY;
+    startTime = Date.now();
+    isSwiping = true;
+    prevEl = toEl;
+
+    // جهّز المعاينة: الصفحة الجاية تبان من ورا (فيكس) والصفحة الحالية تبقى فوقها
+    activeEl.classList.add('swipe-active');
+    activeEl.style.transition = 'none';
+    prevEl.classList.add('swipe-preview');
+    prevEl.style.transition = 'none';
+    prevEl.style.transform = 'translateX(100%)';
   }, { passive: true });
 
   document.addEventListener('touchmove', (e) => {
-    if (!isSwiping) return;
+    if (!isSwiping || !activeEl) return;
     const touch = e.touches[0];
     if (!touch) return;
 
-    const dx = touch.clientX - startX;
+    let dx = touch.clientX - startX;                 // سالب = سحب لليسار (اتجاه الرجوع في RTL)
     const dy = Math.abs(touch.clientY - startY);
 
-    // لازم السحب أفقي مش رأسي
+    // سحب رأسي → إلغاء والسماح بالسكرول العادي
     if (dy > MAX_DY) {
       isSwiping = false;
+      cancelWithAnimation();
       return;
     }
 
-    // سحب لليسار مسافة كفاية → ارجع للصفحة السابقة
-    if (dx < 0 && Math.abs(dx) > MIN_DX) {
-      isSwiping = false;
-      goBack();
+    if (dx > 0) dx = 0;                              // مفيش رجوع لليمين
+    const w = window.innerWidth;
+    if (dx < -w) dx = -w;
+
+    // الصفحة الحالية تتبع الصبع + الصفحة السابقة تدخل من اليمين (مرآة RTL)
+    activeEl.style.transform = 'translateX(' + dx + 'px)';
+    activeEl.style.opacity = Math.max(0.55, 1 + dx / 600);
+    if (prevEl) prevEl.style.transform = 'translateX(' + (w + dx) + 'px)';
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if (!isSwiping || !activeEl) { isSwiping = false; return; }
+    isSwiping = false;
+
+    const el = activeEl;
+    const pv = prevEl;
+    activeEl = null;
+    prevEl = null;
+
+    const touch = (e.changedTouches && e.changedTouches[0]) || null;
+    const dx = touch ? (touch.clientX - startX) : 0;
+    const duration = Math.max(1, Date.now() - startTime);
+    const velocity = dx / duration;   // سالب = سحب لليسار (رجوع)
+
+    // شرطين الرجوع: مسافة كفاية أو سحب سريع
+    const shouldGoBack = (dx < -MIN_DX) || (velocity < -MIN_VELOCITY);
+
+    el.style.transition = EASE;
+    if (pv) pv.style.transition = EASE;
+
+    if (shouldGoBack && pv) {
+      // كمّل الحركة برّه الشاشة + الصفحة السابقة تكمل مكانها
+      el.style.transform = 'translateX(-100%)';
+      el.style.opacity = 0;
+      pv.style.transform = 'translateX(0)';
+
+      const targetPage = pv.id.replace('page-', '');
+      setTimeout(() => {
+        if (activeEl || prevEl) return;   // فيه سحب جديد بدأ → مانلمسش حاجة
+        // switchPage بتنضّف الـ styles من كل الصفحات وبتخلي الهدف هو activate الوحيد
+        switchPage(targetPage);
+        pv.classList.remove('swipe-preview');
+        el.classList.remove('swipe-active');
+      }, ANIM_MS);
+    } else {
+      // رجّع كل حاجة لمكانها
+      el.style.transform = 'translateX(0)';
+      el.style.opacity = 1;
+      if (pv) pv.style.transform = 'translateX(100%)';
+
+      setTimeout(() => {
+        if (activeEl || prevEl) return;   // فيه سحب جديد بدأ → مانلمسش حاجة
+        el.classList.remove('swipe-active');
+        if (pv) pv.classList.remove('swipe-preview');
+        clearSwipeStyles(el);
+        clearSwipeStyles(pv);
+      }, ANIM_MS);
     }
   }, { passive: true });
 
-  document.addEventListener('touchend', () => {
+  /* سحب ملغي (مكالمة/إشعار…) → رجوع فوري من غير أنيميشن */
+  document.addEventListener('touchcancel', () => {
+    if (!isSwiping) return;
     isSwiping = false;
+    resetPreview();
   }, { passive: true });
 })();
 
@@ -3043,22 +3209,46 @@ function waitForClerk(timeoutMs) {
   });
 }
 
-/* إظهار الصفحة الرئيسية + إخفاء شاشة الدخول */
+/* إظهار الصفحة الرئيسية + إخفاء شاشة الدخول
+   ⚠️ مهم: الدالة دي بتتنادى متأخر (بعد ما Clerk يخلّص / مع أي تحديث للجلسة)
+   فمينفعش تسحب المستخدم من صفحة هو فاتحها بنفسه، ومينفعش تسيب صفحتين ظاهرين مع بعض */
 function showAppHome() {
   var auth = document.getElementById('page-auth');
-  var home = document.getElementById('page-home');
   if (auth) auth.classList.remove('active');
-  if (home) home.classList.add('active');
   document.body.classList.remove('auth-mode');
+
+  // لو المستخدم واقف في صفحة تانية (تأشيرات/سفارات/مجتمع/...) → نسيبه في مكانه
+  var active = getActivePageName();
+  if (active && active !== 'auth') {
+    if (!currentPage) currentPage = active;
+    return;
+  }
+
+  // بنستخدم switchPage عشان نضمن: صفحة واحدة بس active + الـ bottom nav + السكرول
+  if (typeof switchPage === 'function') {
+    switchPage('home');
+  } else {
+    var home = document.getElementById('page-home');
+    if (home) home.classList.add('active');
+  }
 }
 
-/* إظهار شاشة تسجيل الدخول + إخفاء الصفحة الرئيسية */
+/* إظهار شاشة تسجيل الدخول + إخفاء باقي الصفحات */
 function showAuthScreen() {
   var auth = document.getElementById('page-auth');
-  var home = document.getElementById('page-home');
-  if (home) home.classList.remove('active');
-  if (auth) auth.classList.add('active');
+  if (!auth) return;
+
+  // صفحة واحدة بس ظاهرة: نشيل active من كل الصفحات (+ ننضّف أي معاينة سحب)
+  document.querySelectorAll('.page').forEach(function (p) {
+    p.classList.remove('active');
+    p.classList.remove('swipe-active');
+    p.classList.remove('swipe-preview');
+    clearSwipeStyles(p);
+  });
+  auth.classList.add('active');
+  currentPage = 'auth';
   document.body.classList.add('auth-mode');
+  window.scrollTo(0, 0);
 }
 
 /* حفظ بيانات المستخدم محلياً (للاستخدام في الواجهات) */

@@ -11,8 +11,12 @@
    • المواقع الرسمية للسفارات الأجنبية في مصر:
      eg.usembassy.gov — gov.uk — kairo.diplo.de — eg.ambafrance.org
      ambilcairo.esteri.it — exteriores.gob.es — mofa.gov.ae
-     travel.gc.ca (كندا)
-   • ويكيبيديا العربية (للمواقف اللي مفيش لها مصدر رسمي متاح)
+     travel.gc.ca (كندا) — mofa.gov.iq/cairo
+   • OpenStreetMap (Nominatim) — بيانات مفتوحة (ODbL) للعنوان التفصيلي
+     والإحداثيات لبعض البعثات. أي بند جاي من هنا بيتسجّل verified: false
+     والسبب مكتوب في notes.
+   • ويكيبيديا (قائمة البعثات الدبلوماسية في مصر / بعثات مصر في الخارج)
+     للمواقف اللي مفيش لها مصدر رسمي متاح — وبتتسجّل verified: false
 
    قواعد ثابتة في الملف ده:
    • verified: true  = البيانات متأكد منها من مصدر رسمي.
@@ -61,10 +65,10 @@ const embassiesData = {
         website: '',
         workingHours: '',
         ambassador: '',
-        coordinates: null,
+        coordinates: [24.6723581, 46.6227511],
         verified: true,
         source: 'وزارة الخارجية المصرية — دليل بعثات مصر في الخارج',
-        notes: '[يحتاج تأكيد: المصدر الرسمي كتب «(+9661) 4831469 – 483130» والرقم التاني ناقص، أكّده قبل الاتصال].'
+        notes: '[يحتاج تأكيد: المصدر الرسمي كتب «(+9661) 4831469 – 483130» والرقم التاني ناقص، أكّده قبل الاتصال]. الإحداثيات من OpenStreetMap (مبنى السفارة – حي السفارات، الدور السابع).'
       },
       consulates: [
         {
@@ -106,10 +110,10 @@ const embassiesData = {
         website: '',
         workingHours: '',
         ambassador: '',
-        coordinates: null,
+        coordinates: [24.4254364, 54.4368573],
         verified: true,
         source: 'وزارة الخارجية المصرية — دليل بعثات مصر في الخارج',
-        notes: ''
+        notes: 'العنوان التفصيلي والإحداثيات من OpenStreetMap: شارع عوشة بنت الحسم الرميثي – حي السفارات – أبو ظبي.'
       },
       consulates: [
         {
@@ -196,10 +200,10 @@ const embassiesData = {
         website: '',
         workingHours: '',
         ambassador: '',
-        coordinates: null,
+        coordinates: [31.9446005, 35.9009350],
         verified: true,
         source: 'وزارة الخارجية المصرية — دليل بعثات مصر في الخارج',
-        notes: 'أرقام إضافية من نفس المصدر الرسمي: 5605176 / 5605202 / 5605203.'
+        notes: 'أرقام إضافية من نفس المصدر الرسمي: 5605176 / 5605202 / 5605203. الإحداثيات من OpenStreetMap (شارع بلودان – منطقة زهران – عمّان).'
       },
       consulates: [
         {
@@ -214,6 +218,130 @@ const embassiesData = {
           notes: ''
         }
       ],
+      services: EGY_SERVICES
+    },
+
+    /* ---------- المرحلة 1: الخليج والعربي (جديد) ---------- */
+
+    'bh': {
+      country: 'البحرين',
+      countryCode: 'bh',
+      embassy: {
+        name: 'سفارة جمهورية مصر العربية في المنامة',
+        city: 'المنامة',
+        address: 'منطقة بوعشيرة، المنامة',
+        phone: '',
+        fax: '',
+        email: '',
+        website: '',
+        workingHours: '',
+        ambassador: '',
+        coordinates: [26.2081885, 50.5829942],
+        verified: false,
+        source: 'OpenStreetMap (Nominatim) — مبنى السفارة (Embassy of the Arab Republic of Egypt)',
+        notes: '[يحتاج تأكيد: الهاتف والإيميل وساعات العمل — دليل بعثات مصر على موقع وزارة الخارجية بيتحمّل بالجافاسكربت فقط، وكان غير متاح للمراجعة الآلية]. العنوان ودرجة الدقة من OpenStreetMap (مستوى الحي).'
+      },
+      consulates: [],
+      services: EGY_SERVICES
+    },
+
+    'om': {
+      country: 'عُمان',
+      countryCode: 'om',
+      embassy: {
+        name: 'سفارة جمهورية مصر العربية في مسقط',
+        city: 'مسقط',
+        address: 'شارع جامعة الدول العربية – حي السفارات – بوشر، مسقط 118',
+        phone: '',
+        fax: '',
+        email: '',
+        website: '',
+        workingHours: '',
+        ambassador: '',
+        coordinates: [23.6055616, 58.4324293],
+        verified: false,
+        source: 'OpenStreetMap (Nominatim) — مبنى السفارة (Embassy of the Arab Republic of Egypt)',
+        notes: '[يحتاج تأكيد: الهاتف والإيميل وساعات العمل — دليل وزارة الخارجية المصرية غير متاح للمراجعة الآلية].'
+      },
+      consulates: [],
+      services: EGY_SERVICES
+    },
+
+    'lb': {
+      country: 'لبنان',
+      countryCode: 'lb',
+      embassy: {
+        name: 'سفارة جمهورية مصر العربية في بيروت',
+        city: 'بيروت',
+        address: 'شارع زاهية سلمان – مار إلياس – المصيطبة، بيروت',
+        phone: '',
+        fax: '',
+        email: '',
+        website: '',
+        workingHours: '',
+        ambassador: '',
+        coordinates: [33.8714430, 35.4939117],
+        verified: false,
+        source: 'OpenStreetMap (Nominatim) — مبنى السفارة (Egyptian Embassy)',
+        notes: '[يحتاج تأكيد: الهاتف والإيميل وساعات العمل]. البعثة ليها قسم قنصلي جوّه مبنى السفارة في بيروت.'
+      },
+      consulates: [],
+      services: EGY_SERVICES
+    },
+
+    'iq': {
+      country: 'العراق',
+      countryCode: 'iq',
+      embassy: {
+        name: 'سفارة جمهورية مصر العربية في بغداد',
+        city: 'بغداد',
+        address: 'شارع المسعودي – محلة ٢٢٦ – كرادة مريم (الكرادة)، بغداد',
+        phone: '',
+        fax: '',
+        email: '',
+        website: '',
+        workingHours: '',
+        ambassador: '',
+        coordinates: [33.3113809, 44.3962830],
+        verified: false,
+        source: 'OpenStreetMap (Nominatim) — مبنى السفارة (Embassy of Egypt)',
+        notes: '[يحتاج تأكيد: الهاتف والإيميل وساعات العمل].'
+      },
+      consulates: [
+        {
+          name: 'قنصلية جمهورية مصر العربية في أربيل',
+          city: 'أربيل',
+          address: 'منطقة وزيران ٢١٣، أربيل، إقليم كردستان',
+          phone: '+964 66 260 3443',
+          email: '',
+          website: '',
+          verified: false,
+          source: 'OpenStreetMap (Nominatim) — Consulate of Egypt (الهاتف من نفس المصدر)',
+          notes: '[يحتاج تأكيد: الهاتف وساعات العمل]. صفحة البعثة على موقع الخارجية المصرية (رابط من OpenStreetMap — تأكد إنها شغالة قبل النشر): https://www.mfa.gov.eg/arabic/embassies/egyptian_consulate_iraq/contactus/pages/default.aspx'
+        }
+      ],
+      services: EGY_SERVICES
+    },
+
+    'sy': {
+      country: 'سوريا',
+      countryCode: 'sy',
+      embassy: {
+        name: 'سفارة جمهورية مصر العربية في دمشق',
+        city: 'دمشق',
+        address: '17 April Street (شارع ١٧ نيسان) – حي الربوة – منطقة المزة، دمشق',
+        phone: '',
+        fax: '',
+        email: '',
+        website: '',
+        workingHours: '',
+        ambassador: '',
+        coordinates: [33.5041034, 36.2796033],
+        verified: false,
+        source: 'OpenStreetMap (Nominatim) — مبنى السفارة (Embassy of Egypt)',
+        notes: '[يحتاج تأكيد: الهاتف وساعات العمل ومواعيد العمل الرسمية الحالية].'
+      },
+      consulates: [],
       services: EGY_SERVICES
     },
 
@@ -787,6 +915,130 @@ const embassiesData = {
           notes: '[يحتاج تأكيد: العنوان والهاتف من وزارة الخارجية التركية].'
         }
       ],
+      services: FGN_SERVICES
+    },
+
+    /* ---------- المرحلة 1: الخليج والعربي (جديد) ---------- */
+
+    'bh': {
+      country: 'البحرين',
+      countryCode: 'bh',
+      embassy: {
+        name: 'سفارة مملكة البحرين في القاهرة',
+        city: 'القاهرة',
+        address: '١٥ شارع البرازيل – محمد مظهر – الزمالك، القاهرة ١١٥٦٨',
+        phone: '',
+        fax: '',
+        email: '',
+        website: 'https://www.mofa.gov.bh/Default.aspx?tabid=4599',
+        workingHours: '',
+        ambassador: '',
+        coordinates: [30.0619408, 31.2235022],
+        verified: false,
+        source: 'الموقع الرسمي لوزارة الخارجية البحرينية (صفحة سفارة البحرين في القاهرة) + العنوان والإحداثيات من OpenStreetMap',
+        notes: '[يحتاج تأكيد: الهاتف وساعات العمل — موقع الخارجية البحرينية بيرجّع خطأ 405 لطلبات الفحص الآلي وقت المراجعة]. العلاقات الدبلوماسية بين البلدين قائمة (سفارة البحرين في القاهرة + سفارة مصر في المنامة).'
+      },
+      consulates: [],
+      services: FGN_SERVICES
+    },
+
+    'om': {
+      country: 'عُمان',
+      countryCode: 'om',
+      embassy: {
+        name: 'سفارة سلطنة عُمان في القاهرة',
+        city: 'القاهرة',
+        address: '',
+        phone: '',
+        fax: '',
+        email: '',
+        website: 'https://www.fm.gov.om/',
+        workingHours: '',
+        ambassador: '',
+        coordinates: null,
+        verified: false,
+        source: 'ويكيبيديا — قائمة البعثات الدبلوماسية في مصر (وجود السفارة) + الموقع الرسمي للخارجية العُمانية',
+        notes: '[يحتاج تأكيد: العنوان والهاتف وساعات العمل — موقع الخارجية العُمانية غير متاح للمراجعة الآلية، ومفيش بيانات للسفارة على OpenStreetMap].'
+      },
+      consulates: [],
+      services: FGN_SERVICES
+    },
+
+    'lb': {
+      country: 'لبنان',
+      countryCode: 'lb',
+      embassy: {
+        name: 'سفارة الجمهورية اللبنانية في القاهرة',
+        city: 'القاهرة',
+        address: '',
+        phone: '',
+        fax: '',
+        email: '',
+        website: 'https://mfa.gov.lb/',
+        workingHours: '',
+        ambassador: '',
+        coordinates: null,
+        verified: false,
+        source: 'ويكيبيديا — قائمة البعثات الدبلوماسية في مصر (وجود السفارة + قنصلية عامة في الإسكندرية)',
+        notes: '[يحتاج تأكيد: عنوان وهاتف السفارة في القاهرة — موقع الخارجية اللبنانية غير متاح للمراجعة الآلية].'
+      },
+      consulates: [
+        {
+          name: 'القنصلية العامة اللبنانية في الإسكندرية',
+          city: 'الإسكندرية',
+          address: 'المسلة الشرقية – الشاطبي – الإسكندرية ٢١٥١٢ (الشارع: Hussein Hasab Street)',
+          phone: '',
+          email: '',
+          website: '',
+          verified: false,
+          source: 'OpenStreetMap (Nominatim) — Consulate General of Lebanon (Wikidata: Q111528894)',
+          notes: '[يحتاج تأكيد: الهاتف وساعات العمل].'
+        }
+      ],
+      services: FGN_SERVICES
+    },
+
+    'iq': {
+      country: 'العراق',
+      countryCode: 'iq',
+      embassy: {
+        name: 'سفارة جمهورية العراق في القاهرة',
+        city: 'القاهرة',
+        address: '٩ شارع محمد مظهر – الزمالك، القاهرة ١١٥٦٨',
+        phone: '+20 2 2735 8087',
+        fax: '+20 2 2736 5075',
+        email: '',
+        website: 'https://mofa.gov.iq/cairo/',
+        workingHours: 'الأحد – الخميس، 9:00 ص – 3:00 م',
+        ambassador: 'قحطان طه خلف',
+        coordinates: [30.0647230, 31.2230909],
+        verified: false,
+        source: 'الموقع الرسمي للسفارة (mofa.gov.iq/cairo) — تأكيد وجود السفارة واسم السفير من أخبار البعثة الرسمية؛ العنوان والهاتف والفاكس وساعات العمل من OpenStreetMap (آخر تحقق مسجّل: 2024-10-21)',
+        notes: 'معلومات رسمية: www.mofa.gov.iq/cairo + اسم السفير. [يحتاج تأكيد: رقم الهاتف والفاكس مصدرهم OpenStreetMap مش الموقع الرسمي — راجعهم قبل الاتصال].'
+      },
+      consulates: [],
+      services: FGN_SERVICES
+    },
+
+    'sy': {
+      country: 'سوريا',
+      countryCode: 'sy',
+      embassy: {
+        name: 'سفارة الجمهورية العربية السورية في القاهرة',
+        city: 'القاهرة',
+        address: '',
+        phone: '',
+        fax: '',
+        email: '',
+        website: 'https://mofaex.gov.sy/',
+        workingHours: '',
+        ambassador: '',
+        coordinates: null,
+        verified: false,
+        source: 'ويكيبيديا — قائمة البعثات الدبلوماسية في مصر (وجود السفارة) + موقع الخارجية السورية',
+        notes: '[يحتاج تأكيد: العنوان والهاتف وساعات العمل — موقع الخارجية السورية غير متاح للمراجعة الآلية، ومفيش بيانات للسفارة على OpenStreetMap].'
+      },
+      consulates: [],
       services: FGN_SERVICES
     }
   }

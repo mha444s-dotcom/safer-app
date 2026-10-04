@@ -14,7 +14,7 @@
    • Clerk (المصادقة) ................... Network Only (بدون كاش — ردود حساسة)
    ============================================================ */
 
-const SW_VERSION = 'v1.0.21';  // ← اترفعت: قسم السفارات والقنصليات (embassies-data.js + صفحتين جديدتين)
+const SW_VERSION = 'v1.0.23';  // ← اترفعت: إصلاح التنقل (صفحة واحدة active + goBack + السحب للرجوع بمعاينة)
 
 const STATIC_CACHE = 'safr-static-' + SW_VERSION;   // ملفات التطبيق
 const LIB_CACHE    = 'safr-libs-' + SW_VERSION;     // Leaflet وغيرها

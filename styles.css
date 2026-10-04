@@ -2052,82 +2052,138 @@ body{
 
 /* ============================================================
    قسم السياحة — التأشيرات (visa section)
+   تصميم بدون أيقونات: نص + أرقام + أشرطة فقط
    ============================================================ */
+
+/* ألوان تصنيفات التأشيرة */
+:root{
+  --visa-free:#10B981;
+  --visa-free-bg:#D1FAE5;
+  --e-visa:#3B82F6;
+  --e-visa-bg:#DBEAFE;
+  --on-arrival:#F59E0B;
+  --on-arrival-bg:#FEF3C7;
+  --visa-required:#EF4444;
+  --visa-required-bg:#FEE2E2;
+}
+
 @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
 @keyframes slideUpModal{ from{transform:translateY(60px);opacity:0} to{transform:none;opacity:1} }
 
-/* شريط الإحصائيات */
-.visa-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px; }
-.vs-item{ background:#fff; border-radius:12px; padding:10px 8px; text-align:center; border:1px solid var(--border); transition:.2s; }
-.vs-num{ display:block; font-size:18px; font-weight:900; color:var(--primary); margin-bottom:2px; }
-.vs-label{ font-size:10px; color:var(--muted); font-weight:700; }
-.vs-free .vs-num{ color:#10B981; }
-.vs-evisa .vs-num{ color:#3B82F6; }
-.vs-arrival .vs-num{ color:#F59E0B; }
-.vs-required .vs-num{ color:#EF4444; }
+/* ---------- لوحة الإحصائيات ---------- */
+.visa-dashboard{ background:#fff; border:1px solid var(--border); border-radius:16px; padding:14px; margin-bottom:14px; box-shadow:var(--shadow-sm); }
 
-/* التابات */
+.vd-header{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding-bottom:10px; border-bottom:1px solid var(--border); margin-bottom:12px; }
+.vd-header h4{ font-size:14px; font-weight:800; color:var(--text); }
+.vd-total{ font-size:11px; font-weight:700; color:var(--muted); }
+.vd-total strong{ font-size:14px; color:var(--primary); }
+
+.vd-list{ display:flex; flex-direction:column; gap:10px; }
+.vd-row{ padding:6px 8px; margin:0 -8px; border-radius:10px; cursor:pointer; transition:.2s; }
+.vd-row:active{ background:#F1F5F9; }
+.vd-row.active{ background:#EEF3FB; }
+
+.vd-label{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:5px; }
+.vd-name{ font-size:12px; font-weight:700; color:var(--text); }
+.vd-num{ font-size:13px; font-weight:900; }
+
+.vd-bar{ height:8px; border-radius:99px; background:#EDF1F7; overflow:hidden; }
+.vd-fill{ height:100%; border-radius:99px; transition:width .5s ease; }
+
+.vd-row[data-filter="visa-free"] .vd-num{ color:var(--visa-free); }
+.vd-row[data-filter="visa-free"] .vd-fill{ background:var(--visa-free); }
+.vd-row[data-filter="e-visa"] .vd-num{ color:var(--e-visa); }
+.vd-row[data-filter="e-visa"] .vd-fill{ background:var(--e-visa); }
+.vd-row[data-filter="on-arrival"] .vd-num{ color:var(--on-arrival); }
+.vd-row[data-filter="on-arrival"] .vd-fill{ background:var(--on-arrival); }
+.vd-row[data-filter="visa-required"] .vd-num{ color:var(--visa-required); }
+.vd-row[data-filter="visa-required"] .vd-fill{ background:var(--visa-required); }
+
+/* ---------- التابات ---------- */
 .visa-tabs{ display:flex; gap:6px; overflow-x:auto; padding:0 0 12px; scrollbar-width:none; }
 .visa-tabs::-webkit-scrollbar{ display:none; }
-.visa-tab{ flex:0 0 auto; padding:8px 14px; border-radius:99px; background:#fff; border:1.5px solid var(--border); font-family:inherit; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; transition:.2s; white-space:nowrap; }
+.visa-tab{ flex:0 0 auto; display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:99px; background:#fff; border:1.5px solid var(--border); font-family:inherit; font-size:12px; font-weight:700; color:var(--muted); cursor:pointer; transition:.2s; white-space:nowrap; }
 .visa-tab.active{ background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; border-color:transparent; box-shadow:0 4px 12px rgba(11,61,145,.25); }
+.tab-count{ min-width:20px; padding:1px 6px; border-radius:99px; background:#EDF1F7; color:var(--primary); font-size:10px; font-weight:900; text-align:center; }
+.visa-tab.active .tab-count{ background:rgba(255,255,255,.25); color:#fff; }
 
-/* كروت الدول */
-.visa-cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-.visa-card{ background:#fff; border-radius:14px; padding:12px; display:flex; gap:10px; cursor:pointer; border:1px solid var(--border); transition:.2s; }
-.visa-card:active{ transform:scale(.97); }
+/* ---------- كروت الدول ---------- */
+.visa-cards{ display:grid; grid-template-columns:1fr; gap:10px; }
+.visa-card{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:12px; cursor:pointer; transition:.2s; box-shadow:var(--shadow-sm); }
+.visa-card:active{ transform:scale(.98); }
+
+.vc-top{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
 .vc-flag{ width:44px; height:33px; border-radius:6px; overflow:hidden; flex-shrink:0; box-shadow:0 2px 6px rgba(0,0,0,.1); }
 .vc-flag img{ width:100%; height:100%; object-fit:cover; }
-.vc-body{ flex:1; display:flex; flex-direction:column; gap:4px; min-width:0; }
-.vc-body h4{ font-size:13px; font-weight:800; margin:0; }
-.vc-badge{ font-size:9px; font-weight:700; padding:2px 6px; border-radius:99px; align-self:flex-start; }
-.badge-free{ background:#D1FAE5; color:#065F46; }
-.badge-evisa{ background:#DBEAFE; color:#1E40AF; }
-.badge-arrival{ background:#FEF3C7; color:#92400E; }
-.badge-required{ background:#FEE2E2; color:#991B1B; }
-.vc-cond{ font-size:8px; font-weight:800; color:#B45309; background:#FEF3C7; padding:1px 5px; border-radius:99px; margin-right:4px; }
-.vc-info{ display:flex; flex-wrap:wrap; gap:8px; font-size:10px; color:var(--muted); font-weight:600; }
+.vc-info{ flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
+.vc-info h4{ font-size:13px; font-weight:800; margin:0; }
+.vc-badge{ align-self:flex-start; padding:2px 8px; border-radius:99px; font-size:9px; font-weight:700; }
+.vc-badge.visa-free{ background:var(--visa-free-bg); color:#065F46; }
+.vc-badge.e-visa{ background:var(--e-visa-bg); color:#1E40AF; }
+.vc-badge.on-arrival{ background:var(--on-arrival-bg); color:#92400E; }
+.vc-badge.visa-required{ background:var(--visa-required-bg); color:#991B1B; }
+.vc-arrow{ flex-shrink:0; color:var(--muted); font-size:18px; font-weight:700; }
+
+.vc-meta{ display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
+.vc-meta-item{ display:flex; flex-direction:column; gap:2px; padding:6px 8px; border-radius:8px; background:#F8FAFC; border:1px solid var(--border); }
+.vc-meta-label{ font-size:9px; font-weight:700; color:var(--muted); }
+.vc-meta-value{ font-size:11px; font-weight:800; color:var(--text); line-height:1.5; }
 
 .visa-empty{ text-align:center; padding:40px 20px; color:var(--muted); font-size:13px; font-weight:600; grid-column:1 / -1; }
 
-/* Modal نافذة تفاصيل التأشيرة */
+/* ---------- نافذة تفاصيل التأشيرة ---------- */
 .visa-modal-overlay{ position:fixed; inset:0; background:rgba(7,30,74,.7); z-index:1000; display:flex; align-items:flex-end; justify-content:center; backdrop-filter:blur(4px); animation:fadeIn .3s; }
-.visa-modal{ background:#fff; width:100%; max-width:520px; max-height:90vh; border-radius:24px 24px 0 0; overflow-y:auto; animation:slideUpModal .4s cubic-bezier(.34,1.56,.64,1); }
-.vm-header{ position:relative; background:linear-gradient(160deg,var(--primary-dark),var(--primary)); color:#fff; padding:24px 20px 20px; text-align:center; border-radius:24px 24px 0 0; }
-.vm-close{ position:absolute; top:14px; left:14px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.2); border:none; color:#fff; font-size:16px; cursor:pointer; }
+.visa-modal{ background:#fff; width:100%; max-width:520px; max-height:90vh; display:flex; flex-direction:column; border-radius:24px 24px 0 0; overflow:hidden; animation:slideUpModal .4s cubic-bezier(.34,1.56,.64,1); }
+
+.vm-header{ position:relative; background:linear-gradient(160deg,var(--primary-dark),var(--primary)); color:#fff; padding:24px 20px 18px; text-align:center; }
+.vm-close{ position:absolute; top:16px; left:16px; padding:6px 14px; border-radius:99px; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.28); color:#fff; font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; }
 .vm-flag{ width:64px; height:48px; border-radius:8px; overflow:hidden; margin:0 auto 12px; border:3px solid #fff; box-shadow:0 8px 20px rgba(0,0,0,.3); }
 .vm-flag img{ width:100%; height:100%; object-fit:cover; }
-.vm-header h3{ font-size:22px; font-weight:900; margin-bottom:6px; }
+.vm-header h3{ font-size:22px; font-weight:900; margin-bottom:8px; }
 .vm-type{ display:inline-block; padding:4px 12px; background:rgba(255,255,255,.15); border-radius:99px; font-size:12px; font-weight:700; }
-.vm-body{ padding:20px; }
-.vm-quick-info{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:20px; }
-.vm-q{ background:#F8FAFC; border-radius:10px; padding:10px; display:flex; flex-direction:column; gap:4px; border:1px solid var(--border); }
-.vm-q-label{ font-size:10px; color:var(--muted); font-weight:700; }
-.vm-q-val{ font-size:13px; font-weight:800; color:var(--text); }
-.vm-section{ margin-bottom:18px; }
-.vm-section h5{ font-size:13px; font-weight:800; color:var(--primary); margin-bottom:10px; }
-.vm-list{ list-style:none; padding:0; margin:0; }
-.vm-list li{ padding:8px 0; padding-right:20px; position:relative; font-size:13px; color:var(--text); border-bottom:1px solid var(--border); line-height:1.6; }
-.vm-list li:last-child{ border-bottom:none; }
-.vm-list li::before{ content:'✓'; position:absolute; right:0; color:#10B981; font-weight:900; }
-.vm-notes{ background:#FEF3C7; padding:12px 14px; border-radius:12px; border-right:4px solid #F59E0B; }
-.vm-notes h5{ color:#92400E; }
-.vm-notes p{ font-size:12px; color:#92400E; line-height:1.6; margin:0; }
-.vm-info-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; font-size:12px; color:var(--text); }
-.vm-info-grid > div{ background:#F8FAFC; padding:8px 10px; border-radius:8px; border:1px solid var(--border); }
-.vm-embassy{ background:#F8FAFC; padding:12px; border-radius:12px; border:1px solid var(--border); font-size:12px; line-height:1.8; }
-.vm-embassy p{ margin:0; color:var(--text); }
-.vm-link{ display:inline-block; margin-top:8px; color:var(--primary); font-weight:700; text-decoration:none; font-size:12px; }
-.vm-verify{ margin-top:6px !important; font-size:10px !important; color:#B45309 !important; font-weight:700; }
-.vm-btn-primary{ display:block; width:100%; padding:14px; background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; border-radius:14px; text-align:center; text-decoration:none; font-weight:800; font-size:14px; margin-top:10px; box-shadow:0 8px 20px rgba(11,61,145,.3); }
-.vm-source{ margin-top:12px; font-size:9px; color:var(--muted); text-align:center; line-height:1.6; }
 
-/* استجابة للشاشات الأكبر */
+/* تبويبات النافذة: المعلومات / المستندات / السفارة */
+.vm-tabs{ display:flex; padding:12px 16px 0; border-bottom:1px solid var(--border); }
+.vm-tab{ flex:1; padding:10px 6px; background:transparent; border:none; border-bottom:2.5px solid transparent; font-family:inherit; font-size:13px; font-weight:700; color:var(--muted); cursor:pointer; transition:.2s; }
+.vm-tab.active{ color:var(--primary); border-bottom-color:var(--primary); }
+
+.vm-body{ padding:18px 20px 24px; overflow-y:auto; }
+.vm-panel{ display:none; }
+.vm-panel.active{ display:block; }
+
+.vm-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+.vm-cell{ display:flex; flex-direction:column; gap:4px; padding:10px; border-radius:10px; background:#F8FAFC; border:1px solid var(--border); }
+.vm-cell-label{ font-size:10px; font-weight:700; color:var(--muted); }
+.vm-cell-val{ font-size:13px; font-weight:800; color:var(--text); line-height:1.5; }
+
+.vm-list{ list-style:none; padding:0; margin:0; }
+.vm-list li{ padding:10px 12px; margin-bottom:8px; border-radius:10px; background:#F8FAFC; border:1px solid var(--border); font-size:13px; color:var(--text); line-height:1.7; }
+.vm-list li:last-child{ margin-bottom:0; }
+
+.vm-notes{ margin-top:14px; padding:12px 14px; border-radius:12px; background:#FEF3C7; border:1px solid #FDE68A; }
+.vm-notes-title{ font-size:12px; font-weight:800; color:#92400E; margin-bottom:6px; }
+.vm-notes p{ font-size:12px; color:#92400E; line-height:1.7; margin:0; }
+
+.vm-emb-row{ display:flex; flex-direction:column; gap:2px; padding:10px 12px; margin-bottom:8px; border-radius:10px; background:#F8FAFC; border:1px solid var(--border); }
+.vm-emb-label{ font-size:10px; font-weight:700; color:var(--muted); }
+.vm-emb-val{ font-size:13px; font-weight:700; color:var(--text); line-height:1.7; }
+.vm-verify{ margin-top:4px; font-size:11px; font-weight:700; color:#B45309; line-height:1.7; }
+
+/* أزرار نصية بدون أيقونات */
+.vm-actions{ display:flex; flex-direction:column; gap:8px; margin-top:16px; }
+.vm-btn{ display:block; width:100%; padding:13px; border-radius:14px; background:#fff; border:1.5px solid var(--border); color:var(--primary); font-family:inherit; font-size:14px; font-weight:800; text-align:center; text-decoration:none; cursor:pointer; transition:.2s; }
+.vm-btn:active{ transform:scale(.98); }
+.vm-btn-primary{ background:linear-gradient(135deg,var(--primary),var(--primary-light)); border-color:transparent; color:#fff; box-shadow:0 8px 20px rgba(11,61,145,.3); }
+
+.vm-source{ margin-top:14px; font-size:10px; color:var(--muted); text-align:center; line-height:1.6; }
+
+/* ---------- استجابة للشاشات الأكبر ---------- */
 @media(min-width:640px){
-  .visa-cards{ grid-template-columns:repeat(3,1fr); }
+  .visa-cards{ grid-template-columns:repeat(2,1fr); }
+  .vc-meta{ grid-template-columns:repeat(4,1fr); }
 }
-@media(min-width:1000px){
-  .visa-cards{ grid-template-columns:repeat(4,1fr); }
+@media(min-width:1024px){
+  .visa-cards{ grid-template-columns:repeat(3,1fr); }
 }
 
 /* ============================================================
@@ -2201,17 +2257,6 @@ body{
   transition:.25s;
 }
 .tourism-home-card:active{ transform:scale(.98); }
-
-.thc-icon{
-  width:52px;
-  height:52px;
-  border-radius:14px;
-  background:rgba(255,255,255,.2);
-  display:grid;
-  place-items:center;
-  flex-shrink:0;
-}
-.thc-icon svg{ width:28px; height:28px; stroke:#fff; fill:none; stroke-width:2; }
 
 .thc-text{ flex:1; min-width:0; }
 .thc-text h4{ font-size:15px; font-weight:800; margin-bottom:4px; }

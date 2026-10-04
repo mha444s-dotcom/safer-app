@@ -629,10 +629,10 @@ let currentVisaFilter = 'all';
 /* نص وصف نوع التأشيرة */
 function getVisaLabel(type) {
   const labels = {
-    'visa-free': '✅ بدون فيزا',
-    'e-visa': '📱 فيزا إلكترونية',
-    'on-arrival': '🛬 فيزا عند الوصول',
-    'visa-required': '📋 فيزا مطلوبة'
+    'visa-free': 'بدون فيزا',
+    'e-visa': 'فيزا إلكترونية',
+    'on-arrival': 'فيزا عند الوصول',
+    'visa-required': 'فيزا مطلوبة'
   };
   return labels[type] || type;
 }
@@ -648,21 +648,44 @@ function countVisaTypes() {
   return counts;
 }
 
-/* رسم القسم: الإحصائيات + الكروت */
+/* رسم القسم: لوحة الإحصائيات + العدّادات + الكروت (بدون أي أيقونات) */
 function renderVisaSection() {
   const container = document.getElementById('visaCards');
   if (!container || typeof visaData === 'undefined' || !visaData.countries) return;
 
-  // (1) الإحصائيات
+  const codesAll = Object.keys(visaData.countries);
+  const total = codesAll.length;
   const counts = countVisaTypes();
-  const setNum = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-  setNum('vs-free', counts['visa-free']);
-  setNum('vs-evisa', counts['e-visa']);
-  setNum('vs-arrival', counts['on-arrival']);
-  setNum('vs-required', counts['visa-required']);
+  const pct = n => (total ? Math.round((n / total) * 100) : 0);
 
-  // (2) الفلترة حسب التاب النشط
-  let codes = Object.keys(visaData.countries);
+  // (1) لوحة الإحصائيات: الإجمالي + رقم كل تصنيف + عرض الشريط
+  const totalEl = document.getElementById('vd-total');
+  if (totalEl) totalEl.textContent = total;
+
+  document.querySelectorAll('.vd-row').forEach(row => {
+    const n = counts[row.dataset.filter] || 0;
+    const numEl = row.querySelector('.vd-num');
+    const fillEl = row.querySelector('.vd-fill');
+    if (numEl) numEl.textContent = n;
+    if (fillEl) fillEl.style.width = pct(n) + '%';
+  });
+
+  // (2) عدّاد كل تاب
+  document.querySelectorAll('.visa-tab').forEach(tab => {
+    const el = tab.querySelector('.tab-count');
+    if (!el) return;
+    const f = tab.dataset.filter;
+    el.textContent = (f === 'all') ? total : (counts[f] || 0);
+  });
+
+  // (2.ب) بطاقة السياحة في الصفحة الرئيسية (لو موجودة)
+  const homeNum = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  homeNum('thc-free', counts['visa-free']);
+  homeNum('thc-evisa', counts['e-visa']);
+  homeNum('thc-required', counts['visa-required']);
+
+  // (3) الفلترة حسب التاب النشط
+  let codes = codesAll;
   if (currentVisaFilter !== 'all') {
     codes = codes.filter(code => visaData.countries[code].visaType === currentVisaFilter);
   }
@@ -672,12 +695,12 @@ function renderVisaSection() {
     return;
   }
 
-  // (3) الكروت
+  // (4) الكروت
   const badges = {
-    'visa-free': { label: 'بدون فيزا', cls: 'badge-free' },
-    'e-visa': { label: 'إلكترونية', cls: 'badge-evisa' },
-    'on-arrival': { label: 'عند الوصول', cls: 'badge-arrival' },
-    'visa-required': { label: 'مطلوبة', cls: 'badge-required' }
+    'visa-free': 'بدون فيزا',
+    'e-visa': 'إلكترونية',
+    'on-arrival': 'عند الوصول',
+    'visa-required': 'مطلوبة'
   };
 
   container.innerHTML = codes.map(code => {
@@ -685,17 +708,36 @@ function renderVisaSection() {
     const country = (typeof countries !== 'undefined' && Array.isArray(countries))
       ? countries.find(c => c.code === code)
       : null;
-    const badge = badges[v.visaType] || badges['visa-free'];
-    const cond = v.conditional ? '<span class="vc-cond">مشروط</span>' : '';
+    const badge = badges[v.visaType] || v.visaType;
+    const cond = v.conditional ? ' — مشروط' : '';
+
     return `
       <div class="visa-card" onclick="openVisaDetail('${code}')">
-        <div class="vc-flag">${flagImgTag(country || { code: code }, 'w80', v.name)}</div>
-        <div class="vc-body">
-          <h4>${v.name}</h4>
-          <span class="vc-badge ${badge.cls}">${badge.label}${cond}</span>
+        <div class="vc-top">
+          <div class="vc-flag">${flagImgTag(country || { code: code }, 'w80', v.name)}</div>
           <div class="vc-info">
-            <span>⏱️ ${v.duration}</span>
-            <span>💰 ${v.cost}</span>
+            <h4>${v.name}</h4>
+            <span class="vc-badge ${v.visaType}">${badge}${cond}</span>
+          </div>
+          <div class="vc-arrow">←</div>
+        </div>
+
+        <div class="vc-meta">
+          <div class="vc-meta-item">
+            <span class="vc-meta-label">المدة</span>
+            <span class="vc-meta-value">${v.duration}</span>
+          </div>
+          <div class="vc-meta-item">
+            <span class="vc-meta-label">الرسوم</span>
+            <span class="vc-meta-value">${v.cost}</span>
+          </div>
+          <div class="vc-meta-item">
+            <span class="vc-meta-label">المعالجة</span>
+            <span class="vc-meta-value">${v.processingTime}</span>
+          </div>
+          <div class="vc-meta-item">
+            <span class="vc-meta-label">أفضل وقت</span>
+            <span class="vc-meta-value">${v.bestTime}</span>
           </div>
         </div>
       </div>
@@ -703,12 +745,49 @@ function renderVisaSection() {
   }).join('');
 }
 
-/* فلترة حسب التاب */
-function filterVisa(filter, btn) {
+/* فلترة حسب التصنيف — من التابات أو من صفوف لوحة الإحصائيات */
+function filterVisa(filter, el) {
   currentVisaFilter = filter;
-  document.querySelectorAll('.visa-tab').forEach(t => t.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+
+  // مزامنة التابات + صفوف اللوحة مع الفلتر الحالي
+  document.querySelectorAll('.visa-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.filter === filter);
+  });
+  document.querySelectorAll('.vd-row').forEach(row => {
+    row.classList.toggle('active', row.dataset.filter === filter);
+  });
+
   renderVisaSection();
+}
+
+/* نسخ رقم السفارة */
+function copyEmbassyPhone(el) {
+  const phone = (typeof el === 'string') ? el : (el && el.dataset ? el.dataset.phone : '');
+  if (!phone) return;
+
+  const done = () => showToast('تم نسخ رقم السفارة');
+  const fallback = () => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = phone;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    } catch (e) {
+      showToast(phone);
+    }
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(phone).then(done).catch(fallback);
+  } else {
+    fallback();
+  }
 }
 
 /* فتح تفاصيل دولة */
@@ -724,7 +803,19 @@ function closeVisaModal() {
   if (overlay) overlay.remove();
 }
 
-/* نافذة تفاصيل التأشيرة */
+/* تبديل تبويبات نافذة تفاصيل التأشيرة: المعلومات / المستندات / السفارة */
+function switchVisaTab(tabName) {
+  const modal = document.querySelector('.visa-modal');
+  if (!modal) return;
+  modal.querySelectorAll('.vm-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.vtab === tabName);
+  });
+  modal.querySelectorAll('.vm-panel').forEach(panel => {
+    panel.classList.toggle('active', panel.dataset.vpanel === tabName);
+  });
+}
+
+/* نافذة تفاصيل التأشيرة (نص + بيانات، بدون أي أيقونات) */
 function showVisaModal(v) {
   closeVisaModal();
 
@@ -733,10 +824,16 @@ function showVisaModal(v) {
     : null;
 
   const embassy = v.embassyInEgypt || {};
-  const embassyPhone = embassy.phone ? `<p>📞 ${embassy.phone}</p>` : '';
-  const embassyWarn  = (embassy.verified === false)
-    ? '<p class="vm-verify">⚠️ بيانات السفارة تقريبية — تأكد من الموقع الرسمي</p>'
+  const phone = embassy.phone || '';
+  const website = embassy.website || '';
+  const official = v.officialLink || '';
+
+  const embassyWarn = (embassy.verified === false)
+    ? '<p class="vm-verify">بيانات السفارة تقريبية — لازم تتأكد من الموقع الرسمي قبل أي إجراء.</p>'
     : '';
+
+  const row = (label, val) =>
+    `<div class="vm-cell"><span class="vm-cell-label">${label}</span><span class="vm-cell-val">${val || '—'}</span></div>`;
 
   const modal = document.createElement('div');
   modal.className = 'visa-modal-overlay';
@@ -745,53 +842,64 @@ function showVisaModal(v) {
   modal.innerHTML = `
     <div class="visa-modal">
       <div class="vm-header">
-        <button class="vm-close" onclick="closeVisaModal()">✕</button>
+        <button class="vm-close" onclick="closeVisaModal()">إغلاق</button>
         <div class="vm-flag">${flagImgTag(country || { code: v.code }, 'w160', v.name)}</div>
         <h3>${v.name}</h3>
         <span class="vm-type">${getVisaLabel(v.visaType)}${v.conditional ? ' · مشروط' : ''}</span>
       </div>
 
+      <div class="vm-tabs">
+        <button class="vm-tab active" data-vtab="info" onclick="switchVisaTab('info')">المعلومات</button>
+        <button class="vm-tab" data-vtab="docs" onclick="switchVisaTab('docs')">المستندات</button>
+        <button class="vm-tab" data-vtab="embassy" onclick="switchVisaTab('embassy')">السفارة</button>
+      </div>
+
       <div class="vm-body">
-        <div class="vm-quick-info">
-          <div class="vm-q"><span class="vm-q-label">⏱️ المدة</span><span class="vm-q-val">${v.duration}</span></div>
-          <div class="vm-q"><span class="vm-q-label">💰 التكلفة</span><span class="vm-q-val">${v.cost}</span></div>
-          <div class="vm-q"><span class="vm-q-label">⚡ المعالجة</span><span class="vm-q-val">${v.processingTime}</span></div>
-          <div class="vm-q"><span class="vm-q-label">🌡️ أفضل وقت</span><span class="vm-q-val">${v.bestTime}</span></div>
+        <!-- المعلومات -->
+        <div class="vm-panel active" data-vpanel="info">
+          <div class="vm-grid">
+            ${row('المدة', v.duration)}
+            ${row('الرسوم', v.cost)}
+            ${row('المعالجة', v.processingTime)}
+            ${row('أفضل وقت', v.bestTime)}
+            ${row('العملة', v.currency)}
+            ${row('سعر الصرف', v.currencyPerUSD)}
+            ${row('اللغة', v.language)}
+            ${row('التوقيت', v.timezone)}
+            ${row('الطوارئ', v.emergencyNumber)}
+          </div>
+
+          ${v.notes ? `<div class="vm-notes"><div class="vm-notes-title">ملاحظات مهمة</div><p>${v.notes}</p></div>` : ''}
+
+          ${v.source ? `<p class="vm-source">المصدر: ${v.source}</p>` : ''}
         </div>
 
-        <div class="vm-section">
-          <h5>📋 المستندات المطلوبة</h5>
+        <!-- المستندات -->
+        <div class="vm-panel" data-vpanel="docs">
           <ul class="vm-list">
-            ${(v.requirements || []).map(r => `<li>${r}</li>`).join('')}
+            ${(v.requirements || []).map(r => `<li>${r}</li>`).join('') || '<li>مفيش مستندات مسجّلة</li>'}
           </ul>
         </div>
 
-        ${v.notes ? `<div class="vm-section vm-notes"><h5>⚠️ ملاحظات مهمة</h5><p>${v.notes}</p></div>` : ''}
-
-        <div class="vm-section">
-          <h5>🌐 معلومات مفيدة</h5>
-          <div class="vm-info-grid">
-            <div>💵 <strong>العملة:</strong> ${v.currency}</div>
-            <div>💱 <strong>سعر الصرف:</strong> ${v.currencyPerUSD}</div>
-            <div>🗣️ <strong>اللغة:</strong> ${v.language}</div>
-            <div>🕐 <strong>التوقيت:</strong> ${v.timezone}</div>
-            <div>🚨 <strong>الطوارئ:</strong> ${v.emergencyNumber}</div>
+        <!-- السفارة -->
+        <div class="vm-panel" data-vpanel="embassy">
+          <div class="vm-emb-row">
+            <span class="vm-emb-label">العنوان</span>
+            <span class="vm-emb-val">${embassy.address || '—'}</span>
           </div>
+          <div class="vm-emb-row">
+            <span class="vm-emb-label">الهاتف</span>
+            <span class="vm-emb-val">${phone || '—'}</span>
+          </div>
+          ${embassyWarn}
         </div>
 
-        <div class="vm-section">
-          <h5>🏛️ السفارة في مصر</h5>
-          <div class="vm-embassy">
-            <p>📍 ${embassy.address || '—'}</p>
-            ${embassyPhone}
-            ${embassy.website ? `<a href="${embassy.website}" target="_blank" rel="noopener" class="vm-link">🌐 موقع السفارة</a>` : ''}
-            ${embassyWarn}
-          </div>
+        <!-- أزرار نصية -->
+        <div class="vm-actions">
+          ${website ? `<a class="vm-btn" href="${website}" target="_blank" rel="noopener">زيارة موقع السفارة</a>` : ''}
+          ${phone ? `<button class="vm-btn" data-phone="${phone}" onclick="copyEmbassyPhone(this)">نسخ رقم السفارة</button>` : ''}
+          ${official ? `<a class="vm-btn vm-btn-primary" href="${official}" target="_blank" rel="noopener">التقديم الرسمي</a>` : ''}
         </div>
-
-        ${v.officialLink ? `<a href="${v.officialLink}" target="_blank" rel="noopener" class="vm-btn-primary">🔗 التقديم / الموقع الرسمي</a>` : ''}
-
-        ${v.source ? `<p class="vm-source">المصدر: ${v.source}</p>` : ''}
       </div>
     </div>
   `;

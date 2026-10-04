@@ -190,22 +190,17 @@
     <!-- ========== بطاقة السياحة (بتوصّل لصفحة التأشيرات المستقلة) ========== -->
     <section class="section">
       <div class="section-head">
-        <h3><span class="emoji">✈️</span> السياحة</h3>
+        <h3>السياحة</h3>
         <a onclick="switchPage('tourism')">الدخول</a>
       </div>
       <div class="tourism-home-card" onclick="switchPage('tourism')">
-        <div class="thc-icon">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
-          </svg>
-        </div>
         <div class="thc-text">
           <h4>دليل السياحة والتأشيرات</h4>
           <p>اعرف شروط التأشيرة لأي دولة + المستندات المطلوبة</p>
           <div class="thc-stats">
-            <span>✅ 2 بدون فيزا</span>
-            <span>📱 5 إلكترونية</span>
-            <span>📋 3 مطلوبة</span>
+            <span><strong id="thc-free">0</strong> بدون فيزا</span>
+            <span><strong id="thc-evisa">0</strong> إلكترونية</span>
+            <span><strong id="thc-required">0</strong> مطلوبة</span>
           </div>
         </div>
         <div class="thc-arrow">←</div>
@@ -250,38 +245,60 @@
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         </button>
       </div>
-      <h2>✈️ السياحة</h2>
+      <h2>السياحة</h2>
       <p>دليل شامل للتأشيرات للمصريين</p>
     </header>
 
     <div class="tourism-content">
-      <!-- شريط إحصائيات التأشيرات -->
-      <div class="visa-stats" id="visaStats">
-        <div class="vs-item vs-free">
-          <span class="vs-num" id="vs-free">0</span>
-          <span class="vs-label">بدون فيزا</span>
+      <!-- لوحة إحصائيات التأشيرات (كل صف قابل للفلترة) -->
+      <div class="visa-dashboard" id="visaDashboard">
+        <div class="vd-header">
+          <h4>تأشيرات المصريين</h4>
+          <span class="vd-total">الإجمالي <strong id="vd-total">0</strong> دولة</span>
         </div>
-        <div class="vs-item vs-evisa">
-          <span class="vs-num" id="vs-evisa">0</span>
-          <span class="vs-label">فيزا إلكترونية</span>
-        </div>
-        <div class="vs-item vs-arrival">
-          <span class="vs-num" id="vs-arrival">0</span>
-          <span class="vs-label">عند الوصول</span>
-        </div>
-        <div class="vs-item vs-required">
-          <span class="vs-num" id="vs-required">0</span>
-          <span class="vs-label">مطلوبة</span>
+
+        <div class="vd-list">
+          <div class="vd-row" data-filter="visa-free" onclick="filterVisa('visa-free', this)">
+            <div class="vd-label">
+              <span class="vd-name">بدون فيزا</span>
+              <span class="vd-num">0</span>
+            </div>
+            <div class="vd-bar"><div class="vd-fill" style="width:0%"></div></div>
+          </div>
+
+          <div class="vd-row" data-filter="e-visa" onclick="filterVisa('e-visa', this)">
+            <div class="vd-label">
+              <span class="vd-name">فيزا إلكترونية</span>
+              <span class="vd-num">0</span>
+            </div>
+            <div class="vd-bar"><div class="vd-fill" style="width:0%"></div></div>
+          </div>
+
+          <div class="vd-row" data-filter="on-arrival" onclick="filterVisa('on-arrival', this)">
+            <div class="vd-label">
+              <span class="vd-name">عند الوصول</span>
+              <span class="vd-num">0</span>
+            </div>
+            <div class="vd-bar"><div class="vd-fill" style="width:0%"></div></div>
+          </div>
+
+          <div class="vd-row" data-filter="visa-required" onclick="filterVisa('visa-required', this)">
+            <div class="vd-label">
+              <span class="vd-name">فيزا مطلوبة</span>
+              <span class="vd-num">0</span>
+            </div>
+            <div class="vd-bar"><div class="vd-fill" style="width:0%"></div></div>
+          </div>
         </div>
       </div>
 
-      <!-- تابات الفلترة -->
+      <!-- تابات الفلترة (نص + عدّاد) -->
       <div class="visa-tabs" id="visaTabs">
-        <button class="visa-tab active" data-filter="all" onclick="filterVisa('all',this)">🌍 الكل</button>
-        <button class="visa-tab" data-filter="visa-free" onclick="filterVisa('visa-free',this)">✅ بدون فيزا</button>
-        <button class="visa-tab" data-filter="e-visa" onclick="filterVisa('e-visa',this)">📱 إلكترونية</button>
-        <button class="visa-tab" data-filter="on-arrival" onclick="filterVisa('on-arrival',this)">🛬 عند الوصول</button>
-        <button class="visa-tab" data-filter="visa-required" onclick="filterVisa('visa-required',this)">📋 مطلوبة</button>
+        <button class="visa-tab active" data-filter="all" onclick="filterVisa('all', this)">الكل <span class="tab-count">0</span></button>
+        <button class="visa-tab" data-filter="visa-free" onclick="filterVisa('visa-free', this)">بدون فيزا <span class="tab-count">0</span></button>
+        <button class="visa-tab" data-filter="e-visa" onclick="filterVisa('e-visa', this)">إلكترونية <span class="tab-count">0</span></button>
+        <button class="visa-tab" data-filter="on-arrival" onclick="filterVisa('on-arrival', this)">عند الوصول <span class="tab-count">0</span></button>
+        <button class="visa-tab" data-filter="visa-required" onclick="filterVisa('visa-required', this)">مطلوبة <span class="tab-count">0</span></button>
       </div>
 
       <!-- كروت الدول -->
@@ -731,7 +748,7 @@
 
           var target = navigator.serviceWorker.controller || reg.active;
           if (target && urls.length) {
-            target.postMessage({ type: 'CACHE_URLS', urls: urls, cacheName: 'safr-flags-v1.0.6' });
+            target.postMessage({ type: 'CACHE_URLS', urls: urls, cacheName: 'safr-flags-v1.0.7' });
             console.log('🚩 طلبنا تخزين ' + urls.length + ' علم أوفلاين');
           }
         }

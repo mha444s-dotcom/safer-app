@@ -648,7 +648,7 @@ function countVisaTypes() {
   return counts;
 }
 
-/* رسم القسم: لوحة الإحصائيات + العدّادات + الكروت (بدون أي أيقونات) */
+/* رسم القسم: ملخّص الإحصائيات + التابات + كروت الدول (بدون أي أيقونات) */
 function renderVisaSection() {
   const container = document.getElementById('visaCards');
   if (!container || typeof visaData === 'undefined' || !visaData.countries) return;
@@ -656,18 +656,20 @@ function renderVisaSection() {
   const codesAll = Object.keys(visaData.countries);
   const total = codesAll.length;
   const counts = countVisaTypes();
-  const pct = n => (total ? Math.round((n / total) * 100) : 0);
 
-  // (1) لوحة الإحصائيات: الإجمالي + رقم كل تصنيف + عرض الشريط
+  // (1) الملخّص المدمج: الإجمالي + رقم كل تصنيف جوّه الشرائح
   const totalEl = document.getElementById('vd-total');
   if (totalEl) totalEl.textContent = total;
 
-  document.querySelectorAll('.vd-row').forEach(row => {
-    const n = counts[row.dataset.filter] || 0;
-    const numEl = row.querySelector('.vd-num');
-    const fillEl = row.querySelector('.vd-fill');
-    if (numEl) numEl.textContent = n;
-    if (fillEl) fillEl.style.width = pct(n) + '%';
+  const chipIds = {
+    'visa-free': 'vs-free',
+    'e-visa': 'vs-evisa',
+    'on-arrival': 'vs-arrival',
+    'visa-required': 'vs-required'
+  };
+  Object.keys(chipIds).forEach(type => {
+    const el = document.getElementById(chipIds[type]);
+    if (el) el.textContent = counts[type];
   });
 
   // (2) عدّاد كل تاب
@@ -678,7 +680,7 @@ function renderVisaSection() {
     el.textContent = (f === 'all') ? total : (counts[f] || 0);
   });
 
-  // (2.ب) بطاقة السياحة في الصفحة الرئيسية (لو موجودة)
+  // (2.ب) بطاقة السياحة في الصفحة الرئيسية (لو موجودة) — أرقام ملخّص سريعة
   const homeNum = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
   homeNum('thc-free', counts['visa-free']);
   homeNum('thc-evisa', counts['e-visa']);
@@ -695,7 +697,7 @@ function renderVisaSection() {
     return;
   }
 
-  // (4) الكروت
+  // (4) الكروت المدمجة: علم + اسم الدولة + شارة التصنيف + سهم
   const badges = {
     'visa-free': 'بدون فيزا',
     'e-visa': 'إلكترونية',
@@ -709,52 +711,34 @@ function renderVisaSection() {
       ? countries.find(c => c.code === code)
       : null;
     const badge = badges[v.visaType] || v.visaType;
-    const cond = v.conditional ? ' — مشروط' : '';
 
     return `
       <div class="visa-card" onclick="openVisaDetail('${code}')">
-        <div class="vc-top">
-          <div class="vc-flag">${flagImgTag(country || { code: code }, 'w80', v.name)}</div>
-          <div class="vc-info">
-            <h4>${v.name}</h4>
-            <span class="vc-badge ${v.visaType}">${badge}${cond}</span>
-          </div>
-          <div class="vc-arrow">←</div>
+        <div class="vc-flag">${flagImgTag(country || { code: code }, 'w80', v.name)}</div>
+        <div class="vc-body">
+          <h4>${v.name}</h4>
+          <span class="vc-badge ${v.visaType}">${badge}</span>
         </div>
-
-        <div class="vc-meta">
-          <div class="vc-meta-item">
-            <span class="vc-meta-label">المدة</span>
-            <span class="vc-meta-value">${v.duration}</span>
-          </div>
-          <div class="vc-meta-item">
-            <span class="vc-meta-label">الرسوم</span>
-            <span class="vc-meta-value">${v.cost}</span>
-          </div>
-          <div class="vc-meta-item">
-            <span class="vc-meta-label">المعالجة</span>
-            <span class="vc-meta-value">${v.processingTime}</span>
-          </div>
-          <div class="vc-meta-item">
-            <span class="vc-meta-label">أفضل وقت</span>
-            <span class="vc-meta-value">${v.bestTime}</span>
-          </div>
+        <div class="vc-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
         </div>
       </div>
     `;
   }).join('');
 }
 
-/* فلترة حسب التصنيف — من التابات أو من صفوف لوحة الإحصائيات */
+/* فلترة حسب التصنيف — من التابات أو من شرائح الملخّص */
 function filterVisa(filter, el) {
   currentVisaFilter = filter;
 
-  // مزامنة التابات + صفوف اللوحة مع الفلتر الحالي
+  // مزامنة التابات + شرائح الملخّص مع الفلتر الحالي
   document.querySelectorAll('.visa-tab').forEach(tab => {
     tab.classList.toggle('active', tab.dataset.filter === filter);
   });
-  document.querySelectorAll('.vd-row').forEach(row => {
-    row.classList.toggle('active', row.dataset.filter === filter);
+  document.querySelectorAll('.vs-chip').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.filter === filter);
   });
 
   renderVisaSection();
@@ -910,6 +894,9 @@ function showVisaModal(v) {
 /* صفحات قسم السياحة: صفحة الـHub + الخدمات الفرعية */
 const TOURISM_PAGES = ['tourism', 'visas', 'flights', 'hotels', 'documents', 'insurance', 'currency', 'emergency'];
 
+/* أي صفحة جوّه القسم ده → زرار «الرئيسية» في الـBottom Nav بيفضل مضيء */
+const PAGES_WITH_HOME_ACTIVE = TOURISM_PAGES;
+
 /* التنقل من الـHub لصفحة خدمة فرعية */
 function switchTourismPage(subpage) {
   if (TOURISM_PAGES.indexOf(subpage) === -1 || subpage === 'tourism') return;
@@ -925,10 +912,10 @@ function switchPage(page) {
   if (target) target.classList.add('active');
 
   // تحديث الـ bottom nav
-  // (قسم السياحة بكل صفحاته بيُعدّ جزء من الرئيسية، فبنخلّي زرار «الرئيسية» شغّال)
+  // (كل صفحات قسم السياحة بتُعدّ جزء من الرئيسية، فبنخلّي زرار «الرئيسية» مضيء)
   document.querySelectorAll('.nav-btn').forEach(btn => {
     const isActive = btn.dataset.page === page ||
-      (TOURISM_PAGES.indexOf(page) !== -1 && btn.dataset.page === 'home');
+      (PAGES_WITH_HOME_ACTIVE.indexOf(page) !== -1 && btn.dataset.page === 'home');
     btn.classList.toggle('active', isActive);
   });
 
@@ -957,7 +944,8 @@ function switchPage(page) {
     renderRatesStatus();
   }
 
-  // صفحة التأشيرات: نرسم الإحصائيات + التابات + الكروت
+  // صفحة التأشيرات: نرسم الملخّص + التابات + الكروت
+  // (وزرار «الرئيسية» بيفضل مضيء لأن 'visas' جوّه PAGES_WITH_HOME_ACTIVE)
   if (page === 'visas') {
     renderVisaSection();
   }

@@ -2070,34 +2070,93 @@ body{
 @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
 @keyframes slideUpModal{ from{transform:translateY(60px);opacity:0} to{transform:none;opacity:1} }
 
-/* ---------- لوحة الإحصائيات ---------- */
-.visa-dashboard{ background:#fff; border:1px solid var(--border); border-radius:16px; padding:14px; margin-bottom:14px; box-shadow:var(--shadow-sm); }
+/* ---------- ملخّص الإحصائيات (نسخة مدمجة) ---------- */
+.visa-summary{
+  background:#fff;
+  border-radius:14px;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  margin-bottom:12px;
+  box-shadow:0 2px 6px rgba(11,61,145,.05);
+}
 
-.vd-header{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding-bottom:10px; border-bottom:1px solid var(--border); margin-bottom:12px; }
-.vd-header h4{ font-size:14px; font-weight:800; color:var(--text); }
-.vd-total{ font-size:11px; font-weight:700; color:var(--muted); }
-.vd-total strong{ font-size:14px; color:var(--primary); }
+.vs-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
 
-.vd-list{ display:flex; flex-direction:column; gap:10px; }
-.vd-row{ padding:6px 8px; margin:0 -8px; border-radius:10px; cursor:pointer; transition:.2s; }
-.vd-row:active{ background:#F1F5F9; }
-.vd-row.active{ background:#EEF3FB; }
+.vs-title{
+  font-size:12px;
+  font-weight:800;
+  color:var(--text);
+}
 
-.vd-label{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:5px; }
-.vd-name{ font-size:12px; font-weight:700; color:var(--text); }
-.vd-num{ font-size:13px; font-weight:900; }
+.vs-total{
+  font-size:11px;
+  color:var(--muted);
+  font-weight:600;
+}
 
-.vd-bar{ height:8px; border-radius:99px; background:#EDF1F7; overflow:hidden; }
-.vd-fill{ height:100%; border-radius:99px; transition:width .5s ease; }
+.vs-total strong{
+  color:var(--primary);
+  font-weight:900;
+  font-size:13px;
+}
 
-.vd-row[data-filter="visa-free"] .vd-num{ color:var(--visa-free); }
-.vd-row[data-filter="visa-free"] .vd-fill{ background:var(--visa-free); }
-.vd-row[data-filter="e-visa"] .vd-num{ color:var(--e-visa); }
-.vd-row[data-filter="e-visa"] .vd-fill{ background:var(--e-visa); }
-.vd-row[data-filter="on-arrival"] .vd-num{ color:var(--on-arrival); }
-.vd-row[data-filter="on-arrival"] .vd-fill{ background:var(--on-arrival); }
-.vd-row[data-filter="visa-required"] .vd-num{ color:var(--visa-required); }
-.vd-row[data-filter="visa-required"] .vd-fill{ background:var(--visa-required); }
+.vs-chips{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+}
+
+.vs-chip{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+  padding:8px 4px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.2s;
+  background:#F8FAFC;
+  border:1px solid transparent;
+}
+
+.vs-chip:active{
+  transform:scale(.95);
+}
+
+/* الشريحة المختارة دلوقتي (مزامنة مع التابات) */
+.vs-chip.active{
+  border-color:var(--primary);
+}
+
+.chip-num{
+  font-size:16px;
+  font-weight:900;
+  line-height:1;
+}
+
+.chip-lbl{
+  font-size:9px;
+  font-weight:700;
+  color:var(--muted);
+  text-align:center;
+}
+
+.chip-free .chip-num{ color:#10B981; }
+.chip-evisa .chip-num{ color:#3B82F6; }
+.chip-arrival .chip-num{ color:#F59E0B; }
+.chip-required .chip-num{ color:#EF4444; }
+
+.chip-free{ background:#F0FDF4; }
+.chip-evisa{ background:#EFF6FF; }
+.chip-arrival{ background:#FFFBEB; }
+.chip-required{ background:#FEF2F2; }
 
 /* ---------- التابات ---------- */
 .visa-tabs{ display:flex; gap:6px; overflow-x:auto; padding:0 0 12px; scrollbar-width:none; }
@@ -2107,27 +2166,86 @@ body{
 .tab-count{ min-width:20px; padding:1px 6px; border-radius:99px; background:#EDF1F7; color:var(--primary); font-size:10px; font-weight:900; text-align:center; }
 .visa-tab.active .tab-count{ background:rgba(255,255,255,.25); color:#fff; }
 
-/* ---------- كروت الدول ---------- */
-.visa-cards{ display:grid; grid-template-columns:1fr; gap:10px; }
-.visa-card{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:12px; cursor:pointer; transition:.2s; box-shadow:var(--shadow-sm); }
-.visa-card:active{ transform:scale(.98); }
+/* ---------- كروت الدول (نسخة مدمجة) ---------- */
+.visa-cards{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
 
-.vc-top{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
-.vc-flag{ width:44px; height:33px; border-radius:6px; overflow:hidden; flex-shrink:0; box-shadow:0 2px 6px rgba(0,0,0,.1); }
-.vc-flag img{ width:100%; height:100%; object-fit:cover; }
-.vc-info{ flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
-.vc-info h4{ font-size:13px; font-weight:800; margin:0; }
-.vc-badge{ align-self:flex-start; padding:2px 8px; border-radius:99px; font-size:9px; font-weight:700; }
-.vc-badge.visa-free{ background:var(--visa-free-bg); color:#065F46; }
-.vc-badge.e-visa{ background:var(--e-visa-bg); color:#1E40AF; }
-.vc-badge.on-arrival{ background:var(--on-arrival-bg); color:#92400E; }
-.vc-badge.visa-required{ background:var(--visa-required-bg); color:#991B1B; }
-.vc-arrow{ flex-shrink:0; color:var(--muted); font-size:18px; font-weight:700; }
+.visa-card{
+  background:#fff;
+  border-radius:14px;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 1px 4px rgba(11,61,145,.04);
+}
 
-.vc-meta{ display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
-.vc-meta-item{ display:flex; flex-direction:column; gap:2px; padding:6px 8px; border-radius:8px; background:#F8FAFC; border:1px solid var(--border); }
-.vc-meta-label{ font-size:9px; font-weight:700; color:var(--muted); }
-.vc-meta-value{ font-size:11px; font-weight:800; color:var(--text); line-height:1.5; }
+.visa-card:active{
+  transform:scale(.98);
+  box-shadow:0 2px 8px rgba(11,61,145,.1);
+}
+
+.vc-flag{
+  width:44px;
+  height:33px;
+  border-radius:6px;
+  overflow:hidden;
+  flex-shrink:0;
+  box-shadow:0 1px 4px rgba(0,0,0,.1);
+}
+
+.vc-flag img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.vc-body{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+}
+
+.vc-body h4{
+  font-size:14px;
+  font-weight:800;
+  color:var(--text);
+  margin:0;
+}
+
+.vc-badge{
+  font-size:10px;
+  font-weight:800;
+  padding:2px 8px;
+  border-radius:99px;
+  display:inline-block;
+  align-self:flex-start;
+}
+
+.vc-badge.visa-free{ background:#D1FAE5; color:#065F46; }
+.vc-badge.e-visa{ background:#DBEAFE; color:#1E40AF; }
+.vc-badge.on-arrival{ background:#FEF3C7; color:#92400E; }
+.vc-badge.visa-required{ background:#FEE2E2; color:#991B1B; }
+
+.vc-arrow{
+  width:20px;
+  height:20px;
+  color:var(--muted);
+  flex-shrink:0;
+}
+
+.vc-arrow svg{
+  width:100%;
+  height:100%;
+}
 
 .visa-empty{ text-align:center; padding:40px 20px; color:var(--muted); font-size:13px; font-weight:600; grid-column:1 / -1; }
 
@@ -2179,11 +2297,16 @@ body{
 
 /* ---------- استجابة للشاشات الأكبر ---------- */
 @media(min-width:640px){
-  .visa-cards{ grid-template-columns:repeat(2,1fr); }
-  .vc-meta{ grid-template-columns:repeat(4,1fr); }
+  .visa-cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
 }
 @media(min-width:1024px){
-  .visa-cards{ grid-template-columns:repeat(3,1fr); }
+  .visa-cards{
+    grid-template-columns:repeat(3,1fr);
+  }
 }
 
 /* ============================================================

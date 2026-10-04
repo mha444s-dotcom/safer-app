@@ -117,7 +117,7 @@
         <a onclick="showToast('كل الخدمات هتفتح قريباً ✨')">الكل</a>
       </div>
       <div class="services-grid">
-        <div class="service-card" onclick="openService('visa')">
+        <div class="service-card" onclick="switchPage('visas')">
           <div class="ico c-blue">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="4" width="18" height="16" rx="2"/>
@@ -362,44 +362,29 @@
     </header>
 
     <div class="tourism-content">
-      <!-- لوحة إحصائيات التأشيرات (كل صف قابل للفلترة) -->
-      <div class="visa-dashboard" id="visaDashboard">
-        <div class="vd-header">
-          <h4>تأشيرات المصريين</h4>
-          <span class="vd-total">الإجمالي <strong id="vd-total">0</strong> دولة</span>
+      <!-- ملخّص إحصائيات التأشيرات (نسخة مدمجة — كل شريحة قابلة للفلترة) -->
+      <div class="visa-summary">
+        <div class="vs-header">
+          <span class="vs-title">تأشيرات المصريين</span>
+          <span class="vs-total"><strong id="vd-total">0</strong> دولة</span>
         </div>
 
-        <div class="vd-list">
-          <div class="vd-row" data-filter="visa-free" onclick="filterVisa('visa-free', this)">
-            <div class="vd-label">
-              <span class="vd-name">بدون فيزا</span>
-              <span class="vd-num">0</span>
-            </div>
-            <div class="vd-bar"><div class="vd-fill" style="width:0%"></div></div>
+        <div class="vs-chips">
+          <div class="vs-chip chip-free" data-filter="visa-free" onclick="filterVisa('visa-free', this)">
+            <span class="chip-num" id="vs-free">0</span>
+            <span class="chip-lbl">بدون فيزا</span>
           </div>
-
-          <div class="vd-row" data-filter="e-visa" onclick="filterVisa('e-visa', this)">
-            <div class="vd-label">
-              <span class="vd-name">فيزا إلكترونية</span>
-              <span class="vd-num">0</span>
-            </div>
-            <div class="vd-bar"><div class="vd-fill" style="width:0%"></div></div>
+          <div class="vs-chip chip-evisa" data-filter="e-visa" onclick="filterVisa('e-visa', this)">
+            <span class="chip-num" id="vs-evisa">0</span>
+            <span class="chip-lbl">إلكترونية</span>
           </div>
-
-          <div class="vd-row" data-filter="on-arrival" onclick="filterVisa('on-arrival', this)">
-            <div class="vd-label">
-              <span class="vd-name">عند الوصول</span>
-              <span class="vd-num">0</span>
-            </div>
-            <div class="vd-bar"><div class="vd-fill" style="width:0%"></div></div>
+          <div class="vs-chip chip-arrival" data-filter="on-arrival" onclick="filterVisa('on-arrival', this)">
+            <span class="chip-num" id="vs-arrival">0</span>
+            <span class="chip-lbl">عند الوصول</span>
           </div>
-
-          <div class="vd-row" data-filter="visa-required" onclick="filterVisa('visa-required', this)">
-            <div class="vd-label">
-              <span class="vd-name">فيزا مطلوبة</span>
-              <span class="vd-num">0</span>
-            </div>
-            <div class="vd-bar"><div class="vd-fill" style="width:0%"></div></div>
+          <div class="vs-chip chip-required" data-filter="visa-required" onclick="filterVisa('visa-required', this)">
+            <span class="chip-num" id="vs-required">0</span>
+            <span class="chip-lbl">مطلوبة</span>
           </div>
         </div>
       </div>

@@ -11,9 +11,10 @@
    • خطوط جوجل (Cairo) .................. Cache First + تخزين عند أول طلب
    • خرائط Esri ......................... Cache First + تخزين عند أول طلب
    • مكتبات (Leaflet) .................... مخزّنة وقت التثبيت
+   • Clerk (المصادقة) ................... Network Only (بدون كاش — ردود حساسة)
    ============================================================ */
 
-const SW_VERSION = 'v1.0.11';  // ← اترفعت لشارة «مشروط» في كروت التأشيرات + ربط زرار «شروط التأشيرة» بصفحة التأشيرات بدل كاش v1.0.10
+const SW_VERSION = 'v1.0.14';  // ← اترفعت: نظام تسجيل الدخول عبر Clerk (تحميل ديناميكي للمفتاح + حزمة UI v6)
 
 const STATIC_CACHE = 'safr-static-' + SW_VERSION;   // ملفات التطبيق
 const LIB_CACHE    = 'safr-libs-' + SW_VERSION;     // Leaflet وغيرها
@@ -177,6 +178,11 @@ self.addEventListener('fetch', function (event) {
 
   // نتجاهل أي بروتوكول مش http(s) (chrome-extension, data:, blob:)
   if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+
+  // (0) Clerk (المصادقة) — Network Only
+  // منخزّنش أي رد من Clerk عشان جلسة الدخول تفضل طازة ومايتخزّنش أي بيانات حساسة.
+  // بدون respondWith => المتصفح بيتعامل مع الطلب مباشرة مع الشبكة.
+  if (url.hostname.indexOf('clerk') !== -1) return;
 
   // (1) فتح التطبيق / تنقّل بين الصفحات
   if (req.mode === 'navigate') {

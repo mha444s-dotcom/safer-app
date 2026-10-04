@@ -533,73 +533,113 @@ function renderTourism(code) {
 const posts = [
   {
     user:'أحمد محمود', initials:'أ', verified:true,
-    country:'ألمانيا', countryCode:'de',
+    country:'ألمانيا', countryCode:'de', feed:'friends',
     time:'منذ ساعتين',
     content:'الحمد لله وصلت برلين 🇩🇪 وأول خطوة كانت فتح حساب بنكي. لو حد محتاج مساعدة في إجراءات ألمانيا أنا موجود! <span class="hashtag">#ألمانيا</span> <span class="hashtag">#دراسة_بالخارج</span>',
-    image:'🇩🇪', likes:45, comments:12, liked:false
+    image:'🇩🇪', likes:45, comments:12, shares:5, liked:false
   },
   {
     user:'سارة علي', initials:'س', verified:true,
-    country:'كندا', countryCode:'ca',
+    country:'كندا', countryCode:'ca', feed:'friends',
     time:'منذ 5 ساعات',
     content:'قدمت على منحة Vanier الكندية واتقبلت الحمد لله 🎉 لو حد محتاج تفاصيل عن المنحة والـ requirements، ممكن أشارك تجربتي كاملة. <span class="hashtag">#منح_كندا</span>',
-    image:'🇨🇦', likes:128, comments:34, liked:true
+    image:'🇨🇦', likes:128, comments:34, shares:9, liked:true
   },
   {
     user:'محمد حسن', initials:'م', verified:false,
-    country:'تركيا', countryCode:'tr',
+    country:'تركيا', countryCode:'tr', feed:'groups',
     time:'منذ يوم',
     content:'نصيحة لكل اللي مسافر تركيا: اعمل الإقامة الطلابية من أول أسبوع بعد ما توصل، عشان الإجراءات بتاخد وقت. <span class="hashtag">#تركيا</span>',
-    image:'🇹🇷', likes:67, comments:8, liked:false
+    image:'🇹🇷', likes:67, comments:8, shares:2, liked:false
   },
   {
     user:'نور الهدى', initials:'ن', verified:true,
-    country:'السعودية', countryCode:'sa',
+    country:'السعودية', countryCode:'sa', feed:'groups',
     time:'منذ يومين',
     content:'اشتغلت في السعودية سنتين ودي أهم حاجة اتعلمتها: الإقامة والجواز لازم يكونوا ساريين دايماً قبل أي إجراء. <span class="hashtag">#السعودية</span>',
-    image:'🇸🇦', likes:89, comments:15, liked:false
+    image:'🇸🇦', likes:89, comments:15, shares:4, liked:false
   }
 ];
+
+/* فلتر التابات في صفحة المجتمع: all | friends | groups */
+let currentPostFilter = 'all';
 
 function renderPosts() {
   const container = document.getElementById('postsContainer');
   if (!container) return;
 
-  container.innerHTML = posts.map((p, i) => `
-    <div class="post-card">
-      <div class="post-head">
-        <div class="post-avatar">${p.initials}</div>
-        <div class="post-user">
-          <h5>
-            ${p.user}
-            ${p.verified ? '<span class="verified"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>' : ''}
-          </h5>
-          <div class="meta">
-            <span class="country-flag">
-              <img src="${flagUrl(p.countryCode, 'w40')}" onerror="this.onerror=null;this.src='${getFlag(p.countryCode)}'" alt="${p.country}">
-            </span>
-            ${p.country} • ${p.time}
+  const visible = posts
+    .map((p, idx) => ({ p, idx }))
+    .filter(({ p }) => currentPostFilter === 'all' || p.feed === currentPostFilter);
+
+  if (visible.length === 0) {
+    container.innerHTML = `
+      <div class="fb-empty">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <p>مفيش منشورات هنا لسه 👀</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = visible.map(({ p, idx }) => `
+    <div class="fb-post">
+      <div class="fb-post-head">
+        <div class="fb-avatar">${p.initials}</div>
+        <div class="fb-post-info">
+          <div class="fb-post-author">
+            <h4>${p.user}</h4>
+            ${p.verified ? `<svg class="fb-verified" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1.5l2.4 1.9 3-.4 1.2 2.9 2.9 1.2-.4 3 1.9 2.4-1.9 2.4.4 3-2.9 1.2-1.2 2.9-3-.4L12 22.5l-2.4-1.9-3 .4-1.2-2.9-2.9-1.2.4-3L1 12l1.9-2.4-.4-3 2.9-1.2 1.2-2.9 3 .4L12 1.5z" fill="#1877F2"/><path d="M9.2 12.3l1.8 1.8 3.9-4.2" fill="none" stroke="#fff" stroke-width="2"/></svg>` : ''}
+          </div>
+          <div class="fb-post-meta">
+            <img class="fb-meta-flag" src="${flagUrl(p.countryCode, 'w40')}" onerror="this.onerror=null;this.src='${getFlag(p.countryCode)}'" alt="${p.country}">
+            <span>${p.country}</span>
+            <span>·</span>
+            <span>${p.time}</span>
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
         </div>
+        <button class="fb-more-btn" onclick="showToast('خيارات المنشور')">⋯</button>
       </div>
-      <div class="post-content">${p.content}</div>
-      ${p.image ? `<div class="post-image">${p.image}</div>` : ''}
-      <div class="post-actions">
-        <button class="post-action ${p.liked ? 'liked' : ''}" onclick="toggleLike(${i}, this)">
+
+      <div class="fb-post-content">
+        <p>${p.content}</p>
+      </div>
+
+      ${p.image ? `<div class="fb-post-media">${p.image}</div>` : ''}
+
+      <div class="fb-post-stats">
+        <div class="fb-post-likes">
+          <span class="fb-like-icon">&#10084;</span>
+          <span id="likes-${idx}">${p.likes} شخص</span>
+        </div>
+        <div class="fb-post-comments">
+          <span>${p.comments} تعليق</span>
+          <span>·</span>
+          <span>${p.shares || 0} مشاركة</span>
+        </div>
+      </div>
+
+      <div class="fb-post-actions">
+        <button class="fb-action ${p.liked ? 'liked' : ''}" onclick="toggleLike(${idx}, this)">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
-          <span id="likes-${i}">${p.likes}</span>
+          <span>إعجاب</span>
         </button>
-        <button class="post-action" onclick="showToast('التعليقات هتفتح قريباً 💬')">
+        <button class="fb-action" onclick="showToast('التعليقات')">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
-          <span>${p.comments}</span>
+          <span>تعليق</span>
         </button>
-        <button class="post-action" onclick="showToast('تم نسخ الرابط 🔗')">
+        <button class="fb-action" onclick="showToast('مشاركة')">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <path d="M16 6l-4-4-4 4"/>
+            <path d="M12 2v13"/>
           </svg>
           <span>مشاركة</span>
         </button>
@@ -608,11 +648,22 @@ function renderPosts() {
   `).join('');
 }
 
+/* تبويبات المجتمع: الرئيسية / أصدقاء / مجتمعات */
+function filterPosts(filter, btn) {
+  currentPostFilter = filter || 'all';
+  document.querySelectorAll('.fb-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderPosts();
+}
+
 function toggleLike(index, btn) {
-  posts[index].liked = !posts[index].liked;
-  posts[index].likes += posts[index].liked ? 1 : -1;
-  btn.classList.toggle('liked');
-  document.getElementById('likes-' + index).textContent = posts[index].likes;
+  const p = posts[index];
+  if (!p) return;
+  p.liked = !p.liked;
+  p.likes += p.liked ? 1 : -1;
+  btn.classList.toggle('liked', p.liked);
+  const el = document.getElementById('likes-' + index);
+  if (el) el.textContent = p.likes + ' شخص';
 }
 
 /* ============================================================
@@ -1127,11 +1178,200 @@ function refreshAllPrices() {
 }
 
 /* ============================================================
-   10. INITIALIZATION
+   10. AUTHENTICATION (CLERK)
+   نظام تسجيل دخول احترافي: إيميل + كلمة مرور / Google / استرجاع / بروفايل
+   ============================================================ */
+
+/* ننتظر تحميل مكتبة Clerk من الـ CDN (بتتحمّل async) — مع مهلة أمان */
+function waitForClerk(timeoutMs) {
+  timeoutMs = timeoutMs || 8000;
+  return new Promise(function (resolve) {
+    if (window.Clerk) { resolve(window.Clerk); return; }
+
+    var waited = 0;
+    var step = 200;
+    var timer = setInterval(function () {
+      if (window.Clerk) {
+        clearInterval(timer);
+        resolve(window.Clerk);
+        return;
+      }
+      waited += step;
+      if (waited >= timeoutMs) {
+        clearInterval(timer);
+        resolve(null);
+      }
+    }, step);
+  });
+}
+
+/* إظهار الصفحة الرئيسية + إخفاء شاشة الدخول */
+function showAppHome() {
+  var auth = document.getElementById('page-auth');
+  var home = document.getElementById('page-home');
+  if (auth) auth.classList.remove('active');
+  if (home) home.classList.add('active');
+  document.body.classList.remove('auth-mode');
+}
+
+/* إظهار شاشة تسجيل الدخول + إخفاء الصفحة الرئيسية */
+function showAuthScreen() {
+  var auth = document.getElementById('page-auth');
+  var home = document.getElementById('page-home');
+  if (home) home.classList.remove('active');
+  if (auth) auth.classList.add('active');
+  document.body.classList.add('auth-mode');
+}
+
+/* حفظ بيانات المستخدم محلياً (للاستخدام في الواجهات) */
+function saveUserToLocal(clerkUser) {
+  if (!clerkUser) return null;
+
+  var name = clerkUser.fullName || clerkUser.firstName || 'مستخدم';
+  var user = {
+    id: clerkUser.id,
+    name: name,
+    email: (clerkUser.primaryEmailAddress && clerkUser.primaryEmailAddress.emailAddress) || '',
+    avatar: clerkUser.imageUrl || '',
+    initials: name.charAt(0) || 'م',
+    loginAt: new Date().toISOString()
+  };
+
+  try { localStorage.setItem('safr_user', JSON.stringify(user)); } catch (e) {}
+  return user;
+}
+
+/* تحديث الواجهات ببيانات المستخدم بعد الدخول */
+function updateUIWithUser(clerkUser) {
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem('safr_user') || 'null'); } catch (e) {}
+
+  var user = (saved && saved.initials)
+    ? saved
+    : { name: (clerkUser && clerkUser.fullName) || 'مستخدم', email: '', initials: 'م' };
+
+  // صورة الكومبوزر في قسم المجتمع
+  var composerAvatar = document.querySelector('.fb-avatar');
+  if (composerAvatar) composerAvatar.textContent = user.initials;
+
+  // صفحة حسابي
+  var profileAvatar = document.querySelector('.profile-avatar');
+  if (profileAvatar) profileAvatar.textContent = user.initials;
+
+  var profileName = document.getElementById('profileName') ||
+    document.querySelector('.profile-hero h2');
+  if (profileName) profileName.textContent = user.name;
+
+  var profileEmail = document.querySelector('.profile-hero .email');
+  if (profileEmail && user.email) profileEmail.textContent = user.email;
+}
+
+/* عرض واجهة تسجيل الدخول بتصميم سافر (Clerk) */
+function mountClerkSignIn() {
+  var el = document.getElementById('clerk-sign-in');
+  if (!el || !window.Clerk || typeof window.Clerk.mountSignIn !== 'function') return;
+
+  window.Clerk.mountSignIn(el, {
+    appearance: {
+      variables: {
+        colorPrimary: '#0B3D91',
+        colorBackground: 'rgba(255,255,255,0.95)',
+        borderRadius: '12px',
+        fontFamily: 'Cairo, sans-serif'
+      },
+      elements: {
+        card: 'clerk-card',
+        formButtonPrimary: 'clerk-btn'
+      }
+    }
+  });
+}
+
+/* تسجيل الخروج */
+async function handleLogout() {
+  try {
+    if (window.Clerk && typeof window.Clerk.signOut === 'function') {
+      await window.Clerk.signOut();
+    }
+  } catch (err) {
+    console.warn('⚠️ فشل تسجيل الخروج:', err.message);
+  }
+
+  try { localStorage.removeItem('safr_user'); } catch (e) {}
+  window.location.reload();
+}
+
+/* تهيئة المصادقة عند بدء التطبيق */
+async function initAuth() {
+  // أوفلاين؟ Clerk محتاج نت → نفتح التطبيق على طول
+  if (navigator.onLine === false) {
+    console.warn('⚠️ أوفلاين — تخطي تسجيل الدخول');
+    showAppHome();
+    return;
+  }
+
+  // المفتاح لسه Placeholder (سكربتات Clerk مش اتحمّلت) → نفتح التطبيق فوراً
+  if (window.__SAFR_CLERK_READY__ === false) {
+    console.warn('⚠️ Clerk غير مهيّأ — حطّ مفتاح الـ Publishable في index.html');
+    showAppHome();
+    return;
+  }
+
+  var clerk = await waitForClerk(6000);
+
+  // Clerk مش متاح (مفيش نت / المفتاح لسه متحطش) → نفتح التطبيق عادي
+  if (!clerk || typeof clerk.load !== 'function') {
+    console.warn('⚠️ Clerk غير متاح — التطبيق هيفتح بدون تسجيل دخول');
+    showAppHome();
+    return;
+  }
+
+  try {
+    // خيارات التحميل — نمرّر حزمة الواجهة لو موجودة (Clerk v6+)
+    var loadOptions = {};
+    if (window.__internal_ClerkUICtor) {
+      loadOptions.ui = { ClerkUI: window.__internal_ClerkUICtor };
+    }
+    await clerk.load(loadOptions);
+  } catch (err) {
+    console.warn('⚠️ فشل تحميل Clerk (تأكد من صحة المفتاح في index.html):', err.message);
+    showAppHome();
+    return;
+  }
+
+  if (clerk.user) {
+    saveUserToLocal(clerk.user);
+    showAppHome();
+    updateUIWithUser(clerk.user);
+  } else {
+    showAuthScreen();
+    mountClerkSignIn();
+  }
+
+  // متابعة تغيّر حالة الدخول (تسجيل دخول/خروج من أي مكان)
+  if (typeof clerk.addListener === 'function') {
+    clerk.addListener(function (resources) {
+      if (resources && resources.user) {
+        saveUserToLocal(resources.user);
+        showAppHome();
+        updateUIWithUser(resources.user);
+      }
+    });
+  }
+}
+
+/* ============================================================
+   11. INITIALIZATION
    تهيئة التطبيق عند التحميل
    ============================================================ */
 window.addEventListener('load', async () => {
   console.log('🚀 App loading...');
+
+  // (0) تهيئة المصادقة (Clerk) — بالتوازي مع باقي التحميل
+  initAuth().catch(function (err) {
+    console.warn('⚠️ خطأ في تهيئة المصادقة:', err);
+    showAppHome();
+  });
 
   // إخفاء شاشة البداية (مستقلة عن تحميل البيانات)
   setTimeout(() => {

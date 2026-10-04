@@ -2511,7 +2511,8 @@ body{
   .app-header,
   .explore-hero,
   .community-hero,
-  .tourism-hero{
+  .tourism-hero,
+  .fb-header{
     padding-top:calc(20px + env(safe-area-inset-top, 0px));
   }
 }
@@ -2595,4 +2596,605 @@ body{
     margin-right:auto;
   }
 }
+/* ============================================================
+   22. COMMUNITY PAGE — تـصـمـيـم فـيـسـبـوك
+   تصميم مختلف ومبهر خاص بقسم المجتمع فقط (مستوحى من فيسبوك).
+   كل الأصناف مسبوقة بـ fb- عشان ما تتعارضش مع باقي التطبيق.
+   ============================================================ */
+:root{
+  --fb-blue:#1877F2;
+  --fb-blue-hover:#166FE5;
+  --fb-bg:#F0F2F5;
+  --fb-white:#FFFFFF;
+  --fb-text:#050505;
+  --fb-text-secondary:#65676B;
+  --fb-border:#E4E6EB;
+  --fb-divider:#CED0D4;
+  --fb-red:#F33E58;
+  --fb-gray:#E4E6EB;
+}
+
+#page-community{
+  background:var(--fb-bg);
+  min-height:100vh;
+  padding-bottom:20px;
+}
+
+/* --- (1) Header --- */
+.fb-header{
+  background:var(--fb-white);
+  padding:12px 16px 0;
+  box-shadow:0 1px 2px rgba(0,0,0,.1);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.fb-header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+.fb-header .brand-text{color:var(--fb-text)}
+
+.fb-header-icons{display:flex;gap:8px}
+.fb-icon-btn{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--fb-gray);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  position:relative;
+  transition:.2s;
+}
+.fb-icon-btn:active{transform:scale(.9)}
+.fb-icon-btn svg{
+  width:20px;
+  height:20px;
+  stroke:var(--fb-text);
+  fill:none;
+  stroke-width:2;
+}
+.fb-badge{
+  position:absolute;
+  top:-2px;
+  right:-2px;
+  background:var(--fb-red);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  padding:2px 6px;
+  border-radius:99px;
+  border:2px solid var(--fb-white);
+}
+
+/* --- Search --- */
+.fb-search{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:var(--fb-gray);
+  border-radius:20px;
+  padding:10px 14px;
+  margin-bottom:12px;
+}
+.fb-search svg{
+  width:18px;
+  height:18px;
+  stroke:var(--fb-text-secondary);
+  fill:none;
+  stroke-width:2;
+}
+.fb-search input{
+  flex:1;
+  border:none;
+  outline:none;
+  background:transparent;
+  font-family:inherit;
+  font-size:14px;
+  color:var(--fb-text);
+  text-align:right;
+}
+
+/* --- Tabs --- */
+.fb-tabs{
+  display:flex;
+  gap:4px;
+  border-top:1px solid var(--fb-border);
+  padding-top:8px;
+}
+.fb-tab{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  padding:8px 4px;
+  background:none;
+  border:none;
+  border-radius:8px;
+  font-family:inherit;
+  font-size:12px;
+  font-weight:600;
+  color:var(--fb-text-secondary);
+  cursor:pointer;
+  transition:.2s;
+}
+.fb-tab.active{color:var(--fb-blue)}
+.fb-tab.active svg{stroke:var(--fb-blue)}
+.fb-tab svg{
+  width:22px;
+  height:22px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+}
+
+/* --- (2) Composer --- */
+.fb-composer{
+  background:var(--fb-white);
+  margin:8px 16px;
+  border-radius:12px;
+  padding:12px;
+  box-shadow:0 1px 2px rgba(0,0,0,.1);
+}
+.fb-composer-main{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--fb-border);
+}
+.fb-avatar{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#1877F2,#0A4FB5);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-weight:800;
+  font-size:16px;
+  flex-shrink:0;
+}
+.fb-composer-input{
+  flex:1;
+  padding:10px 16px;
+  background:var(--fb-gray);
+  border:none;
+  border-radius:20px;
+  font-family:inherit;
+  font-size:14px;
+  color:var(--fb-text-secondary);
+  text-align:right;
+  cursor:pointer;
+}
+.fb-composer-actions{display:flex;gap:4px}
+.fb-action-btn{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:8px;
+  background:none;
+  border:none;
+  border-radius:8px;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:600;
+  color:var(--fb-text-secondary);
+  cursor:pointer;
+  transition:.2s;
+}
+.fb-action-btn:active{background:var(--fb-gray)}
+.fb-action-btn svg{
+  width:18px;
+  height:18px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+}
+
+/* --- (3) Stories --- */
+.fb-stories{
+  display:flex;
+  gap:8px;
+  padding:8px 16px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.fb-stories::-webkit-scrollbar{display:none}
+.fb-story{
+  flex:0 0 auto;
+  width:110px;
+  height:180px;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  background:var(--fb-gray);
+  transition:.2s;
+}
+.fb-story:active{transform:scale(.97)}
+.fb-story-bg{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#1877F2,#0A4FB5);
+}
+.fb-story-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.fb-story-avatar{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#10B981,#059669);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+  border:3px solid var(--fb-white);
+}
+.fb-story.create .fb-story-avatar{
+  top:auto;
+  bottom:30px;
+  right:50%;
+  transform:translateX(50%);
+  width:40px;
+  height:40px;
+  background:var(--fb-blue);
+  border:4px solid var(--fb-white);
+}
+.fb-story.create .fb-story-avatar svg{
+  width:20px;
+  height:20px;
+  stroke:#fff;
+  fill:none;
+  stroke-width:3;
+}
+.fb-story span{
+  position:absolute;
+  bottom:8px;
+  right:8px;
+  left:8px;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  text-shadow:0 1px 3px rgba(0,0,0,.5);
+  text-align:center;
+}
+.fb-story.create span{
+  color:var(--fb-text);
+  text-shadow:none;
+}
+
+/* --- (4) Post Card --- */
+.fb-post{
+  background:var(--fb-white);
+  margin:8px 16px;
+  border-radius:12px;
+  box-shadow:0 1px 2px rgba(0,0,0,.1);
+  overflow:hidden;
+}
+.fb-post-head{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:12px;
+}
+.fb-post-info{flex:1;min-width:0}
+.fb-post-author{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  margin-bottom:4px;
+}
+.fb-post-author h4{
+  font-size:15px;
+  font-weight:700;
+  color:var(--fb-text);
+}
+.fb-verified{
+  width:15px;
+  height:15px;
+  flex-shrink:0;
+}
+.fb-post-meta{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  font-size:12px;
+  color:var(--fb-text-secondary);
+}
+.fb-meta-flag{
+  width:16px;
+  height:12px;
+  border-radius:2px;
+  object-fit:cover;
+}
+.fb-post-meta svg{
+  width:12px;
+  height:12px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+}
+.fb-more-btn{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:none;
+  border:none;
+  font-size:20px;
+  line-height:1;
+  color:var(--fb-text-secondary);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+}
+.fb-more-btn:active{background:var(--fb-gray)}
+.fb-post-content{
+  padding:0 12px 12px;
+  font-size:15px;
+  line-height:1.5;
+  color:var(--fb-text);
+}
+.fb-post-content .hashtag{
+  color:var(--fb-blue);
+  font-weight:600;
+}
+.fb-post-media{
+  width:100%;
+  min-height:180px;
+  max-height:500px;
+  background:linear-gradient(135deg,#E8F1FB,#D6E4F5);
+  display:grid;
+  place-items:center;
+  font-size:80px;
+  overflow:hidden;
+}
+.fb-post-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.fb-post-stats{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 12px;
+  border-bottom:1px solid var(--fb-border);
+  font-size:13px;
+  color:var(--fb-text-secondary);
+}
+.fb-post-likes{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.fb-like-icon{
+  display:inline-grid;
+  place-items:center;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#F33E58,#E91E63);
+  color:#fff;
+  font-size:11px;
+}
+.fb-post-comments{
+  display:flex;
+  gap:4px;
+}
+.fb-post-actions{
+  display:flex;
+  padding:4px;
+}
+.fb-action{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:10px;
+  background:none;
+  border:none;
+  border-radius:8px;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:600;
+  color:var(--fb-text-secondary);
+  cursor:pointer;
+  transition:.2s;
+}
+.fb-action:active{background:var(--fb-gray)}
+.fb-action svg{
+  width:20px;
+  height:20px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+}
+.fb-action.liked{color:var(--fb-blue)}
+.fb-action.liked svg{fill:var(--fb-blue);stroke:var(--fb-blue)}
+
+/* --- Empty state --- */
+.fb-empty{
+  background:var(--fb-white);
+  margin:8px 16px;
+  border-radius:12px;
+  padding:36px 20px;
+  text-align:center;
+  color:var(--fb-text-secondary);
+  box-shadow:0 1px 2px rgba(0,0,0,.1);
+}
+.fb-empty svg{
+  width:44px;
+  height:44px;
+  stroke:var(--fb-text-secondary);
+  fill:none;
+  stroke-width:1.5;
+  opacity:.5;
+  margin-bottom:10px;
+}
+.fb-empty p{font-size:14px;font-weight:600}
+
+/* --- (5) FAB --- */
+.fb-fab{
+  position:fixed;
+  bottom:90px;
+  left:20px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:var(--fb-blue);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(24,119,242,.4);
+  z-index:50;
+  transition:.2s;
+}
+.fb-fab:active{
+  transform:scale(.9);
+  background:var(--fb-blue-hover);
+}
+.fb-fab svg{
+  width:24px;
+  height:24px;
+  stroke:#fff;
+  fill:none;
+  stroke-width:2.5;
+}
+
+/* --- Responsive --- */
+@media(max-width:480px){
+  .fb-post{margin:8px;border-radius:8px}
+  .fb-composer{margin:8px;border-radius:8px}
+  .fb-story{width:100px;height:160px}
+}
+@media(min-width:768px){
+  .fb-header,
+  .fb-composer,
+  .fb-post,
+  .fb-empty,
+  .fb-stories{
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+
+/* ============================================================
+   23. AUTH (CLERK) — تسجيل الدخول
+   شاشة تسجيل دخول احترافية مبنية على Clerk (إيميل / Google / استرجاع).
+   ============================================================ */
+.auth-wrapper{
+  min-height:100vh;
+  background:linear-gradient(160deg,#071E4A 0%,#0B3D91 50%,#1E5BC6 100%);
+  display:flex;
+  flex-direction:column;
+  padding:40px 20px;
+  align-items:center;
+  justify-content:center;
+}
+
+.auth-hero{
+  text-align:center;
+  color:#fff;
+  margin-bottom:30px;
+}
+
+.auth-logo{
+  width:100px;
+  height:100px;
+  margin:0 auto 20px;
+  background:rgba(255,255,255,.1);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  backdrop-filter:blur(20px);
+  border:2px solid rgba(212,175,55,.3);
+  box-shadow:0 10px 40px rgba(212,175,55,.3);
+}
+
+.auth-logo svg{
+  width:60px;
+  height:60px;
+}
+
+.auth-hero h1{
+  font-size:36px;
+  font-weight:900;
+  letter-spacing:4px;
+  background:linear-gradient(135deg,#FFF 0%,#F1C94A 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:8px;
+}
+
+.auth-hero p{
+  font-size:14px;
+  font-weight:600;
+  opacity:.85;
+}
+
+#clerk-sign-in{
+  width:100%;
+  max-width:400px;
+}
+
+/* لودر مؤقت قبل ما Clerk يجهز */
+.auth-loading{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  color:#fff;
+  font-weight:700;
+  font-size:14px;
+  padding:24px 0;
+}
+.auth-spinner{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.25);
+  border-top-color:#F1C94A;
+  animation:authSpin .8s linear infinite;
+}
+@keyframes authSpin{to{transform:rotate(360deg)}}
+
+/* Clerk styling overrides */
+.cl-internal-b3fm6y{
+  background:transparent !important;
+}
+.clerk-card{
+  background:rgba(255,255,255,0.98) !important;
+  border-radius:20px !important;
+  box-shadow:0 20px 60px rgba(0,0,0,0.3) !important;
+}
+.clerk-btn{
+  background:linear-gradient(135deg,#D4AF37,#F1C94A) !important;
+  color:#3B2F00 !important;
+  font-family:Cairo,sans-serif !important;
+  font-weight:800 !important;
+}
+
+/* في وضع تسجيل الدخول: نخفي الـ Bottom Nav ونمدّ الخلفية */
+body.auth-mode .bottom-nav{display:none}
+body.auth-mode #app{background:#071E4A}
 

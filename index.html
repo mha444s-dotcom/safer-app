@@ -26,6 +26,64 @@
 
 <!-- Our Styles -->
 <link rel="stylesheet" href="styles.css">
+
+<!-- ============================================================
+     CLERK AUTHENTICATION SDK (JavaScript Quickstart — script tags)
+     ============================================================
+     ✏️ استبدل pk_test_REPLACE_WITH_YOUR_KEY بمفتاحك من https://dashboard.clerk.com/
+
+     ملاحظة: الـ Frontend API domain بيتشتقّ تلقائياً من المفتاح،
+     فمش محتاج تعدّل أي حاجة تانية — المفتاح بس.
+     ============================================================ -->
+<script>
+  /* ✏️ حطّ مفتاح الـ Publishable بتاعك من Clerk هنا */
+  window.SAFR_CLERK_PUBLISHABLE_KEY = 'pk_test_c2Vuc2libGUtc3F1aWQtNTg5Ni5jbGVyay5hY2NvdW50cy5kZXYk';
+
+  (function () {
+    var key = window.SAFR_CLERK_PUBLISHABLE_KEY || '';
+
+    // (1) لسه Placeholder؟ نوقف تحميل Clerk — التطبيق هيفتح بدون تسجيل دخول
+    if (!key || key.indexOf('REPLACE_WITH_YOUR_KEY') !== -1) {
+      window.__SAFR_CLERK_READY__ = false;
+      console.warn('⚠️ Clerk: مفتاح الـ Publishable لسه متحططش في index.html');
+      return;
+    }
+
+    // (2) اشتقاق الـ Frontend API domain من المفتاح (نفس منطق الوثيقة الرسمية)
+    var domain = '';
+    try {
+      var b64 = (key.split('_')[2] || '').replace(/-/g, '+').replace(/_/g, '/');
+      while (b64.length % 4) b64 += '=';
+      domain = atob(b64);
+      if (domain.charAt(domain.length - 1) === '$') domain = domain.slice(0, -1);
+    } catch (e) { domain = ''; }
+
+    if (!domain) {
+      window.__SAFR_CLERK_READY__ = false;
+      console.warn('⚠️ Clerk: مفيش Frontend API domain صالح — راجع المفتاح');
+      return;
+    }
+
+    window.__SAFR_CLERK_READY__ = true;
+
+    // (3) حزمة الواجهة (@clerk/ui) — لازم تتحمّل قبل الـ SDK
+    var uiScript = document.createElement('script');
+    uiScript.src = 'https://' + domain + '/npm/@clerk/ui@1/dist/ui.browser.js';
+    uiScript.async = false;               // يحافظ على الترتيب
+    uiScript.crossOrigin = 'anonymous';
+    uiScript.type = 'text/javascript';
+    document.head.appendChild(uiScript);
+
+    // (4) Clerk SDK (@clerk/clerk-js)
+    var sdkScript = document.createElement('script');
+    sdkScript.src = 'https://' + domain + '/npm/@clerk/clerk-js@6/dist/clerk.browser.js';
+    sdkScript.async = false;              // يحافظ على الترتيب
+    sdkScript.crossOrigin = 'anonymous';
+    sdkScript.type = 'text/javascript';
+    sdkScript.setAttribute('data-clerk-publishable-key', key);
+    document.head.appendChild(sdkScript);
+  })();
+</script>
 </head>
 <body>
 
@@ -73,9 +131,45 @@
 <div id="app">
 
   <!-- ==========================================================
+       PAGE 0: AUTH (تسجيل الدخول عبر Clerk)
+       ========================================================== -->
+  <div class="page active" id="page-auth">
+    <div class="auth-wrapper">
+      <div class="auth-hero">
+        <div class="auth-logo">
+          <svg viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="authG2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#D4AF37"/>
+                <stop offset="100%" stop-color="#F1C94A"/>
+              </linearGradient>
+            </defs>
+            <!-- الكرة الأرضية -->
+            <circle cx="50" cy="52" r="30" fill="none" stroke="#FFFFFF" stroke-width="2" opacity=".9"/>
+            <ellipse cx="50" cy="52" rx="30" ry="11" fill="none" stroke="#FFFFFF" stroke-width="2" opacity=".65"/>
+            <ellipse cx="50" cy="52" rx="11" ry="30" fill="none" stroke="#FFFFFF" stroke-width="2" opacity=".65"/>
+            <!-- الطيارة -->
+            <path d="M78 26 L56 38 L46 28 L50 24 L66 27 L74 19 L78 23 L73 31 Z" fill="url(#authG2)"/>
+          </svg>
+        </div>
+        <h1>سافـــر</h1>
+        <p>بوابتك للسفر والدراسة في الخارج</p>
+      </div>
+
+      <!-- Clerk هيعرض الواجهة هنا تلقائياً -->
+      <div id="clerk-sign-in">
+        <div class="auth-loading">
+          <div class="auth-spinner"></div>
+          <span>جاري التحميل...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
        PAGE 1: HOME
        ========================================================== -->
-  <div class="page active" id="page-home">
+  <div class="page" id="page-home">
     <header class="app-header">
       <div class="header-top">
         <div class="brand">
@@ -654,8 +748,9 @@
        PAGE 3: COMMUNITY
        ========================================================== -->
   <div class="page" id="page-community">
-    <header class="community-hero">
-      <div class="header-top">
+    <!-- ============ (1) Facebook-style Header ============ -->
+    <header class="fb-header">
+      <div class="fb-header-top">
         <div class="brand">
           <div class="brand-logo">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -664,23 +759,144 @@
           </div>
           <span class="brand-text">سافــر</span>
         </div>
+        <div class="fb-header-icons">
+          <div class="fb-icon-btn" onclick="showToast('الإشعارات')">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="fb-badge">3</span>
+          </div>
+          <div class="fb-icon-btn" onclick="showToast('الرسائل')">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </div>
+          <div class="fb-icon-btn" onclick="showToast('حسابي')">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+        </div>
       </div>
-      <h2>المجتمع 👥</h2>
-      <p>شارك تجربتك مع المصريين في كل مكان</p>
-      <div class="community-stats">
-        <div class="stat-card"><span class="num">12K+</span><span class="lbl">عضو</span></div>
-        <div class="stat-card"><span class="num">3.5K</span><span class="lbl">منشور</span></div>
-        <div class="stat-card"><span class="num">45</span><span class="lbl">دولة</span></div>
+
+      <div class="fb-search">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input type="text" placeholder="ابحث في المجتمع...">
+      </div>
+
+      <div class="fb-tabs">
+        <button class="fb-tab active" onclick="filterPosts('all', this)">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
+          </svg>
+          <span>الرئيسية</span>
+        </button>
+        <button class="fb-tab" onclick="filterPosts('friends', this)">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <span>أصدقاء</span>
+        </button>
+        <button class="fb-tab" onclick="filterPosts('groups', this)">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span>مجتمعات</span>
+        </button>
       </div>
     </header>
 
-    <section class="section">
-      <div class="section-head">
-        <h3><span class="emoji">🔥</span> أحدث المنشورات</h3>
-        <a onclick="showToast('هتضيف منشور جديد قريباً ✍️')">أضف منشور</a>
+    <!-- ============ (2) Composer ============ -->
+    <div class="fb-composer">
+      <div class="fb-composer-main">
+        <div class="fb-avatar">م</div>
+        <button class="fb-composer-input" onclick="showToast('جاري إضافة منشور')">
+          شارك تجربتك أو استفسارك...
+        </button>
       </div>
-      <div id="postsContainer"></div>
-    </section>
+      <div class="fb-composer-actions">
+        <button class="fb-action-btn" onclick="showToast('إضافة صورة')">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span>صورة</span>
+        </button>
+        <button class="fb-action-btn" onclick="showToast('إضافة فيديو')">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m23 7-7 5 7 5V7z"/>
+            <rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+          <span>فيديو</span>
+        </button>
+        <button class="fb-action-btn" onclick="showToast('إضافة مكان')">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>مكان</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ============ (3) Stories ============ -->
+    <div class="fb-stories">
+      <div class="fb-story create" onclick="showToast('جاري إنشاء قصة')">
+        <div class="fb-story-bg"></div>
+        <div class="fb-story-avatar">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <span>أنشئ قصة</span>
+      </div>
+      <div class="fb-story" onclick="showToast('قصة أحمد')">
+        <div class="fb-story-bg" style="background:linear-gradient(135deg,#1877F2,#0A4FB5)"></div>
+        <div class="fb-story-avatar">أ</div>
+        <span>أحمد</span>
+      </div>
+      <div class="fb-story" onclick="showToast('قصة سارة')">
+        <div class="fb-story-bg" style="background:linear-gradient(135deg,#10B981,#059669)"></div>
+        <div class="fb-story-avatar">س</div>
+        <span>سارة</span>
+      </div>
+      <div class="fb-story" onclick="showToast('قصة محمد')">
+        <div class="fb-story-bg" style="background:linear-gradient(135deg,#F59E0B,#D97706)"></div>
+        <div class="fb-story-avatar">م</div>
+        <span>محمد</span>
+      </div>
+      <div class="fb-story" onclick="showToast('قصة نور')">
+        <div class="fb-story-bg" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9)"></div>
+        <div class="fb-story-avatar">ن</div>
+        <span>نور</span>
+      </div>
+      <div class="fb-story" onclick="showToast('قصة ليلى')">
+        <div class="fb-story-bg" style="background:linear-gradient(135deg,#F33E58,#C2185B)"></div>
+        <div class="fb-story-avatar">ل</div>
+        <span>ليلى</span>
+      </div>
+    </div>
+
+    <!-- ============ (4) Posts (يُبنى من app.js) ============ -->
+    <div id="postsContainer"></div>
+
+    <!-- ============ (5) FAB ============ -->
+    <div class="fb-fab" onclick="showToast('جاري إضافة منشور')">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20h9"/>
+        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+      </svg>
+    </div>
   </div>
 
   <!-- ==========================================================
@@ -689,7 +905,7 @@
   <div class="page" id="page-profile">
     <header class="profile-hero">
       <div class="profile-avatar">م</div>
-      <h2>محمد أحمد <span class="badge-v"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span></h2>
+      <h2><span id="profileName">محمد أحمد</span> <span class="badge-v"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span></h2>
       <p class="email">mohamed@example.com</p>
       <span class="member">عضو منذ 2024</span>
     </header>
@@ -778,7 +994,7 @@
     </section>
 
     <section class="section">
-      <button class="menu-item" style="background:#fff;border:1px solid var(--border);border-radius:16px;justify-content:center;color:var(--red);font-weight:800;font-size:14px;padding:16px" onclick="showToast('تم تسجيل الخروج 👋')">
+      <button class="menu-item" style="background:#fff;border:1px solid var(--border);border-radius:16px;justify-content:center;color:var(--red);font-weight:800;font-size:14px;padding:16px" onclick="handleLogout()">
         <svg style="width:18px;height:18px;stroke:var(--red);fill:none;stroke-width:2.2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
         </svg>

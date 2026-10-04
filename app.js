@@ -907,6 +907,15 @@ function showVisaModal(v) {
   document.body.appendChild(modal);
 }
 
+/* صفحات قسم السياحة: صفحة الـHub + الخدمات الفرعية */
+const TOURISM_PAGES = ['tourism', 'visas', 'flights', 'hotels', 'documents', 'insurance', 'currency', 'emergency'];
+
+/* التنقل من الـHub لصفحة خدمة فرعية */
+function switchTourismPage(subpage) {
+  if (TOURISM_PAGES.indexOf(subpage) === -1 || subpage === 'tourism') return;
+  switchPage(subpage);
+}
+
 function switchPage(page) {
   // إخفاء كل الصفحات
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -916,10 +925,10 @@ function switchPage(page) {
   if (target) target.classList.add('active');
 
   // تحديث الـ bottom nav
-  // (صفحة السياحة بتُعدّ جزء من الرئيسية، فبنخلّي زرار «الرئيسية» شغّال)
+  // (قسم السياحة بكل صفحاته بيُعدّ جزء من الرئيسية، فبنخلّي زرار «الرئيسية» شغّال)
   document.querySelectorAll('.nav-btn').forEach(btn => {
     const isActive = btn.dataset.page === page ||
-      (page === 'tourism' && btn.dataset.page === 'home');
+      (TOURISM_PAGES.indexOf(page) !== -1 && btn.dataset.page === 'home');
     btn.classList.toggle('active', isActive);
   });
 
@@ -948,8 +957,8 @@ function switchPage(page) {
     renderRatesStatus();
   }
 
-  // صفحة السياحة: نرسم الإحصائيات + التابات + الكروت
-  if (page === 'tourism') {
+  // صفحة التأشيرات: نرسم الإحصائيات + التابات + الكروت
+  if (page === 'visas') {
     renderVisaSection();
   }
 
@@ -1078,7 +1087,7 @@ window.addEventListener('load', async () => {
   updateCounts();
   renderRatesStatus();
 
-  // قسم السياحة (التأشيرات) — يُرسم مرة واحدة عند التحميل
+  // صفحة التأشيرات — تُرسم مرة واحدة عند التحميل
   renderVisaSection();
 
   // إغلاق نافذة تفاصيل التأشيرة بمفتاح Esc

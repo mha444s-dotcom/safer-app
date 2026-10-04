@@ -2243,6 +2243,98 @@ body{
   padding:20px;
 }
 
+/* ---- شبكة خدمات السياحة (صفحة الـHub) ---- */
+.tourism-services{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  padding:16px 20px;
+}
+.ts-card{
+  background:#fff;
+  border-radius:16px;
+  padding:16px;
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 2px 8px rgba(11,61,145,.06);
+}
+.ts-card:active{ transform:scale(.97); }
+.ts-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  display:grid;
+  place-items:center;
+  margin-bottom:12px;
+}
+.ts-icon svg{
+  width:24px;
+  height:24px;
+  stroke:#fff;
+  fill:none;
+  stroke-width:2;
+}
+.ts-card h4{
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:4px;
+  color:var(--text);
+}
+.ts-card p{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+@media(min-width:640px){
+  .tourism-services{
+    grid-template-columns:repeat(3,1fr);
+    max-width:900px;
+    margin:0 auto;
+  }
+}
+@media(min-width:1024px){
+  .tourism-services{
+    grid-template-columns:repeat(4,1fr);
+    max-width:1000px;
+  }
+}
+
+/* ---- صفحات الخدمات الفرعية: محتوى «قريباً» المؤقت ---- */
+.soon-box{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:28px 20px;
+  text-align:center;
+  box-shadow:var(--shadow-sm);
+}
+.soon-badge{
+  display:inline-block;
+  font-size:11px;
+  font-weight:800;
+  color:var(--primary);
+  background:rgba(11,61,145,.08);
+  border-radius:999px;
+  padding:5px 14px;
+  margin-bottom:12px;
+}
+.soon-box h4{
+  font-size:16px;
+  font-weight:800;
+  color:var(--text);
+  margin-bottom:6px;
+}
+.soon-box p{
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.6;
+  max-width:420px;
+  margin:0 auto;
+}
+
 /* كارت السياحة في الصفحة الرئيسية */
 .tourism-home-card{
   background:linear-gradient(135deg,var(--primary),var(--primary-light));

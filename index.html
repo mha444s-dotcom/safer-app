@@ -227,8 +227,10 @@
   </div>
 
   <!-- ==========================================================
-       PAGE 1.B: TOURISM (السياحة / التأشيرات)
-       صفحة مستقلة بدل ما القسم كان جوّه الصفحة الرئيسية
+       PAGE 1.B: TOURISM HUB (السياحة والتأشيرات)
+       قسم رئيسي فيه شبكة خدمات، كل خدمة بتفتح صفحة مستقلة:
+       التأشيرات / الطيران / الفنادق / المستندات / التأمين /
+       صرف العملات / أرقام الطوارئ
        ========================================================== -->
   <div class="page" id="page-tourism">
     <header class="tourism-hero">
@@ -245,8 +247,118 @@
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         </button>
       </div>
-      <h2>السياحة</h2>
-      <p>دليل شامل للتأشيرات للمصريين</p>
+      <h2>السياحة والتأشيرات</h2>
+      <p>كل خدمات السفر في مكان واحد</p>
+    </header>
+
+    <!-- شبكة خدمات السياحة: كل كارت بيفتح صفحة مستقلة -->
+    <div class="tourism-services">
+
+      <div class="ts-card" onclick="switchTourismPage('visas')">
+        <div class="ts-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <circle cx="12" cy="11" r="3.2"/>
+            <path d="M8.5 17.5h7"/>
+          </svg>
+        </div>
+        <h4>التأشيرات</h4>
+        <p>شروط ومستندات التأشيرة لكل دولة</p>
+      </div>
+
+      <div class="ts-card" onclick="switchTourismPage('flights')">
+        <div class="ts-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+          </svg>
+        </div>
+        <h4>حجز الطيران</h4>
+        <p>شركات طيران ومواقع حجز</p>
+      </div>
+
+      <div class="ts-card" onclick="switchTourismPage('hotels')">
+        <div class="ts-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/>
+            <path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/>
+            <path d="M12 4v6"/>
+            <path d="M2 18h20"/>
+          </svg>
+        </div>
+        <h4>حجز فندق</h4>
+        <p>أفضل مواقع حجز الفنادق</p>
+      </div>
+
+      <div class="ts-card" onclick="switchTourismPage('documents')">
+        <div class="ts-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6"/>
+            <path d="M8 13h8"/>
+            <path d="M8 17h5"/>
+          </svg>
+        </div>
+        <h4>الأوراق والمستندات</h4>
+        <p>قوائم المستندات المطلوبة</p>
+      </div>
+
+      <div class="ts-card" onclick="switchTourismPage('insurance')">
+        <div class="ts-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h4>التأمين الصحي</h4>
+        <p>شركات تأمين وتغطيات</p>
+      </div>
+
+      <div class="ts-card" onclick="switchTourismPage('currency')">
+        <div class="ts-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 6.5v11"/>
+            <path d="M15 9.5a2.5 2.5 0 0 0-2.5-2h-1a2.5 2.5 0 0 0 0 5h1a2.5 2.5 0 0 1 0 5h-1a2.5 2.5 0 0 1-2.5-2"/>
+          </svg>
+        </div>
+        <h4>صرف العملات</h4>
+        <p>طرق الصرف والحدود القصوى</p>
+      </div>
+
+      <div class="ts-card" onclick="switchTourismPage('emergency')">
+        <div class="ts-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.66 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.54 2.81.66A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <h4>أرقام الطوارئ</h4>
+        <p>سفراء مصر وأرقام مهمة</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 1.C: VISAS (التأشيرات)
+       نفس القسم اللي كان شغّال — اتنقل لصفحة مستقلة جوه قسم السياحة
+       ========================================================== -->
+  <div class="page" id="page-visas">
+    <header class="tourism-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('tourism')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <h2>التأشيرات</h2>
+      <p>شروط ومستندات التأشيرة لكل دولة</p>
     </header>
 
     <div class="tourism-content">
@@ -303,6 +415,192 @@
 
       <!-- كروت الدول -->
       <div class="visa-cards" id="visaCards"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 1.D: FLIGHTS — حجز الطيران (محتوى مؤقت «قريباً»)
+       ========================================================== -->
+  <div class="page" id="page-flights">
+    <header class="tourism-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('tourism')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <h2>حجز الطيران</h2>
+      <p>شركات طيران ومواقع حجز</p>
+    </header>
+
+    <div class="tourism-content">
+      <div class="soon-box">
+        <span class="soon-badge">قريباً</span>
+        <h4>حجز الطيران</h4>
+        <p>الخدمة دي لسه تحت التطوير. قريب هتلاقي هنا أهم شركات الطيران ومواقع الحجز وأرخص العروض للمسافرين من مصر.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 1.E: HOTELS — حجز الفنادق (محتوى مؤقت «قريباً»)
+       ========================================================== -->
+  <div class="page" id="page-hotels">
+    <header class="tourism-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('tourism')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <h2>حجز فندق</h2>
+      <p>أفضل مواقع حجز الفنادق</p>
+    </header>
+
+    <div class="tourism-content">
+      <div class="soon-box">
+        <span class="soon-badge">قريباً</span>
+        <h4>حجز فندق</h4>
+        <p>الخدمة دي لسه تحت التطوير. قريب هتلاقي هنا أفضل مواقع حجز الفنادق ونصائح لاختيار المكان المناسب لرحلتك.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 1.F: DOCUMENTS — الأوراق والمستندات (محتوى مؤقت)
+       ========================================================== -->
+  <div class="page" id="page-documents">
+    <header class="tourism-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('tourism')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <h2>الأوراق والمستندات</h2>
+      <p>قوائم المستندات المطلوبة</p>
+    </header>
+
+    <div class="tourism-content">
+      <div class="soon-box">
+        <span class="soon-badge">قريباً</span>
+        <h4>الأوراق والمستندات</h4>
+        <p>الخدمة دي لسه تحت التطوير. قريب هتلاقي هنا قوائم المستندات المطلوبة لكل إجراء وخطوة بخطوة للتجهيز.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 1.G: INSURANCE — التأمين الصحي (محتوى مؤقت «قريباً»)
+       ========================================================== -->
+  <div class="page" id="page-insurance">
+    <header class="tourism-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('tourism')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <h2>التأمين الصحي</h2>
+      <p>شركات تأمين وتغطيات</p>
+    </header>
+
+    <div class="tourism-content">
+      <div class="soon-box">
+        <span class="soon-badge">قريباً</span>
+        <h4>التأمين الصحي</h4>
+        <p>الخدمة دي لسه تحت التطوير. قريب هتلاقي هنا شركات التأمين وشرح التغطيات والشروط المطلوبة لكل دولة.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 1.H: CURRENCY — صرف العملات (محتوى مؤقت «قريباً»)
+       ========================================================== -->
+  <div class="page" id="page-currency">
+    <header class="tourism-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('tourism')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <h2>صرف العملات</h2>
+      <p>طرق الصرف والحدود القصوى</p>
+    </header>
+
+    <div class="tourism-content">
+      <div class="soon-box">
+        <span class="soon-badge">قريباً</span>
+        <h4>صرف العملات</h4>
+        <p>الخدمة دي لسه تحت التطوير. قريب هتلاقي هنا طرق صرف العملات والحدود المسموح بيها وأسعار التحويل.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 1.I: EMERGENCY — أرقام الطوارئ (محتوى مؤقت «قريباً»)
+       ========================================================== -->
+  <div class="page" id="page-emergency">
+    <header class="tourism-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('tourism')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <h2>أرقام الطوارئ</h2>
+      <p>سفراء مصر وأرقام مهمة</p>
+    </header>
+
+    <div class="tourism-content">
+      <div class="soon-box">
+        <span class="soon-badge">قريباً</span>
+        <h4>أرقام الطوارئ</h4>
+        <p>الخدمة دي لسه تحت التطوير. قريب هتلاقي هنا أرقام السفارات والقنصليات وأرقام الطوارئ المهمة لكل دولة.</p>
+      </div>
     </div>
   </div>
 

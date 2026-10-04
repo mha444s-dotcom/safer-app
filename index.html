@@ -760,19 +760,20 @@
           <span class="brand-text">سافــر</span>
         </div>
         <div class="fb-header-icons">
-          <div class="fb-icon-btn" onclick="showToast('الإشعارات')">
+          <div class="fb-icon-btn" id="notifIconBtn" onclick="switchPage('notifications')" title="الإشعارات">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
               <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
             </svg>
-            <span class="fb-badge">3</span>
+            <span class="fb-badge" id="notifBadge" hidden>0</span>
           </div>
-          <div class="fb-icon-btn" onclick="showToast('الرسائل')">
+          <div class="fb-icon-btn" id="msgIconBtn" onclick="switchPage('messages')" title="الرسائل">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
+            <span class="fb-badge" id="msgBadge" hidden>0</span>
           </div>
-          <div class="fb-icon-btn" onclick="showToast('حسابي')">
+          <div class="fb-icon-btn" id="profileIconBtn" onclick="switchPage('profile')" title="حسابي">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
@@ -790,14 +791,14 @@
       </div>
 
       <div class="fb-tabs">
-        <button class="fb-tab active" onclick="filterPosts('all', this)">
+        <button class="fb-tab active" id="tabHome" onclick="filterPosts('all', this)">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
             <path d="M9 22V12h6v10"/>
           </svg>
           <span>الرئيسية</span>
         </button>
-        <button class="fb-tab" onclick="filterPosts('friends', this)">
+        <button class="fb-tab" id="tabFriends" onclick="switchPage('friends')">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
             <circle cx="9" cy="7" r="4"/>
@@ -806,7 +807,7 @@
           </svg>
           <span>أصدقاء</span>
         </button>
-        <button class="fb-tab" onclick="filterPosts('groups', this)">
+        <button class="fb-tab" id="tabGroups" onclick="switchPage('groups')">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <path d="M2 12h20"/>
@@ -820,13 +821,13 @@
     <!-- ============ (2) Composer ============ -->
     <div class="fb-composer">
       <div class="fb-composer-main">
-        <div class="fb-avatar">م</div>
-        <button class="fb-composer-input" onclick="showToast('جاري إضافة منشور')">
+        <div class="fb-avatar" id="composerAvatar">م</div>
+        <button class="fb-composer-input" onclick="openPostModal()">
           شارك تجربتك أو استفسارك...
         </button>
       </div>
       <div class="fb-composer-actions">
-        <button class="fb-action-btn" onclick="showToast('إضافة صورة')">
+        <button class="fb-action-btn" onclick="openPostModal('image')">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2"/>
             <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -860,27 +861,27 @@
         </div>
         <span>أنشئ قصة</span>
       </div>
-      <div class="fb-story" onclick="showToast('قصة أحمد')">
+      <div class="fb-story" onclick="openStoryViewer(0)">
         <div class="fb-story-bg" style="background:linear-gradient(135deg,#1877F2,#0A4FB5)"></div>
         <div class="fb-story-avatar">أ</div>
         <span>أحمد</span>
       </div>
-      <div class="fb-story" onclick="showToast('قصة سارة')">
+      <div class="fb-story" onclick="openStoryViewer(1)">
         <div class="fb-story-bg" style="background:linear-gradient(135deg,#10B981,#059669)"></div>
         <div class="fb-story-avatar">س</div>
         <span>سارة</span>
       </div>
-      <div class="fb-story" onclick="showToast('قصة محمد')">
+      <div class="fb-story" onclick="openStoryViewer(2)">
         <div class="fb-story-bg" style="background:linear-gradient(135deg,#F59E0B,#D97706)"></div>
         <div class="fb-story-avatar">م</div>
         <span>محمد</span>
       </div>
-      <div class="fb-story" onclick="showToast('قصة نور')">
+      <div class="fb-story" onclick="openStoryViewer(3)">
         <div class="fb-story-bg" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9)"></div>
         <div class="fb-story-avatar">ن</div>
         <span>نور</span>
       </div>
-      <div class="fb-story" onclick="showToast('قصة ليلى')">
+      <div class="fb-story" onclick="openStoryViewer(4)">
         <div class="fb-story-bg" style="background:linear-gradient(135deg,#F33E58,#C2185B)"></div>
         <div class="fb-story-avatar">ل</div>
         <span>ليلى</span>
@@ -891,11 +892,59 @@
     <div id="postsContainer"></div>
 
     <!-- ============ (5) FAB ============ -->
-    <div class="fb-fab" onclick="showToast('جاري إضافة منشور')">
+    <div class="fb-fab" onclick="openPostModal()">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 20h9"/>
         <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
       </svg>
+    </div>
+
+    <!-- ============ (6) Post Composer Modal (يُدار من app.js) ============ -->
+    <div class="fb-modal" id="postModal" onclick="if(event.target===this)closePostModal()">
+      <div class="fb-modal-content">
+        <div class="fb-modal-header">
+          <h3 id="postModalTitle">إنشاء منشور</h3>
+          <button type="button" class="fb-modal-close" onclick="closePostModal()" aria-label="إغلاق">✕</button>
+        </div>
+
+        <div class="fb-modal-body">
+          <div class="fb-user-info">
+            <div class="fb-avatar" id="modalAvatar">م</div>
+            <div>
+              <h4 id="modalAuthor">محمد أحمد</h4>
+              <span class="fb-post-meta fb-modal-meta" id="modalAuthorMeta">سيُنشر للعامة</span>
+            </div>
+          </div>
+
+          <textarea id="postContent" placeholder="شارك تجربتك أو استفسارك..." rows="5"></textarea>
+
+          <div class="fb-modal-attachments">
+            <label for="postImage" class="fb-attach-btn">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="m21 15-5-5L5 21"/>
+              </svg>
+              <span>صورة</span>
+            </label>
+            <input type="file" id="postImage" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+            <button type="button" class="fb-attach-btn" onclick="showToast('المكان قريباً 📍')">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>مكان</span>
+            </button>
+          </div>
+
+          <div id="imagePreview" class="fb-image-preview"></div>
+        </div>
+
+        <div class="fb-modal-footer">
+          <button type="button" class="fb-btn-cancel" onclick="closePostModal()">إلغاء</button>
+          <button type="button" class="fb-btn-primary" id="postSubmitBtn" onclick="submitPost()">نشر</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1132,6 +1181,103 @@
   </div>
 
   <!-- ==========================================================
+       PAGE 3.A: NOTIFICATIONS (الإشعارات)
+       ========================================================== -->
+  <div class="page" id="page-notifications">
+    <header class="fb-sub-header">
+      <button class="fb-back-btn" type="button" onclick="goBack()" aria-label="رجوع">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <h2>الإشعارات</h2>
+      <button class="fb-sub-action" type="button" onclick="markAllAsRead()">تحديد الكل كمقروء</button>
+    </header>
+
+    <div class="fb-notifications-page" id="notificationsList"></div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 3.B: MESSAGES (الرسائل)
+       ========================================================== -->
+  <div class="page" id="page-messages">
+    <header class="fb-sub-header">
+      <button class="fb-back-btn" type="button" onclick="goBack()" aria-label="رجوع">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <h2>الرسائل</h2>
+      <button class="fb-sub-action" type="button" onclick="newConversation()">محادثة جديدة</button>
+    </header>
+
+    <div class="fb-messages-page" id="conversationsList"></div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 3.C: CHAT (محادثة واحدة)
+       ========================================================== -->
+  <div class="page" id="page-chat">
+    <header class="fb-sub-header fb-chat-header">
+      <button class="fb-back-btn" type="button" onclick="goBack()" aria-label="رجوع">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <div class="fb-avatar" id="chatAvatar">أ</div>
+      <h2 id="chatTitle">أحمد محمود</h2>
+      <span class="fb-chat-status" id="chatStatus">متصل الآن</span>
+    </header>
+
+    <div class="fb-chat-window" id="chatMessages"></div>
+
+    <div class="fb-chat-input">
+      <input type="text" id="chatInput" placeholder="اكتب رسالة..." autocomplete="off"
+             onkeydown="if(event.key==='Enter'){event.preventDefault();sendMessage();}">
+      <button class="fb-chat-send" type="button" onclick="sendMessage()" aria-label="إرسال">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 3.D: FRIENDS (الأصدقاء)
+       ========================================================== -->
+  <div class="page" id="page-friends">
+    <header class="fb-sub-header">
+      <button class="fb-back-btn" type="button" onclick="goBack()" aria-label="رجوع">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <h2>الأصدقاء</h2>
+      <button class="fb-sub-action" type="button" onclick="addFriend()">إضافة صديق</button>
+    </header>
+
+    <div class="fb-sub-tabs" id="friendsTabs">
+      <button class="fb-sub-tab active" data-ftab="all" onclick="filterFriends('all', this)">الكل</button>
+      <button class="fb-sub-tab" data-ftab="followers" onclick="filterFriends('followers', this)">المتابعين</button>
+      <button class="fb-sub-tab" data-ftab="following" onclick="filterFriends('following', this)">المتابَعين</button>
+    </div>
+
+    <div class="fb-friends-page" id="friendsList"></div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 3.E: GROUPS (المجتمعات)
+       ========================================================== -->
+  <div class="page" id="page-groups">
+    <header class="fb-sub-header">
+      <button class="fb-back-btn" type="button" onclick="goBack()" aria-label="رجوع">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <h2>المجتمعات</h2>
+      <span class="fb-sub-spacer"></span>
+    </header>
+
+    <div class="fb-sub-tabs" id="groupsTabs">
+      <button class="fb-sub-tab active" data-gtab="joined" onclick="filterGroups('joined', this)">المشترك بها</button>
+      <button class="fb-sub-tab" data-gtab="discover" onclick="filterGroups('discover', this)">اكتشف</button>
+    </div>
+
+    <div class="fb-groups-page" id="groupsList"></div>
+  </div>
+
+  <!-- ==========================================================
        BOTTOM NAVIGATION
        ========================================================== -->
   <nav class="bottom-nav">
@@ -1167,6 +1313,39 @@
 
 <!-- Toast -->
 <div class="toast" id="toast"></div>
+
+<!-- ============================================================
+     FULL-SCREEN IMAGE VIEWER (عرض الصور بحجم كامل)
+     ============================================================ -->
+<div class="fb-image-viewer" id="imageViewer" onclick="if(event.target===this)closeImageViewer()">
+  <button class="fb-iv-close" type="button" onclick="closeImageViewer()" aria-label="إغلاق">✕</button>
+  <img id="imageViewerImg" src="" alt="عرض الصورة">
+</div>
+
+<!-- ============================================================
+     STORY VIEWER (عرض القصص بحجم كامل — 5 ثواني للقصة)
+     ============================================================ -->
+<div class="fb-story-viewer" id="storyViewer">
+  <div class="fb-story-progress">
+    <div class="fb-story-bar" id="storyBar"></div>
+  </div>
+
+  <div class="fb-story-header">
+    <div class="fb-avatar" id="storyAvatar">أ</div>
+    <div class="fb-story-user">
+      <h4 id="storyName">أحمد محمود</h4>
+      <span id="storyTime">منذ ساعتين</span>
+    </div>
+    <button class="fb-story-close" type="button" onclick="closeStoryViewer()" aria-label="إغلاق">✕</button>
+  </div>
+
+  <div class="fb-story-content" id="storyContent" onclick="nextStory()">
+    <div class="fb-story-visual" id="storyVisual"></div>
+  </div>
+
+  <button class="fb-story-nav prev" type="button" onclick="prevStory()" aria-label="القصة السابقة">‹</button>
+  <button class="fb-story-nav next" type="button" onclick="nextStory()" aria-label="القصة التالية">›</button>
+</div>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

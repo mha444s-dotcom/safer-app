@@ -190,7 +190,7 @@ body{
 #app{
   display:none;
   min-height:100vh;
-  padding-bottom:calc(80px + env(safe-area-inset-bottom));
+  padding-bottom:calc(70px + env(safe-area-inset-bottom));
   opacity:0;
   transition:opacity .5s ease;
 }
@@ -770,7 +770,7 @@ body{
 /* ============================================================
    12. CONTINENT SECTIONS
    ============================================================ */
-.continent-section{padding:8px 20px 20px}
+.continent-section{padding:8px 20px 0}
 
 .continent-title{
   display:flex;
@@ -2499,6 +2499,77 @@ body{
   .community-hero,
   .tourism-hero{
     padding-top:calc(20px + env(safe-area-inset-top, 0px));
+  }
+}
+
+/* ============================================================
+   21. SPACING FIXES (توحيد المسافات + منع تغطية الـ Bottom Nav)
+   الهدف: مسافة موحّدة أسفل كل صفحة، ومنع الفراغ الزايد تحت
+   المحتوى، ومنع أي تغطية من الـ Bottom Nav.
+   ملاحظة: مفيش أي تغيير في الألوان/الخطوط/الأزرار — مسافات بس.
+   ============================================================ */
+
+/* (أ) مسافة سفلية موحّدة لكل صفحة (20px) قبل الـ Bottom Nav */
+#page-home,
+#page-tourism,
+#page-visas,
+#page-flights,
+#page-hotels,
+#page-documents,
+#page-insurance,
+#page-currency,
+#page-emergency,
+#page-explore,
+#page-community,
+#page-profile,
+#page-detail{
+  padding-bottom:20px;
+}
+
+/* (ب) آخر عنصر جوّه الصفحة: شيل أي padding-bottom زايد
+   (المسافة السفلية بقت واحدة من قاعدة الـ page فوق) */
+.continent-section{padding:8px 20px 0}
+.tourism-content{padding:20px 20px 0}
+.tourism-services{padding:16px 20px 0}
+.tab-content{padding:16px 20px 0}
+
+/* آخر عنصر في أي تاب بصفحة التفاصيل: مفيش مسافة سفلية زايدة */
+/* (المسافة قبل الـ Bottom Nav بقت من قاعدة الـ page — 20px) */
+.tab-content > :last-child{margin-bottom:0}
+
+/* (ج) الهيدرز: نفس المسافة التحتية في كل الصفحات */
+.app-header,
+.explore-hero,
+.community-hero,
+.tourism-hero,
+.detail-hero{
+  padding-bottom:28px;
+}
+/* ملاحظة مقصودة: .profile-hero سايبينه بـ padding-bottom:70px،
+   لأن .profile-stats بتطلع فوق الهيدر بـ margin:-50px 20px 0 —
+   لو قلّلنا المسافة الكارت هيتغطّى على بيانات الحساب. */
+
+/* (د) موبايل (≤480px): تقليل المسافات وحشو السكشنز */
+@media(max-width:480px){
+  .section{
+    padding:14px 20px 0;
+  }
+  .section-head{
+    margin-bottom:12px;
+  }
+  .continent-title{
+    margin-bottom:10px;
+  }
+  .tourism-content{
+    padding:14px 20px 0;
+  }
+  .tourism-services{
+    padding:12px 20px 0;
+  }
+  .services-grid,
+  .countries-grid,
+  .tourism-services{
+    gap:10px;
   }
 }
 

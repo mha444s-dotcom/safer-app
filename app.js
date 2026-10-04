@@ -950,9 +950,99 @@ function switchPage(page) {
     renderVisaSection();
   }
 
-  // scroll للأعلى
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // نرجع لأول الصفحة فوراً (instantly) — من غير smooth عشان تبدأ من فوق على طول
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 }
+
+/* ============================================================
+   8.1 BACK NAVIGATION (الرجوع للخلف + السحب من حرف الشاشة)
+   ============================================================ */
+
+/* الرجوع للصفحة السابقة حسب الصفحة الحالية */
+function goBack() {
+  const activePage = document.querySelector('.page.active');
+  const pageName = activePage ? activePage.id.replace('page-', '') : '';
+
+  // خريطة الرجوع: كل صفحة بترجع لمين
+  const backTargets = {
+    visas: 'tourism',
+    flights: 'tourism',
+    hotels: 'tourism',
+    documents: 'tourism',
+    insurance: 'tourism',
+    currency: 'tourism',
+    emergency: 'tourism',
+    tourism: 'home',
+    explore: 'home',
+    community: 'home',
+    profile: 'home',
+    detail: 'explore'
+  };
+
+  switchPage(backTargets[pageName] || 'home');
+}
+
+/* السحب للرجوع (Swipe Back): من حرف الشاشة اليمين لليسار — لأن التطبيق RTL */
+(function enableSwipeBack() {
+  const EDGE_ZONE = 30;  // عرض منطقة الحرف اليمين (px)
+  const MIN_DX = 100;    // أقل مسافة سحب أفقي مطلوبة (px)
+  const MAX_DY = 40;     // فوق كده يبقى سحب رأسي (سكرول) مش رجوع
+
+  let startX = 0;
+  let startY = 0;
+  let isSwiping = false;
+
+  document.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    if (!touch) return;
+
+    // مش شغّال قبل ما التطبيق يفتح (شاشة البداية)
+    const splash = document.getElementById('splash');
+    if (splash && !splash.classList.contains('hide')) return;
+
+    // مش شغّال وفيه نافذة تفاصيل التأشيرة مفتوحة
+    if (document.querySelector('.visa-modal-overlay')) return;
+
+    // منع التعارض مع العناصر اللي بتتسحب أفقي (تابات / خريطة)
+    const target = e.target;
+    if (target && target.closest &&
+        target.closest('.visa-tabs, .detail-tabs, .continent-tabs, .leaflet-container')) return;
+
+    // بس من الحرف اليمين (أول 30px) عشان RTL
+    if (touch.clientX >= window.innerWidth - EDGE_ZONE) {
+      startX = touch.clientX;
+      startY = touch.clientY;
+      isSwiping = true;
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!isSwiping) return;
+    const touch = e.touches[0];
+    if (!touch) return;
+
+    const dx = touch.clientX - startX;
+    const dy = Math.abs(touch.clientY - startY);
+
+    // لازم السحب أفقي مش رأسي
+    if (dy > MAX_DY) {
+      isSwiping = false;
+      return;
+    }
+
+    // سحب لليسار مسافة كفاية → ارجع للصفحة السابقة
+    if (dx < 0 && Math.abs(dx) > MIN_DX) {
+      isSwiping = false;
+      goBack();
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', () => {
+    isSwiping = false;
+  }, { passive: true });
+})();
 
 /* ============================================================
    9. SERVICE ACTIONS

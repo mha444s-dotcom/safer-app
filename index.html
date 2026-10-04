@@ -1,0 +1,709 @@
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0B3D91">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="سافر">
+<meta name="application-name" content="سافر">
+<title>سافر | بوابتك للعالم</title>
+
+<!-- PWA: ملف التطبيق (Manifest) + الأيقونات -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="mask-icon" href="icon.svg" color="#0B3D91">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+<!-- Our Styles -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     SPLASH SCREEN
+     ============================================================ -->
+<div id="splash">
+  <div class="stars"></div>
+  <div class="splash-content">
+    <div class="logo-container">
+      <div class="logo-ring"></div>
+      <div class="logo-ring ring2"></div>
+      <div class="logo-circle">
+        <svg viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0B3D91"/>
+              <stop offset="100%" stop-color="#1E5BC6"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4AF37"/>
+              <stop offset="100%" stop-color="#F1C94A"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="48" fill="url(#g1)"/>
+          <path d="M72 38 L54 46 L42 34 L46 30 L62 32 L68 26 L72 30 L68 36 Z" fill="url(#g2)"/>
+          <circle cx="42" cy="58" r="16" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+          <ellipse cx="42" cy="58" rx="16" ry="6" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+          <ellipse cx="42" cy="58" rx="6" ry="16" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+    <h1 class="app-name">سافـــر</h1>
+    <p class="tagline">بوابتك للسفر والدراسة في الخارج<br><strong>من وإلى مصر</strong> 🇪🇬</p>
+    <div class="loader-wrap">
+      <div class="loader"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     MAIN APP
+     ============================================================ -->
+<div id="app">
+
+  <!-- ==========================================================
+       PAGE 1: HOME
+       ========================================================== -->
+  <div class="page active" id="page-home">
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <span class="offline-chip" id="offlineChip" hidden>📶 أوفلاين</span>
+        <div class="icon-btn" onclick="showToast('الإشعارات هتفتح قريباً 🔔')">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="greeting">
+        <h1>أهلاً بيك <span class="highlight">👋</span></h1>
+        <p>هنوصلك لكل حاجة محتاجها برة مصر</p>
+      </div>
+    </header>
+
+    <div class="search-container">
+      <div class="search-box" onclick="switchPage('explore')">
+        <svg viewBox="0 0 24 24" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input type="text" placeholder="ابحث عن دولة، خدمة، منحة..." readonly>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <h3><span class="emoji">⚡</span> الخدمات الرئيسية</h3>
+        <a onclick="showToast('كل الخدمات هتفتح قريباً ✨')">الكل</a>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" onclick="openService('visa')">
+          <div class="ico c-blue">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2"/>
+              <path d="M7 8h10M7 12h6"/>
+            </svg>
+          </div>
+          <h4>التأشيرات</h4>
+          <p>شروط ومستندات تأشيرة أي دولة</p>
+        </div>
+        <div class="service-card" onclick="openService('study')">
+          <div class="ico c-gold">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <h4>الدراسة بالخارج</h4>
+          <p>منح، جامعات، وشروط القبول</p>
+        </div>
+        <div class="service-card" onclick="openService('embassy')">
+          <div class="ico c-green">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/>
+            </svg>
+          </div>
+          <h4>السفارات والقنصليات</h4>
+          <p>عناوين وأرقام المصريين بالخارج</p>
+        </div>
+        <div class="service-card" onclick="openService('docs')">
+          <div class="ico c-purple">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+            </svg>
+          </div>
+          <h4>الأوراق الرسمية</h4>
+          <p>تصديقات، ترجمة، وثائق</p>
+        </div>
+        <div class="service-card" onclick="openService('money')">
+          <div class="ico c-teal">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M14.5 9a3 3 0 0 0-5 .5c0 2 5 2 5 4a3 3 0 0 1-5 .5M12 7v10"/>
+            </svg>
+          </div>
+          <h4>التحويلات والفلوس</h4>
+          <p>أرخص طرق تحويل الأموال</p>
+        </div>
+        <div class="service-card" onclick="openService('housing')">
+          <div class="ico c-red">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <path d="M9 22V12h6v10"/>
+            </svg>
+          </div>
+          <h4>السكن والإقامة</h4>
+          <p>إيجار، إقامة، وتصاريح</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h3><span class="emoji">🌍</span> اكتشف القارات</h3>
+        <a onclick="switchPage('explore')">الكل</a>
+      </div>
+      <div class="continent-tabs" id="homeContinents" style="padding:0"></div>
+    </section>
+
+    <!-- ========== قسم السياحة (تصنيف الدول حسب التأشيرة) ========== -->
+    <section class="section tourism-section">
+      <div class="section-head">
+        <h3><span class="emoji">✈️</span> السياحة</h3>
+        <a onclick="showToast('قريباً: كل الدول')">الكل</a>
+      </div>
+
+      <!-- شريط إحصائيات التأشيرات -->
+      <div class="visa-stats" id="visaStats">
+        <div class="vs-item vs-free">
+          <span class="vs-num" id="vs-free">0</span>
+          <span class="vs-label">بدون فيزا</span>
+        </div>
+        <div class="vs-item vs-evisa">
+          <span class="vs-num" id="vs-evisa">0</span>
+          <span class="vs-label">فيزا إلكترونية</span>
+        </div>
+        <div class="vs-item vs-arrival">
+          <span class="vs-num" id="vs-arrival">0</span>
+          <span class="vs-label">عند الوصول</span>
+        </div>
+        <div class="vs-item vs-required">
+          <span class="vs-num" id="vs-required">0</span>
+          <span class="vs-label">مطلوبة</span>
+        </div>
+      </div>
+
+      <!-- تابات الفلترة -->
+      <div class="visa-tabs" id="visaTabs">
+        <button class="visa-tab active" data-filter="all" onclick="filterVisa('all',this)">🌍 الكل</button>
+        <button class="visa-tab" data-filter="visa-free" onclick="filterVisa('visa-free',this)">✅ بدون فيزا</button>
+        <button class="visa-tab" data-filter="e-visa" onclick="filterVisa('e-visa',this)">📱 إلكترونية</button>
+        <button class="visa-tab" data-filter="on-arrival" onclick="filterVisa('on-arrival',this)">🛬 عند الوصول</button>
+        <button class="visa-tab" data-filter="visa-required" onclick="filterVisa('visa-required',this)">📋 مطلوبة</button>
+      </div>
+
+      <!-- كروت الدول -->
+      <div class="visa-cards" id="visaCards"></div>
+    </section>
+
+
+    <section class="section">
+      <div class="section-head">
+        <h3><span class="emoji">⭐</span> المفضلة</h3>
+        <a onclick="switchPage('explore')">إضافة</a>
+      </div>
+      <div id="homeFavorites"></div>
+    </section>
+
+    <div style="padding:0 20px;margin-top:26px">
+      <div style="background:linear-gradient(135deg,var(--primary),#3B82F6);border-radius:20px;padding:22px;color:#fff;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-40px;left:-40px;width:140px;height:140px;border-radius:50%;background:rgba(212,175,55,.25)"></div>
+        <h4 style="font-size:17px;font-weight:900;margin-bottom:6px;position:relative">🎓 منح دراسية 2025</h4>
+        <p style="font-size:13px;opacity:.9;margin-bottom:14px;position:relative">اكتشف أحدث المنح الممولة بالكامل وقدم قبل ما تفوتك</p>
+        <button onclick="openService('scholarships')" style="background:var(--gold);color:#3B2F00;border:none;padding:10px 22px;border-radius:12px;font-family:inherit;font-weight:800;font-size:14px;cursor:pointer;position:relative">اكتشف المنح</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 2: EXPLORE
+       ========================================================== -->
+  <div class="page" id="page-explore">
+    <header class="explore-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+      </div>
+      <h2>اكتشف العالم 🌍</h2>
+      <p>اختار الدولة اللي نفسك تسافر أو تدرس فيها</p>
+      <div class="explore-search">
+        <svg viewBox="0 0 24 24" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input type="text" id="countrySearch" placeholder="ابحث عن دولة..." oninput="filterCountries(this.value)">
+      </div>
+    </header>
+
+    <div class="map-wrapper">
+      <div class="map-header">
+        <h4><span class="live"></span> الخريطة التفاعلية</h4>
+        <span class="hint">اسحب • زوّم • دوس 📍</span>
+      </div>
+      <div id="realMap"></div>
+    </div>
+
+    <div class="continent-tabs" id="continentTabs">
+      <button class="cont-tab active" data-cont="all" onclick="setContinent('all',this)">
+        <span>🌍</span> الكل <span class="count" id="count-all">0</span>
+      </button>
+      <button class="cont-tab" data-cont="europe" onclick="setContinent('europe',this)">
+        <span>🇪🇺</span> أوروبا <span class="count" id="count-europe">0</span>
+      </button>
+      <button class="cont-tab" data-cont="arab" onclick="setContinent('arab',this)">
+        <span>🕌</span> عربي <span class="count" id="count-arab">0</span>
+      </button>
+      <button class="cont-tab" data-cont="americas" onclick="setContinent('americas',this)">
+        <span>🌎</span> أمريكا <span class="count" id="count-americas">0</span>
+      </button>
+      <button class="cont-tab" data-cont="asia" onclick="setContinent('asia',this)">
+        <span>🌏</span> آسيا <span class="count" id="count-asia">0</span>
+      </button>
+      <button class="cont-tab" data-cont="africa" onclick="setContinent('africa',this)">
+        <span>🌍</span> أفريقيا <span class="count" id="count-africa">0</span>
+      </button>
+      <button class="cont-tab" data-cont="oceania" onclick="setContinent('oceania',this)">
+        <span>🇦🇺</span> أوقيانوسيا <span class="count" id="count-oceania">0</span>
+      </button>
+    </div>
+
+    <div id="countriesContainer"></div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 3: COMMUNITY
+       ========================================================== -->
+  <div class="page" id="page-community">
+    <header class="community-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+      </div>
+      <h2>المجتمع 👥</h2>
+      <p>شارك تجربتك مع المصريين في كل مكان</p>
+      <div class="community-stats">
+        <div class="stat-card"><span class="num">12K+</span><span class="lbl">عضو</span></div>
+        <div class="stat-card"><span class="num">3.5K</span><span class="lbl">منشور</span></div>
+        <div class="stat-card"><span class="num">45</span><span class="lbl">دولة</span></div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-head">
+        <h3><span class="emoji">🔥</span> أحدث المنشورات</h3>
+        <a onclick="showToast('هتضيف منشور جديد قريباً ✍️')">أضف منشور</a>
+      </div>
+      <div id="postsContainer"></div>
+    </section>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 4: PROFILE
+       ========================================================== -->
+  <div class="page" id="page-profile">
+    <header class="profile-hero">
+      <div class="profile-avatar">م</div>
+      <h2>محمد أحمد <span class="badge-v"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span></h2>
+      <p class="email">mohamed@example.com</p>
+      <span class="member">عضو منذ 2024</span>
+    </header>
+
+    <div class="profile-stats">
+      <div class="profile-stat"><span class="num">8</span><span class="lbl">دولة</span></div>
+      <div class="profile-stat"><span class="num">24</span><span class="lbl">منشور</span></div>
+      <div class="profile-stat"><span class="num">156</span><span class="lbl">إعجاب</span></div>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <h3><span class="emoji">💱</span> أسعار الصرف</h3>
+      </div>
+      <div class="rates-status" id="ratesStatus">
+        <span class="rs-dot loading" id="ratesDot"></span>
+        <span id="ratesStatusText">آخر تحديث للأسعار: جاري التحديث...</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h3><span class="emoji">⚙️</span> الإعدادات</h3>
+      </div>
+      <div class="menu-list">
+        <button class="menu-item" onclick="showToast('هتفتح: بياناتي الشخصية')">
+          <div class="menu-icon c-blue">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div class="menu-text"><h5>بياناتي الشخصية</h5><p>الاسم، الإيميل، الصورة</p></div>
+          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="menu-item" onclick="showToast('هتفتح: الدول المفضلة')">
+          <div class="menu-icon c-gold">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <div class="menu-text"><h5>الدول المفضلة</h5><p>الدول اللي حفظتها</p></div>
+          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="menu-item" onclick="showToast('هتفتح: الإشعارات')">
+          <div class="menu-icon c-green">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+              <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+            </svg>
+          </div>
+          <div class="menu-text"><h5>الإشعارات</h5><p>تنبيهات المنح والتأشيرات</p></div>
+          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="menu-item" onclick="showToast('هتفتح: اللغة')">
+          <div class="menu-icon c-purple">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <div class="menu-text"><h5>اللغة</h5><p>العربية</p></div>
+          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="menu-item" onclick="showToast('هتفتح: المساعدة والدعم')">
+          <div class="menu-icon c-teal">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
+            </svg>
+          </div>
+          <div class="menu-text"><h5>المساعدة والدعم</h5><p>الأسئلة الشائعة والتواصل</p></div>
+          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="menu-item" onclick="showToast('هتفتح: عن التطبيق')">
+          <div class="menu-icon c-red">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4M12 8h.01"/>
+            </svg>
+          </div>
+          <div class="menu-text"><h5>عن التطبيق</h5><p>النسخة 1.0.0</p></div>
+          <svg class="arrow" viewBox="0 0 24 24" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="section">
+      <button class="menu-item" style="background:#fff;border:1px solid var(--border);border-radius:16px;justify-content:center;color:var(--red);font-weight:800;font-size:14px;padding:16px" onclick="showToast('تم تسجيل الخروج 👋')">
+        <svg style="width:18px;height:18px;stroke:var(--red);fill:none;stroke-width:2.2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+        تسجيل الخروج
+      </button>
+    </section>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 5: COUNTRY DETAIL
+       ========================================================== -->
+  <div class="page" id="page-detail">
+    <div class="detail-hero">
+      <button class="back-btn" onclick="switchPage('explore')">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <div class="detail-flag-wrap" id="detailFlag"></div>
+      <h1 id="detailName">ألمانيا</h1>
+      <p class="cont-label" id="detailContinent">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20"/>
+        </svg>
+        أوروبا
+      </p>
+    </div>
+
+    <div class="detail-tabs" id="detailTabs">
+      <button class="dtab active" data-tab="info" onclick="switchDetailTab('info')">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        معلومات
+      </button>
+      <button class="dtab" data-tab="tourism" onclick="switchDetailTab('tourism')">
+        <svg viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+        السياحة
+      </button>
+      <button class="dtab disabled" data-tab="study">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        الدراسة
+      </button>
+      <button class="dtab disabled" data-tab="medical">
+        <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg>
+        العلاج
+      </button>
+      <button class="dtab disabled" data-tab="embassy">
+        <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/></svg>
+        السفارات
+      </button>
+    </div>
+
+    <div class="tab-content active" id="tab-info">
+    <div class="detail-body">
+      <div class="detail-card">
+        <h5>
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+          معلومات أساسية
+        </h5>
+        <div class="detail-grid">
+          <div class="detail-info"><div class="lbl">العاصمة</div><div class="val" id="detailCapital">برلين</div></div>
+          <div class="detail-info"><div class="lbl">اللغة</div><div class="val" id="detailLanguage">الألمانية</div></div>
+          <div class="detail-info"><div class="lbl">العملة</div><div class="val" id="detailCurrency">يورو (EUR)</div></div>
+          <div class="detail-info"><div class="lbl">عدد السكان</div><div class="val" id="detailPopulation">84 مليون</div></div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <h5>
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2"/>
+            <path d="M7 8h10M7 12h6"/>
+          </svg>
+          التأشيرات المتاحة
+        </h5>
+        <div class="visa-tags" id="detailVisas"></div>
+      </div>
+
+      <div class="detail-card">
+        <h5>
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+          فرص الدراسة
+        </h5>
+        <div class="detail-list">
+          <div class="detail-row"><span class="lbl">الجامعات</span><span class="val" id="detailUnis">+400 جامعة</span></div>
+          <div class="detail-row"><span class="lbl">الرسوم السنوية</span><span class="val" id="detailFees">€0 - €20,000</span></div>
+          <div class="detail-row"><span class="lbl">منح متاحة</span><span class="val" id="detailScholarships">نعم، متعددة</span></div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <h5>
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M14.5 9a3 3 0 0 0-5 .5c0 2 5 2 5 4a3 3 0 0 1-5 .5M12 7v10"/>
+          </svg>
+          تكلفة المعيشة
+        </h5>
+        <div class="detail-list">
+          <div class="detail-row"><span class="lbl">السكن</span><span class="val" id="detailHousing">€300 - €800/شهر</span></div>
+          <div class="detail-row"><span class="lbl">الطعام والمواصلات</span><span class="val" id="detailLiving">€250 - €450/شهر</span></div>
+          <div class="detail-row"><span class="lbl">الإجمالي الشهري</span><span class="val" id="detailTotal">€550 - €1,250/شهر</span></div>
+        </div>
+      </div>
+
+      <div class="detail-actions">
+        <button class="btn-primary" onclick="openService('visa')">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2"/>
+            <path d="M7 8h10M7 12h6"/>
+          </svg>
+          شروط التأشيرة
+        </button>
+        <button class="btn-gold" onclick="toggleFavoriteFromDetail()">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span id="favBtnText">حفظ</span>
+        </button>
+      </div>
+    </div>
+    </div>
+
+    <div class="tab-content" id="tab-tourism">
+      <div class="empty-tab">
+        <div class="empty-icon">✈️</div>
+        <h4>بيانات السياحة</h4>
+        <p>جاري إضافة معلومات المدن والمعالم السياحية...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       BOTTOM NAVIGATION
+       ========================================================== -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-page="home" onclick="switchPage('home')">
+      <svg viewBox="0 0 24 24">
+        <path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <path d="M9 22V12h6v10"/>
+      </svg>
+      <span>الرئيسية</span>
+    </button>
+    <button class="nav-btn" data-page="explore" onclick="switchPage('explore')">
+      <svg viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="m21 21-4.3-4.3"/>
+      </svg>
+      <span>استكشف</span>
+    </button>
+    <button class="nav-btn" data-page="community" onclick="switchPage('community')">
+      <svg viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      <span>المجتمع</span>
+    </button>
+    <button class="nav-btn" data-page="profile" onclick="switchPage('profile')">
+      <svg viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span>حسابي</span>
+    </button>
+  </nav>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<!-- Our Scripts -->
+<script src="config.js"></script>
+<script src="rates.js"></script>
+<script src="flags.js"></script>
+<script src="data.js"></script>
+<script src="map.js"></script>
+<script src="tourism.js"></script>
+<script src="visa-data.js"></script>
+<script src="app.js"></script>
+
+<!-- ============================================================
+     مؤشر الأوفلاين (شريط أصفر — يظهر بس لما النت يقطع)
+     ============================================================ -->
+<div class="offline-bar" id="offlineBar" hidden>
+  <span class="ob-dot"></span>
+  <span>أنت أوفلاين — التطبيق شغال من الكاش</span>
+</div>
+
+<!-- ============================================================
+     PWA: مؤشر الأوفلاين + تسجيل الـ Service Worker
+     ============================================================ -->
+<script>
+  /* ---------- (1) مؤشر الأوفلاين + شريط التنبيه ---------- */
+  (function () {
+    var bar  = document.getElementById('offlineBar');
+    var chip = document.getElementById('offlineChip');
+
+    /* نلزق الشريط تحت هيدر الصفحة الحالية (عشان يبان على كل الصفحات) */
+    function placeBar() {
+      if (!bar) return;
+      var page = document.querySelector('.page.active');
+      var header = page ? page.querySelector('header') : null;
+      if (header && bar.previousElementSibling !== header) {
+        header.insertAdjacentElement('afterend', bar);
+      }
+    }
+
+    function sync() {
+      var offline = (navigator.onLine === false);
+      document.body.classList.toggle('is-offline', offline);
+      if (bar)  bar.hidden  = !offline;
+      if (chip) chip.hidden = !offline;
+      placeBar();
+    }
+
+    window.addEventListener('online', sync);
+    window.addEventListener('offline', sync);
+    window.addEventListener('load', sync);
+    document.addEventListener('visibilitychange', sync);
+
+    /* كل ما صفحة تتفتح (switchPage) نعيد مكان الشريط */
+    document.querySelectorAll('.page').forEach(function (p) {
+      new MutationObserver(sync).observe(p, { attributes: true, attributeFilter: ['class'] });
+    });
+
+    sync();
+  })();
+
+  /* ---------- (2) تسجيل الـ Service Worker ---------- */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('service-worker.js').then(function (reg) {
+        console.log('✅ Service Worker registered — scope:', reg.scope);
+
+        /* بعد ما التطبيق يخلّص، نخزّن كل الأعلام أوفلاين (بالراحة في الخلفية) */
+        function cacheFlagsOffline() {
+          var list = (typeof countries !== 'undefined' && countries) ? countries : null;
+          if (!list || !list.length) return;
+          if (navigator.onLine === false) return;
+
+          var urls = list
+            .filter(function (c) { return c && c.code; })
+            .map(function (c) { return flagUrl(c.code); });
+
+          var target = navigator.serviceWorker.controller || reg.active;
+          if (target && urls.length) {
+            target.postMessage({ type: 'CACHE_URLS', urls: urls, cacheName: 'safr-flags-v1.0.5' });
+            console.log('🚩 طلبنا تخزين ' + urls.length + ' علم أوفلاين');
+          }
+        }
+
+        if ('requestIdleCallback' in window) {
+          setTimeout(function () { requestIdleCallback(cacheFlagsOffline, { timeout: 4000 }); }, 3500);
+        } else {
+          setTimeout(cacheFlagsOffline, 3500);
+        }
+      }).catch(function (err) {
+        console.warn('⚠️ فشل تسجيل الـ Service Worker:', err.message);
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

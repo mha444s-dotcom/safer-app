@@ -1,0 +1,127 @@
+
+1) ملفات التطبيق (APP SHELL)
+  ✅ index.html  (30102 bytes)
+  ✅ styles.css  (40855 bytes)
+  ✅ config.js  (3478 bytes)
+  ✅ rates.js  (14789 bytes)
+  ✅ flags.js  (19889 bytes)
+  ✅ data.js  (118101 bytes)
+  ✅ map.js  (5431 bytes)
+  ✅ app.js  (25665 bytes)
+  ✅ manifest.json  (1142 bytes)
+  ✅ icon.svg  (2247 bytes)
+  ✅ icon-192.png  (19120 bytes)
+  ✅ icon-512.png  (54726 bytes)
+  ✅ icon-maskable-512.png  (54726 bytes)
+  ✅ service-worker.js  (12507 bytes)
+
+2) manifest.json
+  ✅ JSON سليم
+  ✅ name = سافر | بوابتك للعالم
+  ✅ short_name = سافر
+  ✅ display = standalone
+  ✅ start_url = .
+  ✅ theme_color = #0B3D91
+  ✅ background_color = #0B3D91
+  ✅ lang = ar
+  ✅ dir = rtl
+  ✅ orientation = portrait
+  ✅ icons: 192x192/any , 512x512/any , 512x512/maskable , any/any
+  ✅ 192 + 512 + maskable موجودين (شرط التثبيت)
+
+3) الأيقونات (PNG حقيقية + الألوان)
+     icon-192.png 192x192 | ذهبي 8.3% | أبيض 0.99% | أزرق 88.1%
+  ✅ icon-192.png = أيقونة سليمة وفيها اللوجو
+     icon-512.png 512x512 | ذهبي 8.7% | أبيض 1.36% | أزرق 89.0%
+  ✅ icon-512.png = أيقونة سليمة وفيها اللوجو
+     icon-maskable-512.png 512x512 | ذهبي 8.7% | أبيض 1.36% | أزرق 89.0%
+  ✅ icon-maskable-512.png = أيقونة سليمة وفيها اللوجو
+
+4) service-worker.js
+  ✅ الـsyntax سليم
+  ✅ موجود: install
+  ✅ موجود: activate
+  ✅ موجود: fetch
+  ✅ موجود: message
+  ✅ موجود: skipWaiting
+  ✅ موجود: clients.claim
+  ✅ موجود: مسح الكاش القديم
+  ✅ موجود: تخزين الأعلام مسبقاً
+  ✅ موجود: Network First
+  ✅ موجود: Cache First
+  ✅ موجود: Stale While Revalidate
+  ✅ موجود: تقليم الكاش
+  ✅ موجود: خطوط جوجل
+  ✅ موجود: ملفات الخطوط
+  ✅ موجود: أعلام flag-icons
+  ✅ موجود: خرائط Esri
+  ✅ موجود: REST Countries API
+  ✅ موجود: CBE API
+  ✅ موجود: أسعار احتياطية
+  ✅ موجود: مكتبة Leaflet
+
+5) تغطية الـSW لملفات التطبيق
+  ✅ متغطّي: index.html
+  ✅ متغطّي: styles.css
+  ✅ متغطّي: config.js
+  ✅ متغطّي: rates.js
+  ✅ متغطّي: flags.js
+  ✅ متغطّي: data.js
+  ✅ متغطّي: map.js
+  ✅ متغطّي: app.js
+  ✅ متغطّي: manifest.json
+  ✅ متغطّي: icon.svg
+  ✅ متغطّي: icon-192.png
+  ✅ متغطّي: icon-512.png
+  ✅ متغطّي: icon-maskable-512.png
+
+6) index.html
+  ✅ موجود: لينك المانيفست
+  ✅ موجود: أيقونة favicon
+  ✅ موجود: أيقونة آيفون
+  ✅ موجود: meta آيفون
+  ✅ موجود: شريط الحالة
+  ✅ موجود: الشريط الأصفر
+  ✅ موجود: أيقونة الأوفلاين في الهيدر
+  ✅ موجود: التسجيل بشرط الدعم
+  ✅ موجود: تسجيل الـSW
+  ✅ موجود: حدث offline
+  ✅ موجود: حدث online
+  ✅ موجود: اتجاه الصفحة عربي
+  ✅ بنية HTML سليمة (وسم body واحد)
+
+7) styles.css
+  ✅ موجود: استايل الشريط
+  ✅ موجود: إخفاء الشريط لما يكون فيه نت
+  ✅ موجود: استايل أيقونة الأوفلاين
+  ✅ موجود: إخفاء الأيقونة لما يكون فيه نت
+  ✅ موجود: وضع التطبيق المثبّت
+  ✅ موجود: احترام النوتش
+
+8) السيرفر المحلي (http://localhost:5500)
+  ✅ index.html  => 200  [text/html; charset=utf-8, 30102B]
+  ✅ styles.css  => 200  [text/css; charset=utf-8, 40855B]
+  ✅ config.js  => 200  [text/javascript; charset=utf-8, 3478B]
+  ✅ rates.js  => 200  [text/javascript; charset=utf-8, 14789B]
+  ✅ flags.js  => 200  [text/javascript; charset=utf-8, 19889B]
+  ✅ data.js  => 200  [text/javascript; charset=utf-8, 118101B]
+  ✅ map.js  => 200  [text/javascript; charset=utf-8, 5431B]
+  ✅ app.js  => 200  [text/javascript; charset=utf-8, 25665B]
+  ✅ manifest.json  => 200  [application/json; charset=utf-8, 1142B]
+  ✅ icon.svg  => 200  [image/svg+xml, 2247B]
+  ✅ icon-192.png  => 200  [image/png, 19120B]
+  ✅ icon-512.png  => 200  [image/png, 54726B]
+  ✅ icon-maskable-512.png  => 200  [image/png, 54726B]
+  ✅ service-worker.js  => 200  [text/javascript; charset=utf-8, 12507B]
+  ✅ /  => 200  [text/html; charset=utf-8, 30102B]
+
+9) مصادر خارجية (لازم تشتغل عشان الكاش)
+  ✅ fonts.googleapis.com  => 200
+  ✅ unpkg.com  => 200
+  ✅ unpkg.com  => 200
+  ✅ cdn.jsdelivr.net  => 200
+  ✅ server.arcgisonline.com  => 200
+  ✅ open.er-api.com  => 200
+
+النـتـيـجـة
+🎉 كل حاجة تمام — مفيش مشاكل (14 ملف + المانيفست + الأيقونات + الـSW)

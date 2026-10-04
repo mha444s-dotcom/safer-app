@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================
+     SAFR APP — أيقونة التطبيق (512×512)
+     أزرق داكن + ذهبي — نفس شعار الـ splash
+     محدودة في الوسط (80%) عشان تشتغل كـ maskable على أندرويد
+     ============================================================ -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="سافر">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071E4A"/>
+      <stop offset="55%" stop-color="#0B3D91"/>
+      <stop offset="100%" stop-color="#1E5BC6"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B3D91"/>
+      <stop offset="100%" stop-color="#1E5BC6"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#F1C94A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity=".22"/>
+      <stop offset="70%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- الخلفية -->
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="256" fill="url(#glow)"/>
+
+  <!-- الشعار (نفس نسب شاشة البداية: viewBox 100×100) -->
+  <g transform="translate(256 256) scale(4) translate(-50 -50)">
+    <circle cx="50" cy="50" r="48" fill="url(#gold)"/>
+    <circle cx="50" cy="50" r="44" fill="url(#blue)"/>
+
+    <!-- الطيارة الورقية -->
+    <path d="M72 38 L54 46 L42 34 L46 30 L62 32 L68 26 L72 30 L68 36 Z" fill="url(#gold)"/>
+
+    <!-- الكرة الأرضية -->
+    <circle cx="42" cy="58" r="16" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+    <ellipse cx="42" cy="58" rx="16" ry="6" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+    <ellipse cx="42" cy="58" rx="6" ry="16" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
+</svg>

@@ -2226,7 +2226,8 @@ body{
   font-weight:800;
   padding:2px 8px;
   border-radius:99px;
-  display:inline-block;
+  display:inline-flex;      /* عشان شارة «مشروط» تقف في نص السطر بالظبط */
+  align-items:center;
   align-self:flex-start;
 }
 
@@ -2234,6 +2235,19 @@ body{
 .vc-badge.e-visa{ background:#DBEAFE; color:#1E40AF; }
 .vc-badge.on-arrival{ background:#FEF3C7; color:#92400E; }
 .vc-badge.visa-required{ background:#FEE2E2; color:#991B1B; }
+
+/* شارة «مشروط» — للدول اللي تأشيرتها الإلكترونية مشروطة (conditional:true) */
+.vc-cond{
+  font-size:9px;
+  background:rgba(245,158,11,.2);
+  color:#92400E;
+  padding:1px 5px;
+  border-radius:4px;
+  margin-right:4px;
+  font-weight:700;
+  white-space:nowrap;
+  line-height:1.5;
+}
 
 .vc-arrow{
   width:20px;

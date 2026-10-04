@@ -717,7 +717,7 @@ function renderVisaSection() {
         <div class="vc-flag">${flagImgTag(country || { code: code }, 'w80', v.name)}</div>
         <div class="vc-body">
           <h4>${v.name}</h4>
-          <span class="vc-badge ${v.visaType}">${badge}</span>
+          <span class="vc-badge ${v.visaType}">${badge}${v.conditional ? '<span class="vc-cond" title="مشروط: مطلوب تأشيرة سارية من شنغن/أمريكا/بريطانيا أو إقامة سارية">مشروط</span>' : ''}</span>
         </div>
         <div class="vc-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

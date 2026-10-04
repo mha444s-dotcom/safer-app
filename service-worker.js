@@ -14,7 +14,7 @@
    • Clerk (المصادقة) ................... Network Only (بدون كاش — ردود حساسة)
    ============================================================ */
 
-const SW_VERSION = 'v1.0.17';  // ← اترفعت: صفحة حسابي (بروفايل) جديدة + تعديل البروفايل (Clerk + localStorage)
+const SW_VERSION = 'v1.0.21';  // ← اترفعت: قسم السفارات والقنصليات (embassies-data.js + صفحتين جديدتين)
 
 const STATIC_CACHE = 'safr-static-' + SW_VERSION;   // ملفات التطبيق
 const LIB_CACHE    = 'safr-libs-' + SW_VERSION;     // Leaflet وغيرها
@@ -41,6 +41,7 @@ const APP_SHELL = [
   'data.js',
   'tourism.js',
   'visa-data.js',
+  'embassies-data.js',
   'map.js',
   'app.js',
   'manifest.json',

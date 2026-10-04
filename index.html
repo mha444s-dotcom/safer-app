@@ -429,11 +429,25 @@
         <p>سفراء مصر وأرقام مهمة</p>
       </div>
 
+      <div class="ts-card" onclick="switchTourismPage('embassies')">
+        <div class="ts-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/>
+            <path d="M5 21V8l7-5 7 5v13"/>
+            <path d="M9 21v-6h6v6"/>
+            <path d="M10 11h4"/>
+          </svg>
+        </div>
+        <h4>السفارات والقنصليات</h4>
+        <p>أرقام وعناوين السفارات حول العالم</p>
+      </div>
+
     </div>
   </div>
 
   <!-- ==========================================================
        PAGE 1.C: VISAS (التأشيرات)
+
        نفس القسم اللي كان شغّال — اتنقل لصفحة مستقلة جوه قسم السياحة
        ========================================================== -->
   <div class="page" id="page-visas">
@@ -480,6 +494,10 @@
             <span class="chip-num" id="vs-required">0</span>
             <span class="chip-lbl">مطلوبة</span>
           </div>
+          <div class="vs-chip chip-schengen" data-filter="schengen" onclick="filterVisa('schengen', this)">
+            <span class="chip-num" id="vs-schengen">0</span>
+            <span class="chip-lbl">شنغن</span>
+          </div>
         </div>
       </div>
 
@@ -490,6 +508,7 @@
         <button class="visa-tab" data-filter="e-visa" onclick="filterVisa('e-visa', this)">إلكترونية <span class="tab-count">0</span></button>
         <button class="visa-tab" data-filter="on-arrival" onclick="filterVisa('on-arrival', this)">عند الوصول <span class="tab-count">0</span></button>
         <button class="visa-tab" data-filter="visa-required" onclick="filterVisa('visa-required', this)">مطلوبة <span class="tab-count">0</span></button>
+        <button class="visa-tab" data-filter="schengen" onclick="filterVisa('schengen', this)">شنغن <span class="tab-count">0</span></button>
       </div>
 
       <!-- كروت الدول -->
@@ -682,6 +701,52 @@
       </div>
     </div>
   </div>
+
+  <!-- ==========================================================
+       PAGE 1.J: EMBASSIES — السفارات والقنصليات
+       (البيانات في embassies-data.js: سفارات مصر بالخارج
+        + السفارات الأجنبية في مصر)
+       ========================================================== -->
+  <div class="page" id="page-embassies">
+    <header class="tourism-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M10 11h4"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('tourism')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <h2>السفارات والقنصليات</h2>
+      <p>كل السفارات في مكان واحد — <strong id="embTotal">0</strong> بعثة</p>
+    </header>
+
+    <div class="tourism-content">
+      <div class="embassy-tabs">
+        <button class="embassy-tab active" data-type="egyptian" onclick="filterEmbassies('egyptian', this)">السفارات المصرية في الخارج</button>
+        <button class="embassy-tab" data-type="foreign" onclick="filterEmbassies('foreign', this)">السفارات الأجنبية في مصر</button>
+      </div>
+
+      <div class="embassy-search">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+        </svg>
+        <input type="text" id="embassySearchInput" placeholder="ابحث باسم الدولة أو المدينة أو السفير..." oninput="searchEmbassies(this.value)">
+      </div>
+
+      <div class="embassy-cards" id="embassiesList"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       PAGE 1.K: EMBASSY DETAIL — تفاصيل بعثة (تتحقن بالجافاسكربت)
+       ========================================================== -->
+  <div class="page" id="page-embassy-detail"></div>
 
   <!-- ==========================================================
        PAGE 2: EXPLORE
@@ -1475,6 +1540,7 @@
 <script src="map.js"></script>
 <script src="tourism.js"></script>
 <script src="visa-data.js"></script>
+<script src="embassies-data.js"></script>
 <script src="app.js"></script>
 
 <!-- ============================================================

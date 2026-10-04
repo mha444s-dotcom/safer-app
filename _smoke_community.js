@@ -570,7 +570,12 @@ const cssFile = fs.readFileSync(path.join(DIR, 'styles.css'), 'utf8');
   ['.fb-friends-page', 'ستايل الأصدقاء'],
   ['.fb-friend-item', 'عنصر الصديق'],
   ['.fb-groups-page', 'ستايل المجتمعات'],
-  ['.fb-group-card', 'كارت المجتمع']
+  ['.fb-group-card', 'كارت المجتمع'],
+  ['.embassy-card', 'كارت السفارة'],
+  ['.embassy-tab', 'تابات السفارات'],
+  ['.embassy-search', 'شريط بحث السفارات'],
+  ['.ed-section', 'سكشن تفاصيل السفارة'],
+  ['.ed-consulate', 'كارت القنصلية']
 ].forEach(function (pair) {
   if (cssFile.indexOf(pair[0]) !== -1) ok('styles.css فيه: ' + pair[1]);
   else bad('ناقص من styles.css: ' + pair[1]);
@@ -592,8 +597,8 @@ const cssFile = fs.readFileSync(path.join(DIR, 'styles.css'), 'utf8');
 });
 
 const swFile = fs.readFileSync(path.join(DIR, 'service-worker.js'), 'utf8');
-if (swFile.indexOf("'v1.0.17'") !== -1) ok('SW_VERSION اترفع لـ v1.0.17');
-else bad('SW_VERSION ما اترفعش لـ v1.0.17');
+if (swFile.indexOf("'v1.0.21'") !== -1) ok('SW_VERSION اترفع لـ v1.0.21');
+else bad('SW_VERSION ما اترفعش لـ v1.0.21');
 
 /* فحص بنية index.html: مفيش تكرار في الـ id + كل الصفحات الجديدة موجودة */
 const idsAll = (htmlFile.match(/id="([^"]+)"/g) || []).map(function (s) { return s.slice(4, -1); });
@@ -604,7 +609,7 @@ else bad('فيه id مكرر: ' + dups.join(', '));
 const pageIds = (htmlFile.match(/class="page" id="([^"]+)"/g) || []).map(function (s) {
   return s.replace(/.*id="([^"]+)"/, '$1');
 });
-['page-notifications', 'page-messages', 'page-chat', 'page-friends', 'page-groups'].forEach(function (p) {
+['page-notifications', 'page-messages', 'page-chat', 'page-friends', 'page-groups', 'page-embassies', 'page-embassy-detail'].forEach(function (p) {
   if (pageIds.indexOf(p) !== -1) ok('صفحة كاملة موجودة: ' + p);
   else bad('ناقص الصفحة: ' + p);
 });

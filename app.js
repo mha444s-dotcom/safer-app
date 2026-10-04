@@ -2254,14 +2254,15 @@ function getVisaLabel(type) {
     'visa-free': 'بدون فيزا',
     'e-visa': 'فيزا إلكترونية',
     'on-arrival': 'فيزا عند الوصول',
-    'visa-required': 'فيزا مطلوبة'
+    'visa-required': 'فيزا مطلوبة',
+    'schengen': 'تأشيرة شنغن'
   };
   return labels[type] || type;
 }
 
 /* عدّاد كل تصنيف */
 function countVisaTypes() {
-  const counts = { 'visa-free': 0, 'e-visa': 0, 'on-arrival': 0, 'visa-required': 0 };
+  const counts = { 'visa-free': 0, 'e-visa': 0, 'on-arrival': 0, 'visa-required': 0, 'schengen': 0 };
   if (typeof visaData === 'undefined' || !visaData.countries) return counts;
   Object.keys(visaData.countries).forEach(code => {
     const type = visaData.countries[code].visaType;
@@ -2287,7 +2288,8 @@ function renderVisaSection() {
     'visa-free': 'vs-free',
     'e-visa': 'vs-evisa',
     'on-arrival': 'vs-arrival',
-    'visa-required': 'vs-required'
+    'visa-required': 'vs-required',
+    'schengen': 'vs-schengen'
   };
   Object.keys(chipIds).forEach(type => {
     const el = document.getElementById(chipIds[type]);
@@ -2324,7 +2326,8 @@ function renderVisaSection() {
     'visa-free': 'بدون فيزا',
     'e-visa': 'إلكترونية',
     'on-arrival': 'عند الوصول',
-    'visa-required': 'مطلوبة'
+    'visa-required': 'مطلوبة',
+    'schengen': 'شنغن'
   };
 
   container.innerHTML = codes.map(code => {
@@ -2513,8 +2516,249 @@ function showVisaModal(v) {
   document.body.appendChild(modal);
 }
 
-/* صفحات قسم السياحة: صفحة الـHub + الخدمات الفرعية */
-const TOURISM_PAGES = ['tourism', 'visas', 'flights', 'hotels', 'documents', 'insurance', 'currency', 'emergency'];
+/* ============================================================
+   7.C EMBASSIES SECTION — السفارات والقنصليات
+   (البيانات في embassies-data.js)
+   ============================================================ */
+
+/* الفلتر الحالي: 'egyptian' (سفارات مصر بالخارج) أو 'foreign' (السفارات الأجنبية في مصر) */
+let currentEmbassyFilter = 'egyptian';
+let currentEmbassySearch = '';
+let currentEmbassyType = 'egyptianAbroad';
+
+/* ترتيب عرض مجموعات القارات */
+const EMB_CONTINENT_ORDER = ['arab', 'europe', 'americas', 'asia', 'africa', 'oceania', 'other'];
+
+/* تهريب النصوص قبل حقنها في HTML */
+function embSafe(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/* قارة الدولة (من قاعدة الدول في data.js) */
+function embassyContinent(code) {
+  if (typeof countries !== 'undefined' && Array.isArray(countries)) {
+    const c = countries.find(x => x.code === code);
+    if (c && c.continent) return c.continent;
+  }
+  return 'other';
+}
+
+/* اسم القارة للعرض */
+function embassyContinentLabel(key) {
+  if (typeof continentInfo !== 'undefined' && continentInfo[key]) {
+    return continentInfo[key].icon + ' ' + continentInfo[key].name;
+  }
+  return '🌐 دول أخرى';
+}
+
+/* مصدر البيانات حسب التاب الحالي */
+function embassySource(type) {
+  if (typeof embassiesData === 'undefined' || !embassiesData) return {};
+  const isForeign = (type === 'foreign');
+  return (isForeign ? embassiesData.foreignInEgypt : embassiesData.egyptianAbroad) || {};
+}
+
+/* رسم صفحة السفارات: تابات + بحث + كروت مجمّعة حسب القارة */
+function renderEmbassiesPage() {
+  const container = document.getElementById('embassiesList');
+  if (!container) return;
+
+  const source = embassySource(currentEmbassyFilter);
+  const codes = Object.keys(source);
+
+  const totalEl = document.getElementById('embTotal');
+  if (totalEl) totalEl.textContent = codes.length;
+
+  let list = codes.map(code => {
+    const item = source[code] || {};
+    const emb = item.embassy || {};
+    return {
+      code: code,
+      country: item.country || '',
+      city: emb.city || '',
+      name: emb.name || '',
+      ambassador: emb.ambassador || '',
+      verified: emb.verified !== false,
+      consulates: (item.consulates || []).length,
+      continent: embassyContinent(code)
+    };
+  });
+
+  const q = String(currentEmbassySearch || '').trim().toLowerCase();
+  if (q) {
+    list = list.filter(e =>
+      e.country.toLowerCase().indexOf(q) !== -1 ||
+      e.city.toLowerCase().indexOf(q) !== -1 ||
+      e.name.toLowerCase().indexOf(q) !== -1 ||
+      e.ambassador.toLowerCase().indexOf(q) !== -1
+    );
+  }
+
+  if (list.length === 0) {
+    container.innerHTML = '<div class="visa-empty">مفيش نتائج مطابقة للبحث</div>';
+    return;
+  }
+
+  /* تجميع حسب القارة + ترتيب أبجدي جوه كل مجموعة */
+  const groups = {};
+  list.forEach(e => {
+    if (!groups[e.continent]) groups[e.continent] = [];
+    groups[e.continent].push(e);
+  });
+
+  container.innerHTML = EMB_CONTINENT_ORDER.filter(key => groups[key]).map(key => {
+    const items = groups[key].slice().sort((a, b) => a.country.localeCompare(b.country, 'ar'));
+    return `
+      <div class="emb-group">
+        <div class="emb-group-title">${embSafe(embassyContinentLabel(key))}<span class="emb-group-count">${items.length}</span></div>
+        ${items.map(e => `
+          <div class="embassy-card" onclick="openEmbassyDetail('${e.code}', '${currentEmbassyFilter}')">
+            <div class="ec-flag">${flagImgTag({ code: e.code }, 'w40', e.country)}</div>
+            <div class="ec-info">
+              <h4>${embSafe(e.country)}${e.verified ? '' : '<span class="ec-unverified">يحتاج تأكيد</span>'}</h4>
+              <p>${embSafe(e.city)}${e.consulates ? ' • ' + e.consulates + ' قنصلية' : ''}</p>
+            </div>
+            <div class="vc-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }).join('');
+}
+
+/* تبديل تاب: سفارات مصر بالخارج / السفارات الأجنبية في مصر */
+function filterEmbassies(type, el) {
+  currentEmbassyFilter = (type === 'foreign') ? 'foreign' : 'egyptian';
+  document.querySelectorAll('.embassy-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.type === currentEmbassyFilter);
+  });
+  if (el) el.classList.add('active');
+  renderEmbassiesPage();
+}
+
+/* البحث بالاسم/المدينة/السفير */
+function searchEmbassies(val) {
+  currentEmbassySearch = val || '';
+  renderEmbassiesPage();
+}
+
+/* صف بيانات في صفحة التفاصيل */
+function embRow(label, value, link) {
+  const v = value ? embSafe(value) : '—';
+  const body = link
+    ? `<a class="ed-val ed-link" href="${link}">${v}</a>`
+    : `<span class="ed-val">${v}</span>`;
+  return `<div class="ed-row"><span class="ed-label">${embSafe(label)}</span>${body}</div>`;
+}
+
+/* فتح صفحة تفاصيل بعثة (سفارة أو قنصلية) */
+function openEmbassyDetail(code, type) {
+  const sourceType = (type === 'foreign') ? 'foreignInEgypt' : 'egyptianAbroad';
+  const data = (typeof embassiesData !== 'undefined' && embassiesData[sourceType])
+    ? embassiesData[sourceType][code]
+    : null;
+  if (!data) return;
+
+  currentEmbassyType = sourceType;
+  const page = document.getElementById('page-embassy-detail');
+  if (!page) return;
+
+  const e = data.embassy || {};
+  const isForeign = (sourceType === 'foreignInEgypt');
+  const title = isForeign ? ('سفارة ' + data.country + ' في مصر') : ('سفارة مصر في ' + data.country);
+  const tel = String(e.phone || '').replace(/[^\d+]/g, '');
+  const consulates = data.consulates || [];
+
+  const consulatesHtml = consulates.length
+    ? consulates.map(c => `
+        <div class="ed-consulate">
+          <h4>${embSafe(c.name || c.city || 'قنصلية')}</h4>
+          <div class="ed-row"><span class="ed-label">المدينة</span><span class="ed-val">${embSafe(c.city || '—')}</span></div>
+          <div class="ed-row"><span class="ed-label">العنوان</span><span class="ed-val">${c.address ? embSafe(c.address) : '—'}</span></div>
+          <div class="ed-row"><span class="ed-label">الهاتف</span>${c.phone ? `<a class="ed-val ed-link" href="tel:${String(c.phone).replace(/[^\d+]/g, '')}">${embSafe(c.phone)}</a>` : '<span class="ed-val">—</span>'}</div>
+          <div class="ed-row"><span class="ed-label">الإيميل</span>${c.email ? `<a class="ed-val ed-link" href="mailto:${embSafe(c.email)}">${embSafe(c.email)}</a>` : '<span class="ed-val">—</span>'}</div>
+          ${c.notes ? `<p class="ed-note">${embSafe(c.notes)}</p>` : ''}
+        </div>
+      `).join('')
+    : '<p class="ed-empty">مفيش قنصليات مسجّلة للبعثة دي</p>';
+
+  page.innerHTML = `
+    <header class="tourism-hero emb-detail-hero">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M10 11h4"/>
+            </svg>
+          </div>
+          <span class="brand-text">سافــر</span>
+        </div>
+        <button class="back-btn" onclick="switchPage('embassies')" aria-label="رجوع">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="ed-hero">
+        <div class="ed-flag">${flagImgTag({ code: code }, 'w80', data.country)}</div>
+        <h2>${embSafe(title)}</h2>
+        <p>${embSafe(e.city || data.country)}</p>
+        ${e.verified === false ? '<span class="ed-warn">بيانات محتاجة تأكيد</span>' : ''}
+      </div>
+    </header>
+
+    <div class="tourism-content">
+      <div class="ed-section">
+        <h3>📞 معلومات التواصل</h3>
+        ${embRow('العنوان', e.address)}
+        ${embRow('الهاتف', e.phone, tel ? ('tel:' + tel) : '')}
+        ${embRow('الفاكس', e.fax)}
+        ${embRow('الإيميل', e.email, e.email ? ('mailto:' + e.email) : '')}
+        ${embRow('الموقع الرسمي', e.website ? 'زيارة الموقع' : '', e.website || '')}
+        ${embRow('ساعات العمل', e.workingHours)}
+        ${embRow('السفير', e.ambassador)}
+      </div>
+
+      <div class="ed-actions">
+        ${e.address ? `<a class="vm-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.address)}">افتح على الخريطة</a>` : ''}
+        ${tel ? `<a class="vm-btn" href="tel:${tel}">اتصل</a>` : ''}
+        ${e.email ? `<a class="vm-btn" href="mailto:${embSafe(e.email)}">أرسل إيميل</a>` : ''}
+        ${e.website ? `<a class="vm-btn vm-btn-primary" target="_blank" rel="noopener" href="${embSafe(e.website)}">زيارة الموقع الرسمي</a>` : ''}
+      </div>
+
+      <div class="ed-section">
+        <h3>🛠️ الخدمات القنصلية</h3>
+        <ul class="ed-services">
+          ${(data.services || []).map(s => `<li>${embSafe(s)}</li>`).join('') || '<li>مفيش خدمات مسجّلة</li>'}
+        </ul>
+      </div>
+
+      <div class="ed-section">
+        <h3>🏢 القنصليات التابعة</h3>
+        ${consulatesHtml}
+      </div>
+
+      ${e.notes ? `<div class="ed-section"><h3>📝 ملاحظات</h3><p class="ed-note">${embSafe(e.notes)}</p></div>` : ''}
+
+      ${e.source ? `<p class="vm-source">المصدر: ${embSafe(e.source)}</p>` : ''}
+    </div>
+  `;
+
+  switchPage('embassy-detail');
+}
+
+
+
+/* صفحات قسم السياحة: صفحة الـHub + الخدمات الفرعية + السفارات وتفاصيلها */
+const TOURISM_PAGES = ['tourism', 'visas', 'flights', 'hotels', 'documents', 'insurance', 'currency', 'emergency', 'embassies', 'embassy-detail'];
+
 
 /* صفحات فرعية بتفتح من مجتمع سافر (زيارة/رسائل/أصدقاء/مجتمعات) */
 const COMMUNITY_SUB_PAGES = ['notifications', 'messages', 'chat', 'friends', 'groups'];
@@ -2582,6 +2826,11 @@ function switchPage(page) {
     renderVisaSection();
   }
 
+  // صفحة السفارات والقنصليات: نرسم التابات + البحث + كروت البعثات
+  if (page === 'embassies') {
+    renderEmbassiesPage();
+  }
+
   // نرجع لأول الصفحة فوراً (instantly) — من غير smooth عشان تبدأ من فوق على طول
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
@@ -2606,6 +2855,8 @@ function goBack() {
     insurance: 'tourism',
     currency: 'tourism',
     emergency: 'tourism',
+    embassies: 'tourism',
+    'embassy-detail': 'embassies',
     tourism: 'home',
     explore: 'home',
     community: 'home',
@@ -2646,7 +2897,7 @@ function goBack() {
     // منع التعارض مع العناصر اللي بتتسحب أفقي (تابات / خريطة)
     const target = e.target;
     if (target && target.closest &&
-        target.closest('.visa-tabs, .detail-tabs, .continent-tabs, .leaflet-container')) return;
+        target.closest('.visa-tabs, .embassy-tabs, .detail-tabs, .continent-tabs, .leaflet-container')) return;
 
     // بس من الحرف اليمين (أول 30px) عشان RTL
     if (touch.clientX >= window.innerWidth - EDGE_ZONE) {

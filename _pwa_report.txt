@@ -1,21 +1,22 @@
 
 1) ملفات التطبيق (APP SHELL)
-  ✅ index.html  (70182 bytes)
-  ✅ styles.css  (95468 bytes)
+  ✅ index.html  (78668 bytes)
+  ✅ styles.css  (106626 bytes)
   ✅ config.js  (3478 bytes)
   ✅ rates.js  (14789 bytes)
   ✅ flags.js  (19889 bytes)
   ✅ data.js  (118101 bytes)
   ✅ tourism.js  (139734 bytes)
-  ✅ visa-data.js  (19701 bytes)
+  ✅ visa-data.js  (156201 bytes)
+  ✅ embassies-data.js  (32843 bytes)
   ✅ map.js  (5431 bytes)
-  ✅ app.js  (117386 bytes)
+  ✅ app.js  (139222 bytes)
   ✅ manifest.json  (1142 bytes)
   ✅ icon.svg  (2247 bytes)
   ✅ icon-192.png  (19120 bytes)
   ✅ icon-512.png  (54726 bytes)
   ✅ icon-maskable-512.png  (54726 bytes)
-  ✅ service-worker.js  (13144 bytes)
+  ✅ service-worker.js  (13150 bytes)
 
 2) manifest.json
   ✅ JSON سليم
@@ -71,6 +72,7 @@
   ✅ متغطّي: data.js
   ✅ متغطّي: tourism.js
   ✅ متغطّي: visa-data.js
+  ✅ متغطّي: embassies-data.js
   ✅ متغطّي: map.js
   ✅ متغطّي: app.js
   ✅ متغطّي: manifest.json
@@ -103,23 +105,24 @@
   ✅ موجود: احترام النوتش
 
 8) السيرفر المحلي (http://localhost:5500)
-  ✅ index.html  => 200  [text/html; charset=utf-8, 70182B]
-  ✅ styles.css  => 200  [text/css; charset=utf-8, 95468B]
+  ✅ index.html  => 200  [text/html; charset=utf-8, 78668B]
+  ✅ styles.css  => 200  [text/css; charset=utf-8, 106626B]
   ✅ config.js  => 200  [text/javascript; charset=utf-8, 3478B]
   ✅ rates.js  => 200  [text/javascript; charset=utf-8, 14789B]
   ✅ flags.js  => 200  [text/javascript; charset=utf-8, 19889B]
   ✅ data.js  => 200  [text/javascript; charset=utf-8, 118101B]
   ✅ tourism.js  => 200  [text/javascript; charset=utf-8, 139734B]
-  ✅ visa-data.js  => 200  [text/javascript; charset=utf-8, 19701B]
+  ✅ visa-data.js  => 200  [text/javascript; charset=utf-8, 156201B]
+  ✅ embassies-data.js  => 200  [text/javascript; charset=utf-8, 32843B]
   ✅ map.js  => 200  [text/javascript; charset=utf-8, 5431B]
-  ✅ app.js  => 200  [text/javascript; charset=utf-8, 117386B]
+  ✅ app.js  => 200  [text/javascript; charset=utf-8, 139222B]
   ✅ manifest.json  => 200  [application/json; charset=utf-8, 1142B]
   ✅ icon.svg  => 200  [image/svg+xml, 2247B]
   ✅ icon-192.png  => 200  [image/png, 19120B]
   ✅ icon-512.png  => 200  [image/png, 54726B]
   ✅ icon-maskable-512.png  => 200  [image/png, 54726B]
-  ✅ service-worker.js  => 200  [text/javascript; charset=utf-8, 13144B, no-store]
-  ✅ /  => 200  [text/html; charset=utf-8, 70182B]
+  ✅ service-worker.js  => 200  [text/javascript; charset=utf-8, 13150B, no-store]
+  ✅ /  => 200  [text/html; charset=utf-8, 78668B]
 
 9) مصادر خارجية (لازم تشتغل عشان الكاش)
   ✅ fonts.googleapis.com  => 200
@@ -130,4 +133,4 @@
   ✅ open.er-api.com  => 200
 
 النـتـيـجـة
-🎉 كل حاجة تمام — مفيش مشاكل (16 ملف + المانيفست + الأيقونات + الـSW)
+🎉 كل حاجة تمام — مفيش مشاكل (17 ملف + المانيفست + الأيقونات + الـSW)

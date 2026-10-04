@@ -31,7 +31,7 @@ function head(s) { log('\n' + s); }
 /* ---------- (1) الملفات المطلوبة ---------- */
 const APP_SHELL = [
   'index.html', 'styles.css', 'config.js', 'rates.js', 'flags.js',
-  'data.js', 'tourism.js', 'visa-data.js', 'map.js', 'app.js',
+  'data.js', 'tourism.js', 'visa-data.js', 'embassies-data.js', 'map.js', 'app.js',
   'manifest.json', 'icon.svg',
   'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'service-worker.js'
 ];

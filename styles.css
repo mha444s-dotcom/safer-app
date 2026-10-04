@@ -1848,17 +1848,20 @@ body{
 
   .community-hero,
   .profile-hero,
-  .detail-hero{
+  .detail-hero,
+  .tourism-hero{
     padding:30px 40px;
   }
   .community-hero > *,
   .profile-hero > *,
-  .detail-hero > *{
+  .detail-hero > *,
+  .tourism-hero > *{
     max-width:900px;
     margin-left:auto;
     margin-right:auto;
   }
-  .detail-body{
+  .detail-body,
+  .tourism-content{
     max-width:900px;
     margin-left:auto;
     margin-right:auto;
@@ -2087,11 +2090,154 @@ body{
 
 .visa-empty{ text-align:center; padding:40px 20px; color:var(--muted); font-size:13px; font-weight:600; grid-column:1 / -1; }
 
+/* Modal نافذة تفاصيل التأشيرة */
+.visa-modal-overlay{ position:fixed; inset:0; background:rgba(7,30,74,.7); z-index:1000; display:flex; align-items:flex-end; justify-content:center; backdrop-filter:blur(4px); animation:fadeIn .3s; }
+.visa-modal{ background:#fff; width:100%; max-width:520px; max-height:90vh; border-radius:24px 24px 0 0; overflow-y:auto; animation:slideUpModal .4s cubic-bezier(.34,1.56,.64,1); }
+.vm-header{ position:relative; background:linear-gradient(160deg,var(--primary-dark),var(--primary)); color:#fff; padding:24px 20px 20px; text-align:center; border-radius:24px 24px 0 0; }
+.vm-close{ position:absolute; top:14px; left:14px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.2); border:none; color:#fff; font-size:16px; cursor:pointer; }
+.vm-flag{ width:64px; height:48px; border-radius:8px; overflow:hidden; margin:0 auto 12px; border:3px solid #fff; box-shadow:0 8px 20px rgba(0,0,0,.3); }
+.vm-flag img{ width:100%; height:100%; object-fit:cover; }
+.vm-header h3{ font-size:22px; font-weight:900; margin-bottom:6px; }
+.vm-type{ display:inline-block; padding:4px 12px; background:rgba(255,255,255,.15); border-radius:99px; font-size:12px; font-weight:700; }
+.vm-body{ padding:20px; }
+.vm-quick-info{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:20px; }
+.vm-q{ background:#F8FAFC; border-radius:10px; padding:10px; display:flex; flex-direction:column; gap:4px; border:1px solid var(--border); }
+.vm-q-label{ font-size:10px; color:var(--muted); font-weight:700; }
+.vm-q-val{ font-size:13px; font-weight:800; color:var(--text); }
+.vm-section{ margin-bottom:18px; }
+.vm-section h5{ font-size:13px; font-weight:800; color:var(--primary); margin-bottom:10px; }
+.vm-list{ list-style:none; padding:0; margin:0; }
+.vm-list li{ padding:8px 0; padding-right:20px; position:relative; font-size:13px; color:var(--text); border-bottom:1px solid var(--border); line-height:1.6; }
+.vm-list li:last-child{ border-bottom:none; }
+.vm-list li::before{ content:'✓'; position:absolute; right:0; color:#10B981; font-weight:900; }
+.vm-notes{ background:#FEF3C7; padding:12px 14px; border-radius:12px; border-right:4px solid #F59E0B; }
+.vm-notes h5{ color:#92400E; }
+.vm-notes p{ font-size:12px; color:#92400E; line-height:1.6; margin:0; }
+.vm-info-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; font-size:12px; color:var(--text); }
+.vm-info-grid > div{ background:#F8FAFC; padding:8px 10px; border-radius:8px; border:1px solid var(--border); }
+.vm-embassy{ background:#F8FAFC; padding:12px; border-radius:12px; border:1px solid var(--border); font-size:12px; line-height:1.8; }
+.vm-embassy p{ margin:0; color:var(--text); }
+.vm-link{ display:inline-block; margin-top:8px; color:var(--primary); font-weight:700; text-decoration:none; font-size:12px; }
+.vm-verify{ margin-top:6px !important; font-size:10px !important; color:#B45309 !important; font-weight:700; }
+.vm-btn-primary{ display:block; width:100%; padding:14px; background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; border-radius:14px; text-align:center; text-decoration:none; font-weight:800; font-size:14px; margin-top:10px; box-shadow:0 8px 20px rgba(11,61,145,.3); }
+.vm-source{ margin-top:12px; font-size:9px; color:var(--muted); text-align:center; line-height:1.6; }
+
+/* استجابة للشاشات الأكبر */
+@media(min-width:640px){
+  .visa-cards{ grid-template-columns:repeat(3,1fr); }
+}
+@media(min-width:1000px){
+  .visa-cards{ grid-template-columns:repeat(4,1fr); }
+}
+
+/* ============================================================
+   17. TOURISM PAGE (صفحة السياحة المستقلة)
+   ============================================================ */
+
+/* الهيدر */
+.tourism-hero{
+  background:linear-gradient(160deg,var(--primary-dark) 0%,var(--primary) 50%,var(--primary-light) 100%);
+  color:#fff;
+  padding:20px 20px 30px;
+  border-radius:0 0 28px 28px;
+  position:relative;
+  overflow:hidden;
+}
+.tourism-hero .header-top{
+  margin-bottom:18px;
+  position:relative;
+  z-index:2;
+}
+.tourism-hero h2{
+  font-size:28px;
+  font-weight:900;
+  margin-bottom:6px;
+  position:relative;
+  z-index:2;
+}
+.tourism-hero p{
+  font-size:14px;
+  opacity:.85;
+  font-weight:500;
+  position:relative;
+  z-index:2;
+}
+.tourism-hero .back-btn{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  position:relative;
+  z-index:2;
+}
+.tourism-hero .back-btn svg{
+  width:20px;
+  height:20px;
+  stroke:#fff;
+  fill:none;
+  stroke-width:2.5;
+}
+
+/* محتوى الصفحة */
+.tourism-content{
+  padding:20px;
+}
+
+/* كارت السياحة في الصفحة الرئيسية */
+.tourism-home-card{
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  cursor:pointer;
+  color:#fff;
+  box-shadow:0 8px 24px rgba(11,61,145,.2);
+  transition:.25s;
+}
+.tourism-home-card:active{ transform:scale(.98); }
+
+.thc-icon{
+  width:52px;
+  height:52px;
+  border-radius:14px;
+  background:rgba(255,255,255,.2);
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+}
+.thc-icon svg{ width:28px; height:28px; stroke:#fff; fill:none; stroke-width:2; }
+
+.thc-text{ flex:1; min-width:0; }
+.thc-text h4{ font-size:15px; font-weight:800; margin-bottom:4px; }
+.thc-text p{ font-size:12px; opacity:.9; margin-bottom:8px; }
+
+.thc-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  font-size:11px;
+  font-weight:700;
+  opacity:.95;
+}
+
+.thc-arrow{
+  font-size:24px;
+  opacity:.7;
+  flex-shrink:0;
+}
+
 /* ---- التطبيق مثبّت (standalone): احترام النوتش من فوق ---- */
 @media (display-mode:standalone) and (max-width:639px){
   .app-header,
   .explore-hero,
-  .community-hero{
+  .community-hero,
+  .tourism-hero{
     padding-top:calc(20px + env(safe-area-inset-top, 0px));
   }
 }

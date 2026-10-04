@@ -13,7 +13,7 @@
    • مكتبات (Leaflet) .................... مخزّنة وقت التثبيت
    ============================================================ */
 
-const SW_VERSION = 'v1.0.5';  // ← اترفعت عشان visa-data.js الجديد (قسم السياحة/التأشيرات — 10 دول) يتفعّل بدل كاش v1.0.4
+const SW_VERSION = 'v1.0.6';  // ← اترفعت لنقل قسم السياحة لصفحة مستقلة (page-tourism) بدل كاش v1.0.5
 
 const STATIC_CACHE = 'safr-static-' + SW_VERSION;   // ملفات التطبيق
 const LIB_CACHE    = 'safr-libs-' + SW_VERSION;     // Leaflet وغيرها

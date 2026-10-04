@@ -619,6 +619,186 @@ function toggleLike(index, btn) {
    8. PAGE SWITCHING
    التنقل بين الصفحات
    ============================================================ */
+/* ============================================================
+   7.B TOURISM / VISA SECTION
+   قسم السياحة — تصنيف الدول حسب نوع التأشيرة للمصريين
+   (البيانات في visa-data.js)
+   ============================================================ */
+let currentVisaFilter = 'all';
+
+/* نص وصف نوع التأشيرة */
+function getVisaLabel(type) {
+  const labels = {
+    'visa-free': '✅ بدون فيزا',
+    'e-visa': '📱 فيزا إلكترونية',
+    'on-arrival': '🛬 فيزا عند الوصول',
+    'visa-required': '📋 فيزا مطلوبة'
+  };
+  return labels[type] || type;
+}
+
+/* عدّاد كل تصنيف */
+function countVisaTypes() {
+  const counts = { 'visa-free': 0, 'e-visa': 0, 'on-arrival': 0, 'visa-required': 0 };
+  if (typeof visaData === 'undefined' || !visaData.countries) return counts;
+  Object.keys(visaData.countries).forEach(code => {
+    const type = visaData.countries[code].visaType;
+    if (counts[type] !== undefined) counts[type]++;
+  });
+  return counts;
+}
+
+/* رسم القسم: الإحصائيات + الكروت */
+function renderVisaSection() {
+  const container = document.getElementById('visaCards');
+  if (!container || typeof visaData === 'undefined' || !visaData.countries) return;
+
+  // (1) الإحصائيات
+  const counts = countVisaTypes();
+  const setNum = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setNum('vs-free', counts['visa-free']);
+  setNum('vs-evisa', counts['e-visa']);
+  setNum('vs-arrival', counts['on-arrival']);
+  setNum('vs-required', counts['visa-required']);
+
+  // (2) الفلترة حسب التاب النشط
+  let codes = Object.keys(visaData.countries);
+  if (currentVisaFilter !== 'all') {
+    codes = codes.filter(code => visaData.countries[code].visaType === currentVisaFilter);
+  }
+
+  if (codes.length === 0) {
+    container.innerHTML = '<div class="visa-empty">مفيش دول في الفئة دي</div>';
+    return;
+  }
+
+  // (3) الكروت
+  const badges = {
+    'visa-free': { label: 'بدون فيزا', cls: 'badge-free' },
+    'e-visa': { label: 'إلكترونية', cls: 'badge-evisa' },
+    'on-arrival': { label: 'عند الوصول', cls: 'badge-arrival' },
+    'visa-required': { label: 'مطلوبة', cls: 'badge-required' }
+  };
+
+  container.innerHTML = codes.map(code => {
+    const v = visaData.countries[code];
+    const country = (typeof countries !== 'undefined' && Array.isArray(countries))
+      ? countries.find(c => c.code === code)
+      : null;
+    const badge = badges[v.visaType] || badges['visa-free'];
+    const cond = v.conditional ? '<span class="vc-cond">مشروط</span>' : '';
+    return `
+      <div class="visa-card" onclick="openVisaDetail('${code}')">
+        <div class="vc-flag">${flagImgTag(country || { code: code }, 'w80', v.name)}</div>
+        <div class="vc-body">
+          <h4>${v.name}</h4>
+          <span class="vc-badge ${badge.cls}">${badge.label}${cond}</span>
+          <div class="vc-info">
+            <span>⏱️ ${v.duration}</span>
+            <span>💰 ${v.cost}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* فلترة حسب التاب */
+function filterVisa(filter, btn) {
+  currentVisaFilter = filter;
+  document.querySelectorAll('.visa-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderVisaSection();
+}
+
+/* فتح تفاصيل دولة */
+function openVisaDetail(code) {
+  const v = (typeof visaData !== 'undefined' && visaData.countries) ? visaData.countries[code] : null;
+  if (!v) return;
+  showVisaModal(v);
+}
+
+/* إغلاق نافذة التفاصيل */
+function closeVisaModal() {
+  const overlay = document.querySelector('.visa-modal-overlay');
+  if (overlay) overlay.remove();
+}
+
+/* نافذة تفاصيل التأشيرة */
+function showVisaModal(v) {
+  closeVisaModal();
+
+  const country = (typeof countries !== 'undefined' && Array.isArray(countries))
+    ? countries.find(c => c.code === v.code)
+    : null;
+
+  const embassy = v.embassyInEgypt || {};
+  const embassyPhone = embassy.phone ? `<p>📞 ${embassy.phone}</p>` : '';
+  const embassyWarn  = (embassy.verified === false)
+    ? '<p class="vm-verify">⚠️ بيانات السفارة تقريبية — تأكد من الموقع الرسمي</p>'
+    : '';
+
+  const modal = document.createElement('div');
+  modal.className = 'visa-modal-overlay';
+  modal.onclick = (e) => { if (e.target === modal) closeVisaModal(); };
+
+  modal.innerHTML = `
+    <div class="visa-modal">
+      <div class="vm-header">
+        <button class="vm-close" onclick="closeVisaModal()">✕</button>
+        <div class="vm-flag">${flagImgTag(country || { code: v.code }, 'w160', v.name)}</div>
+        <h3>${v.name}</h3>
+        <span class="vm-type">${getVisaLabel(v.visaType)}${v.conditional ? ' · مشروط' : ''}</span>
+      </div>
+
+      <div class="vm-body">
+        <div class="vm-quick-info">
+          <div class="vm-q"><span class="vm-q-label">⏱️ المدة</span><span class="vm-q-val">${v.duration}</span></div>
+          <div class="vm-q"><span class="vm-q-label">💰 التكلفة</span><span class="vm-q-val">${v.cost}</span></div>
+          <div class="vm-q"><span class="vm-q-label">⚡ المعالجة</span><span class="vm-q-val">${v.processingTime}</span></div>
+          <div class="vm-q"><span class="vm-q-label">🌡️ أفضل وقت</span><span class="vm-q-val">${v.bestTime}</span></div>
+        </div>
+
+        <div class="vm-section">
+          <h5>📋 المستندات المطلوبة</h5>
+          <ul class="vm-list">
+            ${(v.requirements || []).map(r => `<li>${r}</li>`).join('')}
+          </ul>
+        </div>
+
+        ${v.notes ? `<div class="vm-section vm-notes"><h5>⚠️ ملاحظات مهمة</h5><p>${v.notes}</p></div>` : ''}
+
+        <div class="vm-section">
+          <h5>🌐 معلومات مفيدة</h5>
+          <div class="vm-info-grid">
+            <div>💵 <strong>العملة:</strong> ${v.currency}</div>
+            <div>💱 <strong>سعر الصرف:</strong> ${v.currencyPerUSD}</div>
+            <div>🗣️ <strong>اللغة:</strong> ${v.language}</div>
+            <div>🕐 <strong>التوقيت:</strong> ${v.timezone}</div>
+            <div>🚨 <strong>الطوارئ:</strong> ${v.emergencyNumber}</div>
+          </div>
+        </div>
+
+        <div class="vm-section">
+          <h5>🏛️ السفارة في مصر</h5>
+          <div class="vm-embassy">
+            <p>📍 ${embassy.address || '—'}</p>
+            ${embassyPhone}
+            ${embassy.website ? `<a href="${embassy.website}" target="_blank" rel="noopener" class="vm-link">🌐 موقع السفارة</a>` : ''}
+            ${embassyWarn}
+          </div>
+        </div>
+
+        ${v.officialLink ? `<a href="${v.officialLink}" target="_blank" rel="noopener" class="vm-btn-primary">🔗 التقديم / الموقع الرسمي</a>` : ''}
+
+        ${v.source ? `<p class="vm-source">المصدر: ${v.source}</p>` : ''}
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
 function switchPage(page) {
   // إخفاء كل الصفحات
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -628,8 +808,11 @@ function switchPage(page) {
   if (target) target.classList.add('active');
 
   // تحديث الـ bottom nav
+  // (صفحة السياحة بتُعدّ جزء من الرئيسية، فبنخلّي زرار «الرئيسية» شغّال)
   document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.page === page);
+    const isActive = btn.dataset.page === page ||
+      (page === 'tourism' && btn.dataset.page === 'home');
+    btn.classList.toggle('active', isActive);
   });
 
   // إجراءات خاصة بكل صفحة
@@ -655,6 +838,11 @@ function switchPage(page) {
   if (page === 'profile') {
     // شريط "آخر تحديث للأسعار" بقى بيظهر في صفحة "حسابي" بس
     renderRatesStatus();
+  }
+
+  // صفحة السياحة: نرسم الإحصائيات + التابات + الكروت
+  if (page === 'tourism') {
+    renderVisaSection();
   }
 
   // scroll للأعلى
@@ -781,6 +969,14 @@ window.addEventListener('load', async () => {
   renderPosts();
   updateCounts();
   renderRatesStatus();
+
+  // قسم السياحة (التأشيرات) — يُرسم مرة واحدة عند التحميل
+  renderVisaSection();
+
+  // إغلاق نافذة تفاصيل التأشيرة بمفتاح Esc
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeVisaModal();
+  });
 
   console.log('🖼️ Cards rendered:', countries.length, 'countries');
 });

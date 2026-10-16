@@ -2342,7 +2342,7 @@ function renderVisaSection() {
         <div class="vc-flag">${flagImgTag(country || { code: code }, 'w80', v.name)}</div>
         <div class="vc-body">
           <h4>${v.name}</h4>
-          <span class="vc-badge ${v.visaType}">${badge}${v.conditional ? '<span class="vc-cond" title="مشروط: مطلوب تأشيرة سارية من شنغن/أمريكا/بريطانيا أو إقامة سارية">مشروط</span>' : ''}</span>
+          <span class="vc-badge ${v.visaType}">${badge}${v.conditional ? `<span class="vc-cond" title="${v.conditionalTip || 'مشروط: راجع الملاحظات قبل السفر'}">مشروط</span>` : ''}</span>
         </div>
         <div class="vc-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2454,7 +2454,7 @@ function showVisaModal(v) {
         <button class="vm-close" onclick="closeVisaModal()">إغلاق</button>
         <div class="vm-flag">${flagImgTag(country || { code: v.code }, 'w160', v.name)}</div>
         <h3>${v.name}</h3>
-        <span class="vm-type">${getVisaLabel(v.visaType)}${v.conditional ? ' · مشروط' : ''}</span>
+        <span class="vm-type"${v.conditional && v.conditionalTip ? ` title="${v.conditionalTip}"` : ''}>${getVisaLabel(v.visaType)}${v.conditional ? ' · مشروط' : ''}</span>
       </div>
 
       <div class="vm-tabs">
@@ -2478,7 +2478,7 @@ function showVisaModal(v) {
             ${row('الطوارئ', v.emergencyNumber)}
           </div>
 
-          ${v.notes ? `<div class="vm-notes"><div class="vm-notes-title">ملاحظات مهمة</div><p>${v.notes}</p></div>` : ''}
+          ${v.conditionalTip ? `<div class="vm-notes"><div class="vm-notes-title">تأشيرة مشروطة</div><p>${v.conditionalTip}</p></div>` : ''}${v.notes ? `<div class="vm-notes"><div class="vm-notes-title">ملاحظات مهمة</div><p>${v.notes}</p></div>` : ''}
 
           ${v.source ? `<p class="vm-source">المصدر: ${v.source}</p>` : ''}
         </div>

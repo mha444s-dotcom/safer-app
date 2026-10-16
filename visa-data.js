@@ -55,18 +55,19 @@ const visaData = {
       name: 'تركيا',
       visaType: 'e-visa',
       conditional: true,
+      conditionalTip: 'مشروط: لازم تأشيرة/إقامة سارية من شنغن أو أمريكا أو بريطانيا أو أيرلندا، أو السن أقل من 20 / أكبر من 45 سنة.',
       duration: '30 يوم (دخول واحد)',
       cost: '≈ 43$',
       processingTime: '1 – 3 أيام عمل',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
-        'وجود تأشيرة أو إقامة سارية من (شنغن / أمريكا / بريطانيا / أيرلندا) — شرط أساسي',
-        'حجز طيران مؤكد (Turkish Airlines أو Pegasus، أو AJet / مصر للطيران / Air Cairo)',
+        'وجود تأشيرة أو إقامة سارية من (شنغن / أمريكا / بريطانيا / أيرلندا) — شرط أساسي (أو السن أقل من 20/أكبر من 45)',
+        'حجز طيران مؤكد (Turkish Airlines أو EgyptAir حسب تعليمات الفيزا الإلكترونية)',
         'تذكرة عودة وحجز فندق مؤكد',
         'إثبات مالي ≈ 50$ عن كل يوم',
         'تأمين صحي يغطّي مدة الرحلة'
       ],
-      notes: 'تركيا مش ضمن قائمة الإعفاء للمصريين، لكن متاح «فيزا إلكترونية مشروطة»: لازم يكون معاك تأشيرة/إقامة سارية من شنغن أو أمريكا أو بريطانيا أو أيرلندا. لو مش متوفرة، التقديم بيتم من السفارة. الفيزا للسياحة أو الأعمال فقط وممنوع العمل بها.',
+      notes: 'تركيا مش ضمن قائمة الإعفاء للمصريين، لكن متاح «فيزا إلكترونية مشروطة»: لازم يكون معاك تأشيرة/إقامة سارية من شنغن أو أمريكا أو بريطانيا أو أيرلندا، وكمان المصريين أقل من 20 سنة أو أكبر من 45 سنة يقدروا يستخرجوا الفيزا الإلكترونية من غير شرط التأشيرة السابقة. لو مش متوفر أي شرط، التقديم بيتم من السفارة. الفيزا للسياحة أو الأعمال فقط وممنوع العمل بها.',
       officialLink: 'https://www.evisa.gov.tr/en/',
       embassyInEgypt: {
         address: 'القاهرة – المهندسين، الجيزة',
@@ -87,7 +88,7 @@ const visaData = {
     ae: {
       code: 'ae',
       name: 'الإمارات',
-      visaType: 'e-visa',
+      visaType: 'visa-required',
       conditional: false,
       duration: '30 / 60 يوم (حسب نوع الفيزا)',
       cost: '≈ 90 – 120$',
@@ -99,7 +100,7 @@ const visaData = {
         'صورة شخصية بخلفية بيضاء',
         'إثبات مالي مناسب لمدة الإقامة'
       ],
-      notes: 'الإمارات مش ضمن قائمة الإعفاء، لكن الفيزا بتطلع أونلاين: عبر منظومة ICP «Smart Service» أو بواسطة شركات الطيران (Emirates / Etihad / flydubai …) أو الفندق الراعي. المدة عادة 30 أو 60 يوم وقابلة للتمديد.',
+      notes: 'الإمارات مش ضمن قائمة الإعفاء (ويكيبيديا بتصنّفها «Visa required»)، والفيزا لازم تتطلّب قبل السفر — لكن بتطلع أونلاين: عبر منظومة ICP «Smart Service» أو بواسطة شركات الطيران (Emirates / Etihad / flydubai …) أو الفندق الراعي. المدة عادة 30 أو 60 يوم وقابلة للتمديد.',
       officialLink: 'https://smartservices.icp.gov.ae/echannels/web/client/guest/index.html#/dashboard',
       embassyInEgypt: {
         address: '16 شارع حسن أفلاطون (أمام شارع الثورة)، مصر الجديدة، القاهرة',
@@ -113,7 +114,7 @@ const visaData = {
       language: 'العربية',
       timezone: 'UTC+4',
       emergencyNumber: '999',
-      source: 'Wikipedia: Visa policy of the UAE (Online Visa / Smart Service) + mofa.gov.ae'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: الإمارات (Visa required — التقديم عبر Smart Service) — مراجعة 2026'
     },
 
     /* ==================== السعودية ==================== */
@@ -317,16 +318,17 @@ const visaData = {
       name: 'المغرب',
       visaType: 'e-visa',
       conditional: true,
+      conditionalTip: 'مشروط: الفيزا الإلكترونية للمصريين متاحة بس لو معاك تأشيرة/إقامة سارية (90 يوم على الأقل، و180 يوم للإقامة) من الاتحاد الأوروبي أو أمريكا أو أستراليا أو كندا أو بريطانيا أو اليابان أو النرويج أو نيوزيلندا أو سويسرا.',
       duration: '30 يوم (حسب الإذن)',
       cost: '≈ 40$',
       processingTime: '3 – 10 أيام',
       requirements: [
-        'جواز سفر ساري 6 شهور',
-        'تأشيرة/إقامة سارية من (شنغن / أمريكا / بريطانيا / كندا / أستراليا / اليابان / نيوزيلندا / أيرلندا) — شرط للفيزا الإلكترونية',
+        'جواز سفر ساري 6 شهور + صالح 90 يوم على الأقل بعد الوصول',
+        'تأشيرة/إقامة سارية (90 يوم على الأقل) من (شنغن / أمريكا / بريطانيا / كندا / أستراليا / اليابان / نيوزيلندا / النرويج / سويسرا) — شرط للفيزا الإلكترونية',
         'حجز فندق + تذكرة ذهاب وعودة',
         'إثبات مالي كافٍ'
       ],
-      notes: 'المغرب مش معفي للمصريين. الفيزا الإلكترونية المباشرة (acces-maroc.ma) محصورة في دول معيّنة، لكن المصريين يقدروا يقدّموا عليها «بشرط» امتلاك تأشيرة/إقامة سارية من شنغن أو أمريكا أو بريطانيا أو كندا أو غيرها. غير كده التقديم بيتم من السفارة.',
+      notes: 'المغرب مش معفي للمصريين (ويكيبيديا بتصنّفه «Visa required»)، لكن المصريين يقدروا يستخرجوا فيزا إلكترونية 30 يوم «بشرط» امتلاك تأشيرة/إقامة سارية من الاتحاد الأوروبي أو أمريكا أو أستراليا أو كندا أو بريطانيا أو اليابان أو النرويج أو نيوزيلندا أو سويسرا. غير كده التقديم بيتم من السفارة.',
       officialLink: 'https://www.acces-maroc.ma/',
       embassyInEgypt: {
         address: 'القاهرة – الزمالك',
@@ -347,18 +349,19 @@ const visaData = {
     tn: {
       code: 'tn',
       name: 'تونس',
-      visaType: 'visa-required',
-      conditional: false,
-      duration: 'حسب التأشيرة (غالبًا 30 يوم)',
+      visaType: 'on-arrival',
+      conditional: true,
+      conditionalTip: 'مشروط: فيزا عند الوصول متاحة للمجموعات (10 أفراد أو أكثر) بس، ومعاها تذكرة عودة وحجز فندق مؤكد — الأفراد العاديين يقدّموا من السفارة.',
+      duration: 'عند الوصول (للمجموعات) — أو حسب تأشيرة السفارة',
       cost: '≈ 30 – 50$',
-      processingTime: '5 – 10 أيام عمل',
+      processingTime: 'فوري عند الوصول (للمجموعات) — أو 5 – 10 أيام عمل من السفارة',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
-        'التقديم من سفارة تونس بالقاهرة',
-        'حجز فندق + تذكرة ذهاب وعودة',
+        'السفر ضمن مجموعة سياحية من 10 أفراد أو أكثر (شرط فيزا الوصول)',
+        'تذكرة عودة/متابعة + حجز فندق مؤكد',
         'إثبات مالي + صورة شخصية'
       ],
-      notes: 'تونس مش معفية للمصريين (الإعفاء مقصور على حاملي الجوازات الدبلوماسية/الرسمية). منصة الفيزا الإلكترونية التونسية «متعثّرة» فمازال التقديم بيتم من السفارة. منظّمو الرحلات قد يحصلون على بعض التسهيلات.',
+      notes: 'تونس مش معفية للمصريين (الإعفاء مقصور على حاملي الجوازات الدبلوماسية/الرسمية)، لكن «فيزا عند الوصول» متاحة للمجموعات من 10 أفراد أو أكثر بشرط تذكرة عودة وحجز فندق مؤكد. لو مسافر بمفردك، التقديم بيتم من سفارة تونس بالقاهرة. [يحتاج تأكيد: الرسوم وشروط المجموعات]',
       officialLink: 'https://www.diplomatie.gov.tn/',
       embassyInEgypt: {
         address: 'القاهرة – المهندسين، الجيزة',
@@ -372,7 +375,7 @@ const visaData = {
       language: 'العربية، الفرنسية',
       timezone: 'UTC+1',
       emergencyNumber: '190',
-      source: 'Wikipedia: Visa policy of Tunisia (Egypt — visa required for ordinary passports)'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: تونس (Visa on arrival (conditional) — مجموعات 10+) — مراجعة 2026'
     },
 
     /* ==========================================================
@@ -601,24 +604,24 @@ const visaData = {
        rs, bg, si, sk, ee
        ========================================================== */
     rs: {
-      code: 'rs', name: 'صربيا', visaType: 'visa-required', conditional: false,
-      duration: 'حسب التأشيرة (غالبًا 30 – 90 يوم)', cost: '≈ 40 – 60$',
-      processingTime: '7 – 15 يوم عمل',
+      code: 'rs', name: 'صربيا', visaType: 'e-visa', conditional: false,
+      duration: '90 يوم خلال أي 180 يوم', cost: '≈ 40 – 60$',
+      processingTime: 'حسب المنصة (عادة أيام – أسابيع)',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
-        'التقديم من سفارة صربيا بالقاهرة',
+        'تقديم أونلاين عبر منصة الفيزا الإلكترونية الصربية',
         'استمارة طلب + صورة شخصية',
         'حجز فندق + تذاكر طيران ذهاب وعودة',
         'كشف حساب بنكي + إثبات دخل',
         'تأمين صحي للسفر'
       ],
-      notes: 'صربيا (مش عضو في الاتحاد الأوروبي ومش في شنغن) — المصريون محتاجين تأشيرة من السفارة. [يحتاج تأكيد: حاملو تأشيرة شنغن/أمريكا/بريطانيا السارية ممكن يدخلوا بدون تأشيرة صربية لفترة محدودة].',
+      notes: 'صربيا بتدّي «فيزا إلكترونية» للمصريين (90 يوم خلال أي 180 يوم، مسموح بالترانزيت). صربيا مش عضو في الاتحاد الأوروبي ومش في شنغن — يعني تأشيرة شنغن مش بتغطيها ومصر مش في قائمة إعفاء صربيا. ممنوع العمل بالفيزا السياحية. [يحتاج تأكيد: الرسوم الحالية]',
       officialLink: 'https://www.mfa.gov.rs/en',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://www.mfa.gov.rs/en', verified: false },
       bestTime: 'أبريل – يونيو، سبتمبر – أكتوبر',
       currency: 'الدينار الصربي (RSD)', currencyPerUSD: '1$ ≈ 108 RSD (تقديري)',
       language: 'الصربية', timezone: 'UTC+1 (UTC+2 في الصيف)', emergencyNumber: '112',
-      source: 'Wikipedia — Visa requirements for Egyptian citizens: صربيا (Visa required) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: صربيا (eVisa، 90 يوم/180) — مراجعة 2026'
     },
     bg: {
       code: 'bg', name: 'بلغاريا', visaType: 'schengen', conditional: false,
@@ -945,43 +948,43 @@ const visaData = {
        bt, pk, mm, tw, hk
        ========================================================== */
     bt: {
-      code: 'bt', name: 'بوتان', visaType: 'visa-required', conditional: false,
-      duration: 'حسب التأشيرة (غالبًا 15 – 30 يوم)', cost: '≈ 40$ رسوم + 100$ «رسوم التنمية المستدامة» لكل يوم (SDF)',
-      processingTime: '5 – 10 أيام عمل',
+      code: 'bt', name: 'بوتان', visaType: 'e-visa', conditional: false,
+      duration: '90 يوم', cost: '≈ 40$ رسوم + 100$ «رسوم التنمية المستدامة» لكل يوم (SDF حتى 31 أغسطس 2027)',
+      processingTime: 'حتى 5 أيام عمل',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
-        'التقديم أونلاين (السفارة/منظّم رحلات معتمد بوتاني)',
+        'التقديم أونلاين (من خلال منظّم رحلات بوتاني معتمد) قبل السفر',
         'حجز فندق + برنامج سياحي',
         'دفع رسوم التنمية المستدامة (SDF) المقررة لكل يوم',
         'تأمين صحي للسفر'
       ],
-      notes: 'بوتان مش بتسمح بالسياحة الفردية — لازم منظّم رحلات معتمد، ومعاها «رسوم تنمية مستدامة» يومية. [يحتاج تأكيد: قيمة الـSDF الحالية والرسوم].',
+      notes: 'بوتان بتدّي «فيزا إلكترونية» (90 يوم، رسوم 40$، المعالجة لحد 5 أيام عمل)، لكن مش بتسمح بالسياحة الفردية — لازم منظّم رحلات بوتاني معتمد، ومعاها «رسوم تنمية مستدامة» يومية (100$ لليوم لو الدفع بالدولار من 1 سبتمبر 2023 لـ31 أغسطس 2027، وغير كده 200$). [يحتاج تأكيد: قيمة الـSDF بعد أغسطس 2027]',
       officialLink: 'https://www.doi.gov.bt/',
       embassyInEgypt: { address: '', phone: '', website: 'https://www.doi.gov.bt/', verified: false },
       bestTime: 'مارس – مايو، سبتمبر – نوفمبر',
       currency: 'النغولترم البوتاني (BTN) — مرتبط بالروبية الهندية', currencyPerUSD: '1$ ≈ 84 BTN (تقديري)',
       language: 'الدزونكا', timezone: 'UTC+6', emergencyNumber: '113',
-      source: 'Wikipedia — Visa requirements for Egyptian citizens: بوتان (Visa required) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: بوتان (eVisa، 90 يوم + SDF) — مراجعة 2026'
     },
     pk: {
-      code: 'pk', name: 'باكستان', visaType: 'visa-required', conditional: false,
-      duration: 'حسب التأشيرة (غالبًا 30 يوم)', cost: '≈ 60 – 100$',
+      code: 'pk', name: 'باكستان', visaType: 'e-visa', conditional: false,
+      duration: '3 شهور', cost: '≈ 60 – 100$',
       processingTime: '7 – 21 يوم عمل',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
+        'تقديم أونلاين عبر نظام الفيزا الإلكترونية الباكستاني (visa.nadra.gov.pk)',
         'استمارة طلب تأشيرة + صورة شخصية',
-        'التقديم من سفارة باكستان بالقاهرة (أو النظام الأونلاين)',
         'حجز فندق + تذاكر طيران ذهاب وعودة',
         'كشف حساب بنكي + إثبات دخل',
-        'تأمين صحي للسفر'
+        'خطاب دعوة/رعاية (يُطلب غالبًا للسياحة)'
       ],
-      notes: 'باكستان محتاجة تأشيرة مسبقة. [يحتاج تأكيد: باكستان عندها نظام تأشيرة أونلاين (visa.nadra.gov.pk) بيغطي معظم الجنسيات — راجع لو مصر مؤهلة للفيزا الإلكترونية].',
+      notes: 'باكستان بتدّي «فيزا إلكترونية» للمصريين (3 شهور) عبر نظام NADRA، لكن الموافقة بتحتاج مستندات كاملة (وخطاب دعوة/رعاية في الغالب). [يحتاج تأكيد: الرسوم حسب النوع]',
       officialLink: 'https://visa.nadra.gov.pk/',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://visa.nadra.gov.pk/', verified: false },
       bestTime: 'أكتوبر – مارس',
       currency: 'الروبية الباكستانية (PKR)', currencyPerUSD: '1$ ≈ 278 PKR (تقديري)',
       language: 'الأردية، الإنجليزية', timezone: 'UTC+5', emergencyNumber: '15',
-      source: 'Wikipedia — Visa requirements for Egyptian citizens: باكستان (Visa required) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: باكستان (eVisa، 3 شهور) — مراجعة 2026'
     },
     mm: {
       code: 'mm', name: 'ميانمار (بورما)', visaType: 'e-visa', conditional: false,
@@ -1304,23 +1307,23 @@ const visaData = {
       source: 'Wikipedia — Visa requirements for Egyptian citizens: المكسيك (Visa required + إعفاء لحاملي تأشيرات محددة) — مراجعة 2026'
     },
     cu: {
-      code: 'cu', name: 'كوبا', visaType: 'visa-required', conditional: false,
-      duration: '30 يوم (قابلة للتمديد)', cost: '≈ 25 – 75$',
-      processingTime: '5 – 15 يوم عمل',
+      code: 'cu', name: 'كوبا', visaType: 'e-visa', conditional: false,
+      duration: '90 يوم (قابلة للتمديد برسوم)', cost: '≈ 25 – 75$',
+      processingTime: 'حسب المنصة (لازم قبل الوصول)',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
-        'استمارة طلب تأشيرة/كارت سياحي + صورة شخصية',
-        'التقديم من سفارة كوبا بالقاهرة أو عبر البوابة الرسمية',
+        'استخراج الفيزا الإلكترونية قبل السفر (من شركة الطيران أو سفارة كوبا أو جهة معتمدة)',
+        'استمارة طلب + صورة شخصية',
         'حجز فندق + تذكرة ذهاب وعودة',
         'تأمين صحي إلزامي للسفر لكوبا'
       ],
-      notes: 'كوبا محتاجة تأشيرة مسبقة للمصريين. [يحتاج تأكيد: هل مصر مؤهلة لمنصة الفيزا الإلكترونية الكوبية الجديدة].',
+      notes: 'كوبا بتدّي «فيزا إلكترونية» للمصريين 90 يوم وقابلة للتمديد برسوم، ولازم تتطلع قبل الوصول (من شركة الطيران أو السفارة أو جهة موثوقة). التأمين الصحي إلزامي. [يحتاج تأكيد: الرسوم الحالية]',
       officialLink: 'https://evisa.cubaminrex.cu/',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://evisa.cubaminrex.cu/', verified: false },
       bestTime: 'نوفمبر – أبريل',
       currency: 'البيزو الكوبي (CUP)', currencyPerUSD: '1$ ≈ 24 CUP (تقديري)',
       language: 'الإسبانية', timezone: 'UTC−5', emergencyNumber: '106',
-      source: 'Wikipedia — Visa requirements for Egyptian citizens: كوبا (Visa required) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: كوبا (eVisa، 90 يوم) — مراجعة 2026'
     },
     cl: {
       code: 'cl', name: 'تشيلي', visaType: 'visa-required', conditional: false,
@@ -1356,13 +1359,13 @@ const visaData = {
         'حجز فندق + تذاكر طيران ذهاب وعودة',
         'كشف حساب بنكي + إثبات دخل'
       ],
-      notes: 'كولومبيا محتاجة تأشيرة مسبقة للمصريين، والتقديم بيبدأ أونلاين. [يحتاج تأكيد: نوع الفيزا والرسوم].',
+      notes: 'كولومبيا محتاجة تأشيرة مسبقة للمصريين (ويكيبيديا بتصنّفها «Online visa»)، والتقديم بيبدأ أونلاين عبر بوابة الخارجية الكولومبية. [يحتاج تأكيد: نوع الفيزا والرسوم]',
       officialLink: 'https://www.cancilleria.gov.co/',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://www.cancilleria.gov.co/', verified: false },
       bestTime: 'ديسمبر – مارس',
       currency: 'البيزو الكولومبي (COP)', currencyPerUSD: '1$ ≈ 4,000 COP (تقديري)',
       language: 'الإسبانية', timezone: 'UTC−5', emergencyNumber: '123',
-      source: 'Wikipedia — Visa requirements for Egyptian citizens: كولومبيا (Visa required) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: كولومبيا (Online visa) — مراجعة 2026'
     },
     pe: {
       code: 'pe', name: 'بيرو', visaType: 'visa-required', conditional: false,
@@ -1384,23 +1387,23 @@ const visaData = {
       source: 'Wikipedia — Visa requirements for Egyptian citizens: بيرو (Visa required) — مراجعة 2026'
     },
     ve: {
-      code: 've', name: 'فنزويلا', visaType: 'visa-required', conditional: false,
+      code: 've', name: 'فنزويلا', visaType: 'e-visa', conditional: false,
       duration: '90 يوم', cost: '≈ 30 – 60$ (تقديري)',
       processingTime: '10 – 20 يوم عمل',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
-        'استمارة طلب تأشيرة + صورة شخصية',
-        'التقديم من سفارة فنزويلا (أو سفارة ممثّلة)',
+        'تقديم أونلاين عبر بوابة «cancilleriadigital» الفنزويلية + صورة شخصية',
+        'استمارة طلب تأشيرة',
         'حجز فندق + تذاكر طيران ذهاب وعودة',
         'كشف حساب بنكي + تأمين صحي'
       ],
-      notes: 'فنزويلا محتاجة تأشيرة مسبقة. [يحتاج تأكيد: وضع السفارة بالقاهرة/التمثيل، والأوضاع الأمنية موصى بمراجعتها قبل السفر].',
-      officialLink: 'https://mppre.gob.ve/',
+      notes: 'فنزويلا بتدّي «فيزا إلكترونية» للمصريين. [يحتاج تأكيد: وضع السفارة بالقاهرة/التمثيل، والأوضاع الأمنية موصى بمراجعتها قبل السفر].',
+      officialLink: 'https://cancilleriadigital.mppre.gob.ve',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://mppre.gob.ve/', verified: false },
       bestTime: 'ديسمبر – مارس',
       currency: 'البوليفار الفنزويلي (VES)', currencyPerUSD: '1$ ≈ 40 VES (تقديري — سعر متغير)',
       language: 'الإسبانية', timezone: 'UTC−4', emergencyNumber: '911',
-      source: 'Wikipedia — Visa requirements for Egyptian citizens: فنزويلا (Visa required) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: فنزويلا (eVisa) — مراجعة 2026'
     },
     ec: {
       code: 'ec', name: 'الإكوادور', visaType: 'e-visa', conditional: false,
@@ -1464,24 +1467,24 @@ const visaData = {
       source: 'Wikipedia — Visa policy of Kenya (قائمة إعفاء eTA: مصر = 60 يوم) — مراجعة 2026'
     },
     za: {
-      code: 'za', name: 'جنوب أفريقيا', visaType: 'visa-required', conditional: false,
-      duration: 'حسب التأشيرة (عادة 30 – 90 يوم)', cost: '≈ 40 – 80$ (تقديري)',
+      code: 'za', name: 'جنوب أفريقيا', visaType: 'e-visa', conditional: false,
+      duration: 'حسب مدة الإقامة المصرّح بها في الفيزا', cost: '≈ 40 – 80$ (تقديري)',
       processingTime: '10 – 20 يوم عمل',
       requirements: [
         'جواز سفر ساري 30 يوم بعد المغادرة + صفحتين فارغتين',
-        'استمارة طلب تأشيرة (DHA-84) + صورة شخصية',
-        'التقديم من سفارة/مراكز تأشيرات جنوب أفريقيا',
+        'تقديم أونلاين عبر نظام الفيزا الإلكترونية لجنوب أفريقيا + صورة شخصية',
         'حجز فندق + تذاكر طيران ذهاب وعودة',
         'كشف حساب بنكي + إثبات دخل',
-        'شهادة الحمى الصفراء لو قادم من منطقة موبوءة'
+        'شهادة الحمى الصفراء لو قادم من منطقة موبوءة',
+        'وصول حاملي الفيزا الإلكترونية عبر مطار O. R. Tambo الدولي (جوهانسبرج) بس'
       ],
-      notes: 'جنوب أفريقيا محتاجة تأشيرة مسبقة للمصريين. [يحتاج تأكيد: الرسوم ومراكز التقديم المعتمدة].',
+      notes: 'جنوب أفريقيا بتدّي «فيزا إلكترونية» للمصريين، وحاملي الفيزا الإلكترونية لازم يدخلوا من مطار O. R. Tambo الدولي (جوهانسبرج). [يحتاج تأكيد: الرسوم ونوع الفيزا السياحية]',
       officialLink: 'https://www.dha.gov.za/',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://www.dha.gov.za/', verified: false },
       bestTime: 'مايو – سبتمبر',
       currency: 'الراند الجنوب أفريقي (ZAR)', currencyPerUSD: '1$ ≈ 18 ZAR (تقديري)',
       language: 'الإنجليزية، الأفريكانية (+لغات رسمية أخرى)', timezone: 'UTC+2', emergencyNumber: '10111',
-      source: 'Wikipedia — Visa requirements for Egyptian citizens: جنوب أفريقيا (Visa required) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: جنوب أفريقيا (eVisa — الدخول من O. R. Tambo) — مراجعة 2026'
     },
     et: {
       code: 'et', name: 'إثيوبيا', visaType: 'e-visa', conditional: false,
@@ -1561,42 +1564,42 @@ const visaData = {
       source: 'Wikipedia — Visa policy of Mauritius (قائمة الإعفاء: مصر = 90 يوم) — مراجعة 2026'
     },
     gh: {
-      code: 'gh', name: 'غانا', visaType: 'e-visa', conditional: false,
-      duration: '90 يوم', cost: 'مجانًا (تصريح سفر إلكتروني ETA بدون رسوم)',
-      processingTime: '2 – 5 أيام عمل',
+      code: 'gh', name: 'غانا', visaType: 'on-arrival', conditional: false,
+      duration: '60 يوم', cost: 'مجانًا (فيزا عند الوصول بدون رسوم)',
+      processingTime: 'فوري عند الوصول (تسجيل أونلاين قبل السفر)',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
-        'تسجيل أونلاين على بوابة غانا الرسمية للحصول على ETA',
+        'تسجيل البيانات أونلاين على بوابة غانا الرسمية قبل السفر',
         'صورة شخصية + بيانات الجواز',
         'حجز فندق + تذكرة عودة',
         'شهادة الحمى الصفراء (إلزامية)'
       ],
-      notes: 'غانا بتدّي «تصريح سفر إلكتروني» (ETA) مجاني لمدة 90 يوم لكل دول الاتحاد الأفريقي ومنها مصر (الإعفاء الكامل لدول الإيكواس + 3 دول بس). شهادة الحمى الصفراء مطلوبة. [يحتاج تأكيد: خطوات البوابة الرسمية].',
+      notes: 'غانا بتدّي «فيزا مجانية عند الوصول» لمدة 60 يوم للمصريين (بدون رسوم). شهادة الحمى الصفراء مطلوبة. [يحتاج تأكيد: خطوات التسجيل الأونلاين على البوابة الرسمية]',
       officialLink: 'https://evisa.immigration.gov.gh/',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://evisa.immigration.gov.gh/', verified: false },
       bestTime: 'نوفمبر – مارس',
       currency: 'السيدي الغاني (GHS)', currencyPerUSD: '1$ ≈ 15 GHS (تقديري)',
       language: 'الإنجليزية', timezone: 'UTC+0', emergencyNumber: '112',
-      source: 'Wikipedia — Visa policy of Ghana (ETA مجاني 90 يوم لدول الاتحاد الأفريقي) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: غانا (Free visa on arrival، 60 يوم) — مراجعة 2026'
     },
     ng: {
-      code: 'ng', name: 'نيجيريا', visaType: 'visa-required', conditional: false,
-      duration: 'حسب التأشيرة (عادة 30 – 90 يوم)', cost: '≈ 100 – 200$ (تقديري)',
+      code: 'ng', name: 'نيجيريا', visaType: 'e-visa', conditional: false,
+      duration: '30 يوم', cost: '≈ 100 – 200$ (تقديري)',
       processingTime: '10 – 20 يوم عمل',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
-        'طلب أونلاين على بوابة الهجرة النيجيرية + قسيمة سداد',
+        'طلب أونلاين على بوابة الهجرة النيجيرية (e-Visa) + قسيمة سداد',
         'صورة شخصية + خطاب دعوة/حجز فندقي',
         'تذاكر طيران + كشف حساب بنكي',
         'شهادة الحمى الصفراء (إلزامية)'
       ],
-      notes: 'نيجيريا محتاجة تأشيرة مسبقة للمصريين؛ الطلب بيبدأ أونلاين لكن الموافقة/الختم من السفارة. [يحتاج تأكيد: الرسوم ونظام الفيزا عند الوصول للأعمال].',
+      notes: 'نيجيريا بتدّي «فيزا إلكترونية» للمصريين مدتها 30 يوم؛ الطلب والموافقة بيتمّوا أونلاين قبل السفر. شهادة الحمى الصفراء إلزامية. [يحتاج تأكيد: الرسوم ونظام الفيزا عند الوصول للأعمال]',
       officialLink: 'https://immigration.gov.ng/',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://immigration.gov.ng/', verified: false },
       bestTime: 'نوفمبر – مارس',
       currency: 'النيرا النيجيري (NGN)', currencyPerUSD: '1$ ≈ 1,600 NGN (تقديري)',
       language: 'الإنجليزية', timezone: 'UTC+1', emergencyNumber: '112',
-      source: 'Wikipedia — Visa requirements for Egyptian citizens: نيجيريا (Visa required) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: نيجيريا (eVisa، 30 يوم) — مراجعة 2026'
     },
     tz: {
       code: 'tz', name: 'تنزانيا', visaType: 'e-visa', conditional: false,
@@ -1842,6 +1845,7 @@ const visaData = {
        ========================================================== */
     kw: {
       code: 'kw', name: 'الكويت', visaType: 'visa-required', conditional: true,
+      conditionalTip: 'مشروط: فيزا عند الوصول شهر بتأكيد من شركة الطيران لغرض السياحة، أو e-Visa مبسّط لحاملي تأشيرة/إقامة سارية من شنغن أو بريطانيا أو أمريكا.',
       duration: 'حسب التأشيرة (عادة 30 يوم)', cost: '≈ 3 – 25 دينار كويتي حسب النوع',
       processingTime: '1 – 7 أيام عمل',
       requirements: [
@@ -1899,6 +1903,7 @@ const visaData = {
     },
     om: {
       code: 'om', name: 'عُمان', visaType: 'visa-required', conditional: true,
+      conditionalTip: 'مشروط: إعفاء 14 يوم لحاملي تأشيرة/إقامة سارية من شنغن أو أمريكا أو كندا أو بريطانيا أو اليابان أو أستراليا — غير كده لازم تأشيرة مسبقة.',
       duration: 'حسب التأشيرة (14 يوم للإعفاء المشروط)', cost: '≈ 20 ريال عُماني (فيزا إلكترونية)',
       processingTime: '1 – 5 أيام عمل',
       requirements: [
@@ -1935,23 +1940,23 @@ const visaData = {
       source: 'Wikipedia — Visa policy of Iraq (إيقاف VOA + e-Visa من 2025 + قائمة كردستان) — مراجعة 2026'
     },
     sy: {
-      code: 'sy', name: 'سوريا', visaType: 'visa-required', conditional: false,
-      duration: 'حسب التأشيرة (عادة 30 يوم)', cost: '[يحتاج تأكيد] (فيزا عند الوصول/رسوم بالمثل)',
-      processingTime: 'غير محدد — حسب السفارة',
+      code: 'sy', name: 'سوريا', visaType: 'e-visa', conditional: false,
+      duration: 'حسب نوع التأشيرة (عادة 30 يوم)', cost: '[يحتاج تأكيد]',
+      processingTime: 'غير محدد — حسب المنصة/السفارة',
       requirements: [
         'جواز سفر ساري 6 شهور على الأقل',
+        'تقديم أونلاين عبر منصة الفيزا الإلكترونية السورية (لو شغّالة)',
         'استمارة طلب + صورة شخصية',
-        'التقديم من السفارة السورية (أو عند الوصول حسب الحالة)',
         'حجز فندق/إثبات إقامة + تذكرة عودة',
-        'مستندات إضافية/تحاليل تُطلب أحيانًا'
+        '⚠️ تنبيه أمني: راجع توصيات وزارة الخارجية قبل أي حجز'
       ],
-      notes: 'سوريا بتطبّق «مبدأ التعامل بالمثل» وسياستها غير مستقرة: بعض الجنسيات بتدخل بدون تأشيرة أو بفيزا عند الوصول عبر دمشق وحلب، والباقي محتاج تأشيرة من السفارة (منصة الـe-Visa متوقفة حاليًا). [يحتاج تأكيد: وضع المصريين تحديدًا].',
+      notes: 'ويكيبيديا بتصنّف سوريا «eVisa» للمصريين، لكن السياسة السورية بتتغيّر باستمرار وبتطبّق «مبدأ التعامل بالمثل». ⚠️ تنبيه أمني: راجع توصيات وزارة الخارجية المصرية قبل أي سفر. [يحتاج تأكيد: هل منصة الـe-Visa شغّالة للمصريين دلوقتي — لو مش شغّالة التقديم بيتم من السفارة]',
       officialLink: 'https://mofaex.gov.sy/',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://mofaex.gov.sy/', verified: false },
       bestTime: '[يحتاج تأكيد]',
       currency: 'الليرة السورية (SYP)', currencyPerUSD: '1$ ≈ 13,000 SYP (تقديري — سعر متغير)',
       language: 'العربية', timezone: 'UTC+3', emergencyNumber: '112',
-      source: 'Wikipedia — Visa policy of Syria (سياسة بالمثل؛ e-Visa متوقفة؛ فيزا عند الوصول حسب الجنسية) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: سوريا (eVisa) — مراجعة 2026'
     },
     ye: {
       code: 'ye', name: 'اليمن', visaType: 'on-arrival', conditional: false,
@@ -1974,6 +1979,7 @@ const visaData = {
     },
     sd: {
       code: 'sd', name: 'السودان', visaType: 'visa-free', conditional: true,
+      conditionalTip: 'مشروط: الرجال من 18 لـ49 سنة محتاجين تأشيرة مسبقة — غير كده الدخول بدون تأشيرة.',
       duration: 'فترة غير محددة (بدون تأشيرة)', cost: 'مجانًا (بدون رسوم تأشيرة)',
       processingTime: 'لا يوجد — دخول بدون تأشيرة (باستثناء الرجال 18–49 سنة)',
       requirements: [
@@ -2001,13 +2007,13 @@ const visaData = {
         'حجز فندق + تذكرة عودة',
         'موافقة أمنية مسبقة (تُطلب عمليًا)'
       ],
-      notes: 'ليبيا محتاجة تأشيرة للمصريين (مصر مش في قائمة الإعفاء). فيه منصة e-Visa ليبية لكنها مشروطة بكفيل/راعي رسمي. ⚠️ تنبيه: وزارة الخارجية المصرية بتحذّر من السفر لليبيا حاليًا. [يحتاج تأكيد: هل مصر مؤهلة للـe-Visa الليبي].',
+      notes: 'ليبيا محتاجة تأشيرة للمصريين في العموم (مصر مش في قائمة الإعفاء الكاملة)، لكن فيه استثناءان: النساء معفيين من التأشيرة، وكذلك الذكور أقل من 18 سنة أو أكبر من 45 سنة. غير كده مطلوب تأشيرة (من السفارة أو e-Visa بكفيل/راعي رسمي). ⚠️ تنبيه: وزارة الخارجية المصرية بتحذّر من السفر لليبيا حاليًا. [يحتاج تأكيد: هل مصر مؤهلة للـe-Visa الليبي]',
       officialLink: 'https://evisa.gov.ly/',
       embassyInEgypt: { address: 'القاهرة', phone: '', website: 'https://evisa.gov.ly/', verified: false },
       bestTime: '[يحتاج تأكيد] (تنبيه أمني)',
       currency: 'الدينار الليبي (LYD)', currencyPerUSD: '1$ ≈ 4.8 LYD (تقديري)',
       language: 'العربية', timezone: 'UTC+2', emergencyNumber: '1515',
-      source: 'Wikipedia — Visa policy of Libya (مصر غير مدرجة في الإعفاء؛ eVisa بكفيل/راعي) — مراجعة 2026'
+      source: 'Wikipedia — Visa requirements for Egyptian citizens: ليبيا (Visa not required للنساء والذكور أقل من 18/أكبر من 45 + eVisa) — مراجعة 2026'
     },
     mr: {
       code: 'mr', name: 'موريتانيا', visaType: 'e-visa', conditional: false,
@@ -2032,19 +2038,20 @@ const visaData = {
 
   /* ==========================================================
      تصنيفات جاهزة للفلترة السريعة (مبنية على visaType)
-     تنبيه: tr و ma و kw و om و sd عليها شرط (تأشيرة سابقة/استثناءات)
-     — راجع حقل notes لكل دولة قبل الاعتماد على التصنيف.
+     الأسماء هنا قصيرة (visaFree/eVisa/onArrival/visaRequired/schengen)
+     ومقابلها في visaType: visa-free / e-visa / on-arrival / visa-required / schengen.
+     تنبيه: tr و ma (فيزا إلكترونية مشروطة) و tn (فيزا وصول للمجموعات بس)
+     و sd (الرجال 18–49 محتاجين تأشيرة) عليهم شروط — راجع حقل notes لكل دولة.
      ========================================================== */
   categories: {
-    visaFree:  ['jo', 'my', 'hk', 'mo', 'ke', 'rw', 'mu', 'sd'],
-    eVisa:     ['tr', 'ae', 'th', 'ge', 'ma', 'al', 'lk', 'mm', 'id', 'vn', 'kh', 'la',
-                'ec', 'et', 'sc', 'gh', 'tz', 'ug', 'zm', 'na', 'bw', 'ci', 'cm', 'ga',
-                'qa', 'bh', 'iq', 'mr'],
-    onArrival: ['mv', 'np', 'tl', 'zw', 'mz', 'sn', 'mg', 'ye'],
-    required:  ['sa', 'az', 'tn', 'ie', 'rs', 'cy', 'mk', 'ba', 'in', 'bd', 'bt', 'pk',
-                'tw', 'sg', 'ph', 'bn', 'kp', 'br', 'ar', 'mx', 'cu', 'cl', 'co', 'pe',
-                've', 'uy', 'za', 'ng', 'kw', 'om', 'sy', 'ly'],
-    schengen:  ['gr', 'pt', 'ch', 'at', 'be', 'nl', 'se', 'no', 'dk', 'pl', 'cz', 'hu',
-                'ro', 'hr', 'bg', 'si', 'sk', 'ee', 'lv', 'lt', 'fi', 'is', 'lu', 'mt']
+    visaFree:     ['jo', 'my', 'hk', 'mo', 'ke', 'rw', 'mu', 'sd'],
+    eVisa:        ['tr', 'th', 'ge', 'ma', 'al', 'lk', 'mm', 'id', 'vn', 'kh', 'la',
+                   'ec', 'et', 'sc', 'tz', 'ug', 'zm', 'na', 'bw', 'ci', 'cm', 'ga',
+                   'qa', 'bh', 'iq', 'mr', 'rs', 'bt', 'pk', 'cu', 've', 'za', 'ng', 'sy'],
+    onArrival:    ['mv', 'np', 'tl', 'zw', 'mz', 'sn', 'mg', 'ye', 'gh', 'tn'],
+    visaRequired: ['sa', 'ae', 'az', 'ie', 'cy', 'mk', 'ba', 'in', 'bd', 'tw', 'sg', 'ph',
+                   'bn', 'kp', 'br', 'ar', 'mx', 'cl', 'co', 'pe', 'uy', 'kw', 'om', 'ly'],
+    schengen:     ['gr', 'pt', 'ch', 'at', 'be', 'nl', 'se', 'no', 'dk', 'pl', 'cz', 'hu',
+                   'ro', 'hr', 'bg', 'si', 'sk', 'ee', 'lv', 'lt', 'fi', 'is', 'lu', 'mt']
   }
 };

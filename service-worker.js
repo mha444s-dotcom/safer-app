@@ -14,7 +14,7 @@
    • Clerk (المصادقة) ................... Network Only (بدون كاش — ردود حساسة)
    ============================================================ */
 
-const SW_VERSION = 'v1.0.23';  // ← اترفعت: إصلاح التنقل (صفحة واحدة active + goBack + السحب للرجوع بمعاينة)
+const SW_VERSION = 'v1.0.24';  // ← اترفعت: إصلاح التنقل + تدقيق بيانات التأشيرات (100 دولة + تصنيف شنغن)
 
 const STATIC_CACHE = 'safr-static-' + SW_VERSION;   // ملفات التطبيق
 const LIB_CACHE    = 'safr-libs-' + SW_VERSION;     // Leaflet وغيرها

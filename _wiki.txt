@@ -1,0 +1,1053 @@
+==Visa requirements==
+{{sticky header}}
+
+{| class="wikitable sortable sticky-header" style="background:#f8f9faff;"
+! style="width:18%;"| Country
+! style="width:22%;"| Visa requirement
+! Allowed stay
+! class=unsortable|Notes (excluding departure fees)
+|-
+| {{flag|Afghanistan}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=AF}}</ref><ref>{{cite web | url=https://visaportal.eafghans.com | title=Afghanistan eVisa}}</ref>
+| 30 days
+| 
+* e-Visa : Visitors must arrive at Kabul International (KBL).
+* Visa is not required in case born in Afghanistan or can proof that one of their parents is a national of Afghanistan or born in Afghanistan.
+|-
+| {{flag|Albania}}
+| {{yes2|eVisa}}<ref>{{cite web | url=https://e-visa.al | title=Albania eVisa}}</ref>
+| 90 days
+|
+* Visa free anytime of year for valid visa holders or residents of Schengen member states, the UK and US for stays up to 90 days within 180 days period.
+|-
+| {{flag|Algeria}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=DZ}}</ref>
+| 
+|
+* Visitors on tours organized to some southern regions by an approved travel agency may obtain a visa on arrival for up to 30 days.<ref>{{cite web | url=https://embassyofalgeria.ie/exceptional-measures-for-tourists-traveling-to-southern-algeria/ | title=Exceptional measures for tourists traveling to southern Algeria | publisher=Algerian Embassy in Ireland}}</ref><ref>{{cite web | url=https://againstthecompass.com/en/travel-algeria/ | title=How to travel to Algeria | date=20 February 2026}}</ref>
+|-
+| {{flag|Andorra}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=AD}}</ref>
+| 
+|
+* No border checkpoints in Andorra, but visitor must travel to France or Spain before reach Andorra, thus [[Schengen visa]] is required
+|-
+| {{flag|Angola}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=AO}}</ref><ref>{{cite web | url=http://www.smevisa.gov.ao/Visatype.aspx| title=Angola eVisa Portal}}</ref>
+|
+|
+|-
+| {{flag|Antigua and Barbuda}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=AG}}</ref><ref>{{cite web | url=https://evisa.immigration.gov.ag/agEvisa-app/ | title=Antigua and Barbuda eVisa}}</ref>
+| 
+|
+|- 
+| {{flag|Argentina}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=AR}}</ref>
+|
+|
+|-
+| {{flag|Armenia}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=AM}}</ref><ref>{{cite web | url=https://evisa.mfa.am | title=Armenia eVisa}}</ref>
+| 120 days
+|
+* May apply for an e-visa or visa on arrival only if  holding a valid visa or valid permanent resident permit (resident card) issued by [[Australia]], [[Belarus]], [[Canada]], [[Gulf Cooperation Council]] countries, [[Japan]], [[New Zealand]], [[Russia]], [[Singapore]], [[South Korea]], [[European Union]] / [[Schengen Area]] member states, [[United Kingdom]] or [[United States]]; or alternatively by invitation.
+|-
+| {{flag|Australia}} and territories 
+| {{no|Online visa required}}<ref>{{Timatic|nationality=EG|destination=AU}}</ref><ref>{{cite web | url=https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600 | title=Australia Subclass 600}}</ref>
+|
+| 
+* May apply online (Online Visitor e600 visa) but must provide biometrics in person.
+|-
+| {{flag|Austria}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=AT}}</ref>
+|
+|
+|-
+| {{flag|Azerbaijan}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=AZ}}</ref>
+| 
+|
+* Visa on Arrival for holders of a valid UAE residence permit.<ref>{{cite web |title=important information for UAE residents |url=https://dubai.mfa.gov.az/en/content/54/important-information-for-uae-residents |access-date=2025-08-19 |archive-date=2023-05-04 |archive-url=https://web.archive.org/web/20230504214416/https://dubai.mfa.gov.az/en/content/54/important-information-for-uae-residents |url-status=dead }}</ref>
+|-
+| {{flag|Bahamas}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=BS}}</ref><ref>{{cite web | url=https://mofa.gov.bs/evisa-online-services/ | title=EVISA Online Services }}</ref>
+|
+|
+|-
+| {{flag|Bahrain}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=BH}}</ref>
+| 14 days
+|
+|-
+| {{flag|Bangladesh}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=BD}}</ref>
+| 
+|
+|-
+| {{flag|Barbados}}
+| {{Yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=BB}}</ref><ref>{{cite web | author=Sheena Forde-Craigg | url=https://gisbarbados.gov.bb/blog/43-countries-granted-temporary-visa-waivers/ | title=43 Countries Granted Temporary Visa Waivers &#124; GIS | publisher=Gisbarbados.gov.bb | date= 9 August 2022 | access-date=2022-08-16}}</ref>
+| 
+|
+|- 
+| {{flag|Belarus}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=BY}}</ref>
+| 
+|
+* Nationals of Egypt with a normal passport can enter for a maximum of 30 days with a multiple-entry visa issued by Switzerland or an EEA Member State which has been used but is still valid. They must arrive at and depart from Brest (BTQ), Gomel (GME), Grodno (GNA), Minsk (MSQ), Mogilev (MVQ) or Vitebsk (VTB) and their passport must be valid for at least 90 days longer than the duration of stay. They cannot arrive from or transit through Russian Fed.
+|- 
+| {{flag|Belgium}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=BE}}</ref>
+|
+|
+|-
+| {{flag|Belize}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=BZ}}</ref>
+| 
+|
+* Visa not required for U.S. permanent residents.
+|-
+| {{flag|Benin}} 
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=BJ}}</ref>
+| 90 days<ref>{{cite web | url=http://www.rfi.fr/afrique/20170215-benin-ressortissants-40-pays-africains-bientot-exemptes-visas | title=Bénin: Les ressortissants de 40 pays africains bientôt exemptés de visas - RFI| date=15 February 2017}}</ref>
+|
+|-
+| {{flag|Bhutan}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=BT}}</ref><ref>{{cite web | url=https://immi.gov.bt | title=Bhutan Immigration Services Portal}}</ref>
+| 90 days
+|
+* Visa fee is 40 [[USD]] per person and visa application may be processed within 5 business days with duration of stay of 90 days.
+* The [[Visa policy of Bhutan#Sustainable Development Fee|Sustainable Development Fee]] (SDF) of 200 [[USD]] per person, per night for almost all visitors to Bhutan. Additionally, if payment is made in US dollars from September 1, 2023, to August 31, 2027, the SDF is US$100.<ref>{{cite web | url=https://immi.gov.bt/faq/ | title=Frequently Asked Questions - Bhutan Immigration Services Portal}}</ref>
+|- 
+| {{flag|Bolivia}}
+| {{yes2|Online Visa}}<ref>{{Timatic|nationality=EG|destination=BO}}</ref><ref>{{cite web | url=https://visas.cancilleria.gob.bo | title=Bolivia Online Visa}}</ref>
+| 
+|
+|-
+| {{flag|Bosnia and Herzegovina}}
+| {{no|Visa required}}<ref name="autogenerated1">{{cite web | url=https://www.mvp.gov.ba/konzularne_informacije/sta_konzul_moze_uciniti_za_vas/Decision%20on%20Visas%20-%20Amendments%20-%2073_17.pdf | title=Decision on amendments to the decision on visas pursuant to Article 20 and Article 21 paragraph (1) of the Law on Aliens ("Official Gazette of BiH", No 88/15) and Article 17 of the Law on the Council of Ministers of Bosnia and Herzegovina ("Official Gazette of BiH", No 30/03, 42/03, 81/06, 76/07, 81/07, 94/07 and 24/08), upon the proposal of the Ministry of Foreign Affairs of Bosnia and Herzegovina, the Council of Ministers of Bosnia and Herzegovina, at its 113th session, held on 5 September 2017 | date=5 September 2017}}</ref>
+| 
+|
+* Visa required unless holder of a valid US or a multiple-entry Schengen visa, or is an EU, non-EU Schengen or US permanent resident.<ref name="autogenerated1"/>
+|-
+| {{flag|Botswana}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=BW}}</ref><ref>{{cite web | url=https://evisa.gov.bw | title=Botswana eVisa}}</ref>
+| 3 months
+|
+* 1 month: 300 Botswana Pula, 3 months: 500 Botswana Pula.
+|- 
+| {{flag|Brazil}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=BR}}</ref>
+|
+|
+|-
+| {{flag|Brunei}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=BN}}</ref>
+|
+|
+|-
+| {{flag|Bulgaria}}
+| {{no|Visa required}}<ref name="autogenerated2">{{cite web | title=MFA :: Visa for Bulgaria |url=https://www.mfa.bg/en/services-travel/consular-services/travel-bulgaria/visa-bulgaria | website=www.mfa.bg | publisher=Bulgarian Ministry of Foreign Affairs | language=en}}</ref>
+|  
+|
+|-
+| {{flag|Burkina Faso}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=BF}}</ref><ref>{{cite web | url=https://applicant.visaburkina.bf | title=Burkina Faso eVisa}}</ref>
+| 1 month
+|
+|-
+| {{flag|Burundi}}
+| {{yes-no|Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=BI}}</ref>
+| 1 month
+|
+|-
+| {{flag|Cambodia}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=KH}}</ref><ref>{{cite web | url=https://www.evisa.gov.kh | title=Cambodia eVisa}}</ref>
+| 30 days
+|
+|-
+| {{flag|Cameroon}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=CM}}</ref><ref>{{cite web | url=https://www.evisacam.com | title=Cameroon eVisa}}</ref>
+| 
+|
+|-
+| {{flag|Canada}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CA}}</ref>
+| 
+|
+* US permanent residents (Green card) holders can enter visa free<ref>{{Cite web |title=Entry requirements by country or territory - Canada |url=https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/entry-requirements-country.html#visaExempt}}</ref>
+|-
+| {{flag|Cape Verde}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CV}}</ref>
+| 
+|
+|-
+| {{flag|Central African Republic}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CF}}</ref>
+| 
+|
+|-
+| {{flag|Chad}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=TD}}</ref><ref>{{cite web | url=https://evisa.td/ | title=Chad eVisa}}</ref>
+| 
+|
+|-
+| {{flag|Chile}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CL}}</ref>
+| 
+|
+|-
+| {{flag|People's Republic of China|name=China}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CN}}</ref>
+| 
+|
+|- 
+| {{flag|Colombia}}
+| {{yes2|Online visa}}<ref>{{Timatic|nationality=EG|destination=CO}}</ref><ref>{{cite web | url=https://tramitesmre.cancilleria.gov.co/tramites/enlinea/solicitarVisa.xhtml | title=Colombia Online Visa}}</ref>
+|
+| 
+|-
+| {{flag|Comoros}}
+| {{yes-no|Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=KM}}</ref>
+| 45 days
+|
+|-
+| {{flag|Republic of the Congo}} 
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CG}}</ref>
+| 
+|
+|-
+| {{flag|Democratic Republic of the Congo}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=CD}}</ref><ref>{{cite web | url=https://evisa.gouv.cd | title=DR Congo eVisa}}</ref>
+| 7 days
+|
+|- 
+| {{flag|Costa Rica}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CR}}</ref>
+| 
+|
+* Visa not required for U.S. permanent residents.
+|-
+| {{flag|Côte d'Ivoire}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=CI}}</ref><ref>{{cite web | url=https://snedai.com/e-visa/ | title=CI eVisa}}</ref>
+| 3 months
+|
+|-
+| {{flag|Croatia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=HR}}</ref><ref name="autogenerated3">{{cite web | title=Visa requirements overview | url=https://mvep.gov.hr/services-for-citizens/consular-information-22802/visas-22807/visa-requirements-overview-22879/22879 | website=template.gov.hr | publisher=Croatian Ministry of Foreign and European Affairs | access-date=17 June 2022}}</ref>
+|  
+|
+|- 
+| {{flag|Cuba}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=CU}}</ref><ref>{{Cite web |title=eVisa -Cuba |url=https://evisacuba.cu/en/inicio}}</ref>
+| 90 days
+|
+* Can be extended up to 90 days with a fee.
+* Must be obtained prior to arrival from airline, Cuban embassy, or reputable third party.
+|-
+| {{flag|Cyprus}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CY}}</ref><ref name="autogenerated4">{{cite web | title=CONSULATE GENERAL OF THE REPUBLIC OF CYPRUS IN ST. PETERSBURG - Visa Information | url=http://www.mfa.gov.cy/mfa/consulate/consulate_spb.nsf/cgsp10_en/cgsp10_en?OpenDocument | website=www.mfa.gov.cy | access-date=17 June 2022}}</ref>
+|  
+|
+* Visa required unless holding a valid two or multiple entry Schengen visa, or a residence permit issued by an EU member state.<ref name="autogenerated4"/>
+|-
+| {{flag|Czech Republic}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CZ}}</ref>
+|  
+|
+|-
+| {{flag|Denmark}} 
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=DK}}</ref>
+| 
+|
+|-
+| {{flag|Djibouti}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=DJ}}</ref><ref>{{cite web | url=https://www.evisa.gouv.dj | title=Djibouti eVisa}}</ref>
+| 90 days
+|
+|-
+| {{flag|Dominica}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=DM}}</ref>
+| 21 days
+|
+|-
+| {{flag|Dominican Republic}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=DO}}</ref>
+| 
+|
+* Visa not required for U.S. permanent residents but visitors must buy tourist card for US$10 at the airport.
+|- 
+| {{flag|Ecuador}}
+| {{yes2|Online Visa required}}<ref>{{Timatic|nationality=EG|destination=EC}}</ref><ref>{{cite web | url=https://serviciosdigitales.cancilleria.gob.ec | title=Ecuador Online Visa}}</ref>
+| 
+|
+|- 
+| {{flag|El Salvador}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SV}}</ref>
+| 
+|
+* Visa waiver if visitor holds a valid visa issued by Canada, the United States or a Schengen member states
+|-
+| {{flag|Equatorial Guinea}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=GQ}}</ref><ref>{{cite web | url=https://equatorialguinea-evisa.com | title=Equatorial Guinea eVisa}}</ref>
+|
+|
+|-
+| {{flag|Eritrea}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=ER}}</ref>
+|
+|
+|-
+| {{flag|Estonia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=EE}}</ref>
+|  
+|
+|-
+| {{flag|Eswatini}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SZ}}</ref>
+| 
+|
+|-
+| {{flag|Ethiopia}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=ET}}</ref>
+| 90 days
+|
+{{#section-h::Template:Transcluded sections for the visa articles|Ethiopia. eVisa/VOA}}
+|-
+| {{flag|Fiji}}
+| {{yes2|eVisa}}<ref>{{Cite web|url=https://immigration.gov.fj/online-application/|title=Online Application – Fiji Immigration Department}}</ref>
+|
+|
+|-
+| {{flag|Finland}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=FI}}</ref>
+|  
+|
+|-
+| {{flag|France}} 
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=FR}}</ref>
+|
+|
+|-
+| {{flag|Gabon}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=GA}}</ref><ref>{{cite web | url=https://evisa.dgdi.ga | title=Gabon eVisa}}</ref>
+| 90 days
+| 
+* e-Visa holders must arrive via [[Libreville International Airport]].
+|-
+| {{flag|Gambia}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=GM}}</ref>
+| 90 days
+| 
+* Note: Tourists and others travelling on last minute bookings will be allowed entry but will be required to submit their passport to the Department of Immigration in Banjul within 48 Hours to be issued a proper visa.<ref>{{cite web | title=Embassy of Gambia | url=https://gambiahc.org.uk/consular-services/visa-application/}}</ref>
+|-
+| {{flag|Georgia}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=GE}}</ref><ref>{{Cite web|url=https://www.evisa.gov.ge/|title=e-VISA PORTAL}}</ref>
+| 30 days
+|
+* Visa not required for holders of a valid EU, non-EU Schengen, UK, US and [[Gulf Cooperation Council|GCC]] visa or residence permit for stays up 90 days in any 180-day period.<ref>{{cite web | title=List of Countries, Whose Visa and/or Residence Permit Holders May Enter Georgia without a Visa for an Appropriate Period and under Appropriate Conditions Country | url=https://www.geoconsul.gov.ge/HtmlPage/Html/View?id=206&lang=Eng | publisher=Ministry of Foreign Affairs of Georgia | access-date=17 June 2022 | archive-date=18 January 2017 | archive-url=https://web.archive.org/web/20170118054200/https://www.geoconsul.gov.ge/HtmlPage/Html/View?id=206&lang=Eng | url-status=dead }}</ref>
+|-
+| {{flag|Germany}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=DE}}</ref>
+|  
+|
+|-
+| {{flag|Ghana}}
+| {{yes-no|Free visa on arrival}}<ref>{{Timatic|nationality=EG|destination=GH}}</ref>
+| 60 days
+|
+* Gratis visa issued on arrival free of charge.
+|- 
+| {{flag|Greece}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=GR}}</ref>
+|  
+|
+|-
+| {{flag|Grenada}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=GD}}</ref>
+|
+|
+|- 
+| {{flag|Guatemala}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=GT}}</ref>
+|
+|
+* Visa not required for holders of a valid U.S. visa and U.S. permanent residents for stays of up to 90 days within 180 day period.
+|-
+| {{flag|Guinea}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=GN}}</ref>
+| 
+|
+|-
+| {{flag|Guinea-Bissau}}
+| {{yes-no|Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=GW}}</ref>
+| 90 days
+|
+|-
+| {{flag|Guyana}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=GY}}</ref><ref>{{cite web | url=https://eservices.iss.gov.gy | title=Guyana Immigration Services}}</ref>
+| 3 months
+|
+* Guyana calls this a ‘Visa on Arrival’, but like an eVisa, the application must be made before travelling. Tourists with an approval letter from the Ministry of Home Affairs of Guyana can also obtain a visa on arrival for a stay of up to 30 days
+|- 
+| {{flag|Haiti}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=HT}}</ref>
+| 3 months
+|
+|- 
+| {{flag|Honduras}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=HN}}</ref>
+| 
+|
+* Visa not required for holders of a valid U.S. visa and U.S. permanent residents for stays of up to 90 days within 180 day period.
+|-
+| {{flag|Hungary}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=HU}}</ref>
+|  
+|
+|- 
+| {{flag|Iceland}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=IS}}</ref>
+|  
+|
+|- 
+| {{flag|India}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=IN}}</ref>
+|
+|
+|-
+| {{flag|Indonesia}}
+| {{Optional|e-VOA / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=ID}}</ref><ref>{{cite web | url=https://evisa.imigrasi.go.id | title=The Official eVisa(e-VOA) Website for Indonesia}}</ref>
+| 30 days
+| 
+* Travelers arriving at Jakarta's Soekarno-Hatta International Airport (CGK), Bali's Ngurah Rai International Airport (DPS), Surabaya's Juanda International Airport (SUB), or Batam seaports must complete the ‘All Indonesia’ arrival form online within 3 days of arrival.
+* ravelers arriving at all other Indonesian airports and ports of entry must complete the separate health and customs declarations online within 3 days of arrival.
+* From October 1, 2025, travelers arriving at all ports of entry will be required to complete the ‘All Indonesia’arrival form online.
+|- 
+| {{flag|Iran}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=IR}}</ref>
+| 20 days
+|
+|-
+| {{flag|Iraq}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=IQ}}</ref><ref>{{cite web | url=https://evisa.iq | title=Iraq eVisa}}</ref>
+| 30 days
+|
+|-
+| {{flag|Ireland}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=IE}}</ref>
+|  
+|
+|-
+| {{flag|Israel}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=IL}}</ref>
+|
+| 
+* Visa not required for up to 14 days if entering through [[Taba, Egypt|Taba]] and visiting up to [[Beersheba]] only.<ref>{{cite web | url=http://www.mfa.gov.il/MFA_Graphics/MFA%20Gallery/Consular%20forms/VisaRequirements.pdf | title=Archived copy | access-date=2014-08-18 | archive-date=2014-04-08 | archive-url=https://web.archive.org/web/20140408220642/http://mfa.gov.il/MFA_Graphics/MFA%20Gallery/Consular%20forms/VisaRequirements.pdf | url-status=dead}}</ref>
+* Otherwise, a confirmation from the Israeli government is required before a visa is issued.<ref>{{cite web | url=http://mfa.gov.il/MFA/ConsularServices/Documents/VisaRequirements-Tourists.pdf | title=Archived copy | access-date=2017-09-22 | archive-date=2016-01-22 | archive-url=https://web.archive.org/web/20160122110514/http://www.mfa.gov.il/MFA/ConsularServices/Documents/VisaRequirements-Tourists.pdf | url-status=dead}}</ref>
+|-
+| {{flag|Italy}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=IT}}</ref>
+|  
+|
+|-
+| {{flag|Jamaica}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=JM}}</ref>
+|
+|
+* Visa not required for U.S. permanent residents.
+|-
+| {{flag|Japan}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=JP}}</ref>
+|
+|
+* Eligible for an e-Visa if residing in one these countries [[: Australia]], [[Brazil]], [[Cambodia]], [[Canada]], [[India]], [[Saudi Arabia]], [[Singapore]], [[South Africa]], [[Taiwan]], [[United Arab Emirates]], [[United Kingdom]], [[United States]].<ref>{{cite web |url=https://www.evisa.mofa.go.jp/index |title=JAPAN eVISA}}</ref><ref>{{cite web |url=https://www.mofa.go.jp/j_info/visit/visa/visaonline.html |title=MOFA - Japan}}</ref>
+|-
+| {{flag|Jordan}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=JO}}</ref>
+| 1 month
+|
+|-
+| {{flag|Kazakhstan}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=KZ}}</ref>
+| 
+|
+* e-Visa can be issued only if there is a valid invitation from the Kazakhstan side.<ref>{{cite web | url=https://www.vmp.gov.kz | title=Kazakhstan eVisa}}</ref>
+|-
+| {{flag|Kenya}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=KE}}</ref><ref>{{cite web | url=https://www.etakenya.go.ke | title=Kenya eTA}}</ref>
+| 60 days
+|
+|-
+| {{flag|Kiribati}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=KI}}</ref>
+| 90 days
+|
+* 90 days within any 12-month period.
+|- 
+| {{flag|North Korea}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=KP}}</ref>
+| 
+|
+|-
+| {{flag|South Korea}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=KR}}</ref>
+|
+|
+* Multiple-Entry Visa may be granted to persons who entered South Korea 4 or more times within the last 2 years, or 10 or more visits in total (one of those 10 visits should be within the last 2 years).
+* May apply online.<ref>{{cite web |url=https://www.visa.go.kr/ |title=KOREA VISA PORTAL}}</ref>
+|-
+| {{flag|Kuwait}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=KW}}</ref>
+| 
+| 
+|-
+| {{flag|Kyrgyzstan}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=KG}}</ref><ref>{{cite web | url=https://evisa.e-gov.kg | title=Kyrgyzstan eVisa}}</ref>
+| 60 days
+|
+* e-Visa holders must arrive via [[Manas International Airport]] or [[Osh Airport]] or through land crossings with [[China]] (at [[Irkeshtam]] and [[Torugart]]), [[Kazakhstan]] (at [[Ak-Jol, Chuy|Ak-jol]], [[Ysyk-Ata District|Ak-Tilek]], [[Chaldybar]], [[Manas District|Chon-Kapka]]), [[Tajikistan]] (at [[Alay District|Bor-Dobo]], [[Kulundu]], [[Batken District|Kyzyl-Bel]]) and [[Uzbekistan]] (at [[Dostuk, Suzak District|Dostuk]]).
+|-
+| {{flag|Laos}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=LA}}</ref>
+| 30 days
+|{{#section-h::Template:Transcluded sections for the visa articles|Laos. Visa on arrival}}
+|-
+| {{flag|Latvia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=LV}}</ref>
+|  
+|
+|- 
+| {{flag|Lebanon}}
+| {{yes-no|Visa on arrival (conditional)}}<ref>{{Timatic|nationality=EG|destination=LB}}</ref>
+| 30 days
+|
+* Visa requirements include a copy of a reservation in a 3 to 5 star hotel or private residential address with telephone number in [[Lebanon]], at least US$2,000 in cash, a non-refundable return or circle trip ticket, and no Israeli stamps, visas, or seals on passport.
+|-
+| {{flag|Lesotho}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=LS}}</ref>
+| 
+|
+|- 
+| {{flag|Liberia}}
+| {{yes2|e-VOA}}<ref>{{Timatic|nationality=EG|destination=LR}}</ref><ref>{{cite web | url=https://visaonarrival.lis.gov.lr | title=Liberia e-VOA}}</ref>
+| 3 months
+|
+|-
+| {{flag|Libya}}
+| {{yes|Visa not required (conditional) / eVisa}}<ref>{{Timatic|nationality=GR|destination=LY}}</ref><ref>{{cite web | url=https://evisa.gov.ly | title=Libya eVisa}}</ref>
+| 
+|
+* Visa not required for male nationals aged under 18 or older than 45 and all females.<ref>{{cite web | url=https://lana.gov.ly/post.php?lang=en&id=292593 | title=Al-Dabaiba exempts some groups from Egypt and Turkey from the requirement to obtain a Libyan visa. | date=25 February 2024}}</ref>
+* Persons with passports indication previous travel to Israel will be denied entry to Libya.
+|-
+| {{flag|Liechtenstein}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=LI}}</ref>
+|  
+|
+|-
+| {{flag|Lithuania}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=LT}}</ref>
+|  
+|
+|-
+| {{flag|Luxembourg}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=LU}}</ref>
+| 
+|
+|-
+| {{flag|Madagascar}}
+| {{Optional|eVisa/Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=MG}}</ref><ref>{{cite web | url=https://evisamada-mg.com/fr/home | title=Madagascar eVisa}}</ref>
+| 90 days
+|
+* For stays of 61 to 90 days, the visa fee is US$59.
+|-
+| {{flag|Malawi}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=MW}}</ref><ref>{{cite web | url=https://evisa.gov.mw | title=Malawi eVisa}}</ref>
+| 30 days
+|
+|-
+| {{flag|Malaysia}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=MY}}</ref>
+| 90 days
+|
+* Travelers must complete the Malaysia Digital Arrival Card (MDAC) online before traveling to Malaysia. Travelers can apply for the online Malaysia Digital Arrival Card (MDAC) within 3 days before their arrival.
+|-
+| {{flag|Maldives}}
+| {{yes-no|Free visa on arrival}}<ref>{{Timatic|nationality=EG|destination=MV}}</ref>
+| 30 days
+|
+|-
+| {{flag|Mali}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=ML}}</ref>
+|
+|
+|-
+| {{flag|Malta}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=MT}}</ref>
+| 
+|
+|-
+| {{flag|Marshall Islands}}
+| {{yes-no|Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=MH}}</ref>
+| 90 days
+|
+|-
+| {{flag|Mauritania}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=MR}}</ref><ref>{{cite web | url= https://anrpts.gov.mr/en/visa/requestvisa | title=Mauritania eVisa}}</ref>
+| 30 days
+| 
+* Available at [[Nouakchott–Oumtounsy International Airport]].
+|-
+| {{flag|Mauritius}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=MU}}</ref>
+| 90 days
+|
+|-
+| {{flag|Mexico}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=MX}}</ref>
+|
+|
+* Visa is not required for holders of a valid multiple-entry visa of Canada, US, UK or a Schengen State and/or hold Permanent residency in Canada, Schengen State, Japan, UK, or the US<ref>{{Cite web |title=Countries and regions that require a visa to travel to Mexico |url=https://embamex.sre.gob.mx/sudafrica/index.php/visas-personas-extranjeras}}</ref>
+* Entry may be refused by immigration officials for individuals who were previously denied a US visa, even if holding a valid Mexican visa.
+|-
+| {{flag|Federated States of Micronesia|name=Micronesia}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=FM}}</ref>
+| 30 days
+|
+|-
+| {{flag|Moldova}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=MD}}</ref>
+|
+|
+* Citizens holding a residence permit or a valid visa issued by one of the member states of the European Union or one of the parties to the Schengen Agreement can apply for an electronic visa.<ref>{{cite web | url=https://www.evisa.gov.md | title=Moldova eVisa}}</ref>
+|-
+| {{flag|Monaco}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=MC}}</ref>
+| 
+|
+|-
+| {{flag|Mongolia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=MN}}</ref>
+| 
+|
+|-
+| {{flag|Montenegro}}
+| {{no|Visa required}}<ref name="autogenerated5">{{cite web | title=DECREE ON VISA REGIME Pursuant to Article 14 paragraph 2 of the Law on Foreigners ("Official Gazette of Montenegro", No. 12/18 and 3/19), the Government of Montenegro, at its session held on May 23, 2019, issued | url=https://wapi.gov.me/download-preview/6a307959-1d00-467e-a2fd-0e808d17ff47?version=1.0 | publisher=Government of Montenegro | access-date=17 June 2022}}</ref>
+|
+|
+* Visa is required unless holder of a valid Schengen, Australia, Japan, Canada, New Zealand, Ireland, US or UK visa. Visit for up to 30 days, but not exceeding the expiry of the visa.<ref name="autogenerated5" />
+* Holders of residence permits from a Schengen member state, Australia, Japan, Canada, New Zealand, Ireland, US or UK and [[Asia-Pacific Economic Cooperation|AEPC]] Business Travel Card holders may visit Montenegro for up to 30 days.<ref name="autogenerated5"/>
+|-
+| {{flag|Morocco}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=MA}}</ref>
+| 
+|
+* Holders of a visa or residence permit from European Union, United States of America, Australia, Canada, United Kingdom, Japan, Norway, New Zealand and Switzerland valid for 90 days (or 180 days for residence permits) on application, can apply for an eVisa for 30 days. Passport must also be valid for 90 days.<ref>{{cite web | url=https://www.acces-maroc.ma | title=Morocco eVisa}}</ref>
+|-
+| {{flag|Mozambique}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=MZ}}</ref><ref>{{cite web | url=https://evisa.gov.mz | title=Mozambique eVisa}}</ref>
+| 30 days
+|
+|-
+| {{flag|Myanmar}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=MM}}</ref><ref>{{cite web | url=https://evisa.moip.gov.mm | title=Myanmar eVisa}}</ref>
+| 28 days
+| 
+* e-Visa holders must arrive via [[Yangon International Airport|Yangon]], [[Naypyidaw Airport|Nay Pyi Taw]] or [[Mandalay International Airport|Mandalay]] airports or via land border crossings with [[Thailand]] — [[Tachileik]], [[Myawaddy]] and [[Kawthaung]] or [[India]] — [[Rih Khaw Dar]] and [[Tamu, Myanmar|Tamu]].
+* e-Visa is available for tourism only.
+|-
+| {{flag|Namibia}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=NA}}</ref><ref>{{cite web | url=https://eservices.mhaiss.gov.na/holidayvisa-services| title=Namibia eVisa}}</ref>
+| 3 months
+|
+|-
+| {{flag|Nauru}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=NR}}</ref>
+|
+|
+|-
+| {{flag|Nepal}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=NP}}</ref>
+| 90 days<ref>{{cite web | url=https://nepaliport.immigration.gov.np | title=Nepal Online Visa}}</ref>
+|
+|- 
+| {{flag|Netherlands}} 
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=NL}}</ref>
+| 
+|
+|-
+| {{flag|New Zealand}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=NZ}}</ref>
+|
+|
+* Holders of an Australian Permanent Resident Visa or Resident Return Visa may be granted a New Zealand Resident Visa on arrival permitting indefinite stay (pursuant to the [[Trans-Tasman Travel Arrangement]]), subject to meeting character requirements and obtaining an [[New Zealand Electronic Travel Authority|Electronic Travel Authority]] prior to departure.<ref name="Australian Resident Visa">{{cite web | url=https://www.immigration.govt.nz/new-zealand-visas/apply-for-a-visa/visa-factsheet/australian-resident-visa |title=Information about: Australian Resident Visa | website=immigration.govt.nz | publisher=Immigration New Zealand | access-date=May 21, 2020 |quote=Australian citizens and permanent residents can visit, work and live in New Zealand. You do not need a visa before you travel to New Zealand.}}</ref> 
+|- 
+| {{flag|Nicaragua}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=NI}}</ref>
+| 
+|
+|-
+| {{flag|Niger}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=NE}}</ref>
+|
+|
+|-
+| {{flag|Nigeria}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=NG}}</ref><ref>{{cite web | url=https://evisa.immigration.gov.ng | title=Nigeria eVisa}}</ref>
+| 30 days
+|
+|-
+| {{flag|North Macedonia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=MK}}</ref><ref name="autogenerated6">{{cite web | title=Visa requirements for entering the Republic of North Macedonia | url=https://www.mfa.gov.mk/en/page/432/visa-requirements-for-entering-the-republic-of-north-macedonia | publisher=Ministry of Foreign Affairs | access-date=17 June 2022}}</ref>
+| 
+|
+* Visa required unless holding a valid two or multiple entry Schengen visa, or a residence permit issued by an EU member state.<ref name="autogenerated6"/> 
+|-
+| {{flag|Norway}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=NO}}</ref>
+| 
+|
+|-
+| {{flag|Oman}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=OM}}</ref>
+| 
+|
+* To obtain an e-Visa, they are required to be either residents or have a valid entry visa for one of the following countries ([[the United States of America]], [[Canada]], [[Australia]], [[United Kingdom|The United Kingdom]], [[Schengen Area|Schengen Agreement countries]], [[Japan]]), or to be residents of one of the countries of [[Gulf Cooperation Council|The GCC countries]] and its profession are among the professions that benefit from the resident visa.<ref>{{cite web | url=https://www.fm.gov.om/visitors/entry-visas/ | title=Visa Policy of Oman}}</ref>
+|-
+| {{flag|Pakistan}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=PK}}</ref><ref>{{cite web | url=https://visa.nadra.gov.pk | title=Pakistan Online Visa}}</ref>
+| 3 months
+|
+|-
+| {{flag|Palau}}
+| {{yes-no|Free visa on arrival}}<ref>{{Timatic|nationality=EG|destination=PW}}</ref>
+| 30 days
+|
+|-
+| {{flag|Panama}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=PA}}</ref>
+|
+|
+|-
+| {{flag|Papua New Guinea}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=PG}}</ref><ref>{{cite web | url=https://evisa.ica.gov.pg/evisa/account/Apply | title=PNG eVisa}}</ref>
+| 60 days
+|
+{{#section-h::Template:Transcluded sections for the visa articles|Papua New Guinea. eVisa}}
+|-
+| {{flag|Paraguay}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=PY}}</ref>
+|
+|
+|-
+| {{flag|Peru}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=PE}}</ref>
+|
+|
+|- 
+| {{flag|Philippines}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=PH}}</ref>
+|
+|
+* e-Visa applicable to residents of the [[United Arab Emirates]] who hold valid Emirati residence visas.<ref>{{cite web |url=https://evisa.gov.ph/ |title=Apply for your Philippine Visa - The Easy and Convenient Way |website=eVisaPH - Official Website}}</ref><ref>{{cite web |url=https://dfa.gov.ph/dfa-news/news-from-our-foreign-service-postsupdate/36394-ph-embassy-in-abu-dhabi-pilots-philippine-e-visa-issuance-in-the-middle-east-region?__cf_chl_tk=D7fF3uGfLVVkyJ.ZXATWh1lqV2LqFfN9RTL7Hn7atwo-1765074735-1.0.1.1-jQNuhm8A5NJj5dGWojtjw.CjcFBI5AC1tdKu5KFklow |title=PH Embassy in Abu Dhabi Pilots Philippine e-Visa Issuance in the Middle East Region |website=[[Department of Foreign Affairs (Philippines)|Department of Foreign Affairs]] |place=Manila |date=April 7, 2025 |access-date=April 7, 2025}}</ref>
+|- 
+| {{flag|Poland}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=PL}}</ref>
+| 
+|
+|-
+| {{flag|Portugal}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=PT}}</ref>
+| 
+|
+|-
+| {{flag|Qatar}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=QA}}</ref><ref>{{cite web | url=https://hayya.qa | title=Qatar Hayya}}</ref>
+| 
+|
+|-
+| {{flag|Romania}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=RO}}</ref><ref name="autogenerated7">{{cite web | title=VII. Do I need a visa? | url=https://www.mae.ro/en/node/2040 | website=Romanian Visa | publisher=Romanian Ministry of Foreign Affairs | access-date=17 June 2022}}</ref>
+| 
+|
+|-
+| {{flag|Russia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=RU}}</ref>
+| 
+|
+|-
+| {{flag|Rwanda}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=RW}}</ref>
+| 30 days
+|
+|-
+| {{flag|Saint Kitts and Nevis}}
+| {{yes|[[Visa policy of Saint Kitts and Nevis|Electronic Travel Authorisation]]}}<ref>{{Timatic|nationality=EG|destination=KN}}</ref><ref>{{cite web | url=https://www.knatravelform.kn/en | title=Saint Kitts and Nevis eTA}}</ref>
+| 3 months
+|
+|-
+| {{flag|Saint Lucia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=LC}}</ref>
+| 
+|
+|-
+| {{flag|Saint Vincent and the Grenadines}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=VC}}</ref>
+| 3 months
+|
+|-
+| {{flag|Samoa}}
+| {{yes-no|Entry permit on arrival}}<ref>{{Timatic|nationality=EG|destination=WS}}</ref>
+| 90 days
+|
+|-
+| {{flag|San Marino}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SM}}</ref>
+| 
+|
+|-
+| {{flag|São Tomé and Príncipe}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=ST}}</ref><ref>{{cite web | url=http://www.smf.st/evisa/ | title=ST eVisa}}</ref>
+|
+|
+|- 
+| {{flag|Saudi Arabia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SA}}</ref><ref name="ahram1">{{cite web | title=تعليمات جديدة من مصر للطيران بشأن الحصول على تأشيرات الزيارة السياحية عند الوصول إلى السعودية |url=https://gate.ahram.org.eg/News/3552699.aspx | website=بوابة الأهرام | publisher=ElAhram News paper | archive-url=https://web.archive.org/web/20220617145745/https://gate.ahram.org.eg/News/3552699.aspx | archive-date=2022-06-17 | language=AR}}</ref>
+| 
+|
+* e-Visa available for all Egyptian passport holders. Known as "Stop Over Visa", is valid for 4 days, and can be obtained when booking with FlyNas or SAUDIA (Saudi Arabian Airlines).<ref>{{cite web | title=flynas {{!}} Stopover Visa | url=https://www.flynas.com/en/stopovervisa#/collapse8 | website=flynas.com | language=en-gb}}</ref><ref>{{cite web | title=Saudia Airlines | url=https://www.saudia.com/en-DE/transit-visa | website=www.saudia.com}}</ref> 
+* Visa on arrival for holders of a valid Schengen, UK or USA visa and UK, US or EU permanent residents.<ref>{{cite web | title=السعودية تتيح تأشيرة السياحة إلكترونياً لحاملي هذه الإقامات | url=https://arb.majalla.com/node/251606/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9-%D8%AA%D8%AA%D9%8A%D8%AD-%D8%AA%D8%A3%D8%B4%D9%8A%D8%B1%D8%A9-%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D8%A9-%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A7%D9%8B-%D9%84%D8%AD%D8%A7%D9%85%D9%84%D9%8A-%D9%87%D8%B0%D9%87-%D8%A7%D9%84%D8%A5%D9%82%D8%A7%D9%85%D8%A7%D8%AA | access-date=2022-09-13 | website=arb.majalla.com | language=ar}}</ref><ref>{{cite web | title=Saudi Visa Requirements | url=https://www.visitsaudi.com/en/travel-regulations | access-date=2022-09-13 | website=www.visitsaudi.com | language=en}}</ref><ref name="ahram1" />
+|-
+| {{flag|Senegal}}
+| {{yes-no|Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=SN}}</ref>
+| 1 month
+|
+|-
+| {{flag|Serbia}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=RS}}</ref><ref>{{cite web | url=https://evisa.welcometoserbia.gov.rs | title=Serbia eVisa}}</ref>
+| 90 days
+|
+* 90 days within any 180-day period. Transfers allowed.
+|-
+| {{flag|Seychelles}}
+| {{yes|Electronic Border System}}<ref>{{Timatic|nationality=EG|destination=SC}}</ref><ref>{{cite web | url=https://seychelles.govtas.com | title=Seychelles Electronic Border System}}</ref>
+| 3 months
+|
+{{#section-h::Template:Transcluded sections for the visa articles|Seychelles. SEBS}}
+|-
+| {{flag|Sierra Leone}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=SL}}</ref><ref>{{cite web | url=https://evisa.sl | title=Sierra Leone eVisa}}</ref>
+| 3 months / 30 days
+|
+|-
+| {{flag|Singapore}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SG}}</ref><ref>{{Cite web |title=ICA{{!}} Check if You Need an Entry Visa |url=https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements}}</ref>
+| 
+|
+|-
+| {{flag|Slovakia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SK}}</ref>
+|
+|
+|-
+| {{flag|Slovenia}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SI}}</ref>
+| 
+|
+|-
+| {{flag|Solomon Islands}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SB}}</ref>
+|
+|
+|-
+| {{flag|Somalia}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=SO}}</ref><ref>{{cite web | url=https://etas.gov.so/ | title=Somalia eTAS}}</ref>
+| 30 days
+|
+|-
+| {{flag|South Africa}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=ZA}}</ref><ref>{{cite web | url=https://ehome.dha.gov.za/epermit/home | title=South Africa eVisa}}</ref>
+| 
+| 
+* e-Visa holders must arrive via [[O. R. Tambo International Airport]].
+|-
+| {{flag|South Sudan}}
+| {{yes|Visa not required}}<ref>{{Timatic|nationality=EG|destination=SS}}</ref>
+|
+| 
+|-
+| {{flag|Spain}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=ES}}</ref>
+| 
+|
+|-
+| {{flag|Sri Lanka}}
+| {{Optional|ETA / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=LK}}</ref><ref>{{cite web | url=https://www.srilankaevisa.lk | title=SL eVisa}}</ref>
+| 30 days
+|
+|-
+| {{flag|Sudan}}
+| {{yes|Visa not required (conditional)}}<ref>{{Timatic|nationality=EG|destination=SD}}</ref>
+|
+|
+* Only men between 18 and 49 years require a visa.
+|-
+| {{flag|Suriname}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=SR}}</ref><ref>{{cite web | url=https://suriname.vfsevisa.com/suriname/online/home/who-can-apply-for-eVisa | title=Who can apply for E-Visa?}}</ref>
+| 90 days
+|
+|-
+| {{flag|Sweden}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=SE}}</ref>
+| 
+|
+|-
+| {{flag|Switzerland}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=CH}}</ref>
+| 
+|
+|- 
+| {{flag|Syria}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=SY}}</ref><ref>{{cite web | url=https://evisa.sy | title=Syria eVisa}}</ref>
+|
+| <ref>{{cite web|url=http://english.alarabiya.net/en/News/middle-east/2014/03/12/Syria-issues-law-imposing-visas-on-its-visitors-.html|title=Syria issues law imposing visas on its visitors}}</ref><ref>{{cite web |author=<!--Not stated--> |date=12 March 2014 |title=القانون 2 لعام 2014 دخول وخروج وإقامة الأجانب في سوريا |trans-title=Law 2 of 2014 - Entry, exit and residence of foreigners in Syria |url=http://www.parliament.gov.sy/arabic/index.php?node=201&nid=4233&ref=tree& |access-date=5 November 2017 |publisher=[[People's Council of Syria]]}}</ref><ref>{{cite web |author=<!--Not stated--> |date=12 March 2014 |script-title=ar:قانون يحظر الدخول لسورية أو الخروج منها ...إلا لحامل جواز سفر ساري المفعول أو وثيقة مؤشر عليها بسمة دخول من إحدى البعثات الدبلوماسية السورية |trans-title=A law prohibiting entering or leaving Syria ... except for a holder of a valid passport or a document marked by an entry visa from a Syrian diplomatic mission |url=http://www.alwatan.sy/view.aspx?id=12892 |url-status=dead  |access-date=5 November 2017 |publisher=[[Al-Watan (Syria)]] |language=ar}}</ref>
+|-
+| {{flag|Tajikistan}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=TJ}}</ref><ref>{{cite web | url=https://www.evisa.tj | title=Tajikistan eVisa}}</ref>
+| 60 days
+| 
+* Citizens of Egypt can obtain a visa upon arrival for a maximum of 45 days if they arrive at Dushanbe (DYU).
+|-
+| {{flag|Tanzania}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=TZ}}</ref><ref>{{cite web | url=https://visa.immigration.go.tz | title=Tanzania eVisa}}</ref><ref>{{cite web | url=https://www.visa-office.fr/visas/visa-tanzanie/ | title=Visa Tanzanie / Zanzibar en 48H : demande de Visa en ligne}}</ref>
+| 90 days
+|
+|-
+| {{flag|Thailand}} 
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=TH}}</ref><ref>{{cite web | url=https://www.thaievisa.go.th | title=Thailand e-Visa}}</ref>
+| 60 days
+|
+* Starting from October 8, 2024, the Royal Thai Embassy in Cairo has expanded its online eVisa to include nationals of Egypt, Sudan, Djibouti, and Eritrea<ref>{{Cite web |date=2024-10-10 |title=Thailand Expands Online eVisa to Include Egypt, Sudan, Djibouti, and Eritrea |url=https://travel-buddy.ai/thailand-evisa-for-egypt-sudan-djibouti-eritrea/ |access-date=2024-10-10 |website=travel-buddy.ai |language=en-US}}</ref>
+|-
+| {{flag|Timor-Leste}}
+| {{yes-no|Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=TL}}</ref>
+| 30 days
+|
+|-
+| {{flag|Togo}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=TG}}</ref><ref>{{cite web | url=https://voyage.gouv.tg | title=Togo eVisa}}</ref>
+| 15 days
+|
+|-
+| {{flag|Tonga}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=TO}}</ref>
+|
+|
+|-
+| {{flag|Trinidad and Tobago}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=TT}}</ref><ref>{{cite web | url=https://evisa.ttservices.online | title=TT eVisa}}</ref>
+| 90 days
+|
+|-
+| {{flag|Tunisia}}
+| {{yes-no|Visa on arrival (conditional)}}<ref>{{Timatic|nationality=EG|destination=TN}}</ref>
+|
+|
+* Travelers traveling as a group of 10 or more people can obtain a visa on arrival.
+* Travelers must have a return/onward ticket and a confirmed hotel reservation.
+|- 
+| {{flag|Turkey}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=TR}}</ref><ref>{{cite web | title=Visa Information For Foreigners | url=https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa | publisher=Turkish Ministry of Foreign Affairs | access-date=17 June 2022}}</ref>
+| 
+|
+* Visa required unless a valid Schengen, US, UK or Ireland visa or residence permit. They can obtain a 30-day single-entry e-visa, provided that they have and that they travel to Turkey on Turkish Airlines or Egypt Air.
+* Egyptians under 20 or over 45 years old can obtain e-visa.<ref>{{cite web | url=https://www.evisa.gov.tr | title=Türkiye eVisa}}</ref>
+
+|-
+| {{flag|Turkmenistan}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=TM}}</ref>
+| 
+|
+* Eligible for a visa on arrival for a maximum stay of 10 days if having a letter of invitation issued by a company registered in Turkmenistan and approved by the Ministry of Foreign Affairs<ref>{{cite web | url=https://uae.tmembassy.gov.tm/en/consular-services/practical-information-on-procedure-to-obtain-turkmenistan-entry-visa | title=Practical information on procedure to obtain Turkmenistan entry visa}}</ref>
+* When transiting between two non-bordering countries, visitors can obtain a Turkmenistan transit visa for a five-day stay. This must be applied for in advance at the Turkmenistan Embassy. Visitors must also submit copies of the visas for the country of entry into Turkmenistan and the country of departure from Turkmenistan. Visa fee is US$20.<ref>{{cite web | url=https://migration.gov.tm/services/wiza-we-is-rugsatnamasy-16847397661914537 | title=Turkmenistan Visa}}</ref><ref>{{cite web | url=https://uk.tmembassy.gov.tm/en/consular-services/visa-info | title=Visa info}}</ref>
+|-
+| {{flag|Tuvalu}}
+| {{yes-no|Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=TV}}</ref>
+| 1 month
+|
+|-
+| {{flag|Uganda}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=UG}}</ref><ref>{{cite web | url=https://visas.immigration.go.ug | title=Uganda eVisa}}</ref>
+| 3 months
+| 
+|- 
+| {{flag|Ukraine}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=UA}}</ref>
+|
+| 
+|-
+| {{flag|United Arab Emirates}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=AE}}</ref>
+| 
+| 
+* May apply using 'Smart service'.<ref>{{cite web | url=https://smartservices.icp.gov.ae/echannels/web/client/guest/index.html#/dashboard | title=UAE Smart Service}}</ref>
+|-
+| {{flag|United Kingdom}} and [[Crown dependencies]]
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=GB}}</ref>
+|
+| 
+|-
+| {{flag|United States}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=US}}</ref>
+|
+|
+|- 
+| {{flag|Uruguay}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=UY}}</ref>
+| 
+|
+|-
+| {{flag|Uzbekistan}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=UZ}}</ref><ref>{{cite web | url=https://e-visa.gov.uz | title=Uzbekistan eVisa}}</ref>
+| 30 days
+|
+|-
+| {{flag|Vanuatu}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=VU}}</ref><ref>{{Cite web |title=Department of Vanuatu Immigration And Passport Services |url=https://immigration.gov.vu/}}</ref>
+| 120 days
+|
+|-
+| {{flag|Vatican City}}
+| {{no|Visa required}}<ref>{{Timatic|nationality=EG|destination=VA}}</ref>
+| 
+|
+* The Vatican City is de facto within the Schengen zone.
+|- 
+| {{flag|Venezuela}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=VE}}</ref><ref>{{cite web | url=https://cancilleriadigital.mppre.gob.ve | title=Venezuela eVisa}}</ref>
+| 
+|
+|-
+| {{flag|Vietnam}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=VN}}</ref><ref>{{cite web | url=https://evisa.xuatnhapcanh.gov.vn/web/guest/trang-chu-ttdt | title=Vietnam eVisa}}</ref>
+| 90 days 
+|
+* [[Phú Quốc]] - visa exemption for up to 30 days.
+|-
+| {{flag|Yemen}}
+| {{yes-no|Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=YE}}</ref>
+| 3 months
+|
+* Yemen introduced an e-Visa system for visitors who meet certain eligibility requirements (group travel of 10 or more people, business trips, and transit etc.).<ref>{{cite web | url=https://yemenevisa.org/visas | title=Yemen eVisa}}</ref>
+|-
+| {{flag|Zambia}}
+| {{yes2|eVisa}}<ref>{{Timatic|nationality=EG|destination=ZM}}</ref><ref>{{cite web | url=https://eservices.zambiaimmigration.gov.zm | title=Zambia eServices}}</ref>
+| 90 days
+|
+|-
+| {{flag|Zimbabwe}}
+| {{Optional|eVisa / Visa on arrival}}<ref>{{Timatic|nationality=EG|destination=ZW}}</ref><ref>{{cite web | url=https://www.evisa.gov.zw | title=Zimbabwe eVisa}}</ref>
+| 1 month
+|
+|}

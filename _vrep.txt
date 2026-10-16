@@ -1,0 +1,143 @@
+=== TR — تركيا ===
+  التطبيق : e-visa (مشروط) | 30 يوم (دخول واحد) | ≈ 43$
+  المصدر  : Wikipedia: Visa policy of Turkey (Conditional e-Visa) + evisa.gov.tr
+  ملاحظات : تركيا مش ضمن قائمة الإعفاء للمصريين، لكن متاح «فيزا إلكترونية مشروطة»: لازم يكون معاك تأشيرة/إقامة سارية من شنغن أو أمريكا أو بريطانيا أو أيرلندا. لو مش متوفرة، التقديم بيتم من السفارة. الفيزا للسياحة أو الأعمال فقط وممنوع العمل بها.
+  ويكيبيديا: | | | | * Visa required unless a valid Schengen, US, UK or Ireland visa or residence permit. They can obtain a 30-day single-entry e-visa, provided that they have and that they travel to Turkey on Turkish Airlines or Egypt Air. * Egyptians under 20 or over 45 years old can obtain e-visa.
+
+=== AE — الإمارات ===
+  التطبيق : e-visa | 30 / 60 يوم (حسب نوع الفيزا) | ≈ 90 – 120$
+  المصدر  : Wikipedia: Visa policy of the UAE (Online Visa / Smart Service) + mofa.gov.ae
+  ملاحظات : الإمارات مش ضمن قائمة الإعفاء، لكن الفيزا بتطلع أونلاين: عبر منظومة ICP «Smart Service» أو بواسطة شركات الطيران (Emirates / Etihad / flydubai …) أو الفندق الراعي. المدة عادة 30 أو 60 يوم وقابلة للتمديد.
+  ويكيبيديا: | | | | * May apply using 'Smart service'.
+
+=== MA — المغرب ===
+  التطبيق : e-visa (مشروط) | 30 يوم (حسب الإذن) | ≈ 40$
+  المصدر  : Wikipedia: Visa policy of Morocco (conditional e-Visa) + acces-maroc.ma
+  ملاحظات : المغرب مش معفي للمصريين. الفيزا الإلكترونية المباشرة (acces-maroc.ma) محصورة في دول معيّنة، لكن المصريين يقدروا يقدّموا عليها «بشرط» امتلاك تأشيرة/إقامة سارية من شنغن أو أمريكا أو بريطانيا أو كندا أو غيرها. غير كده التقديم بيتم من السفارة.
+  ويكيبيديا: | | | | * Holders of a visa or residence permit from European Union, United States of America, Australia, Canada, United Kingdom, Japan, Norway, New Zealand and Switzerland valid for 90 days (or 180 days for residence permits) on application, can apply for an eVisa for 30 days. Passport must also be valid for 90 days.
+
+=== TN — تونس ===
+  التطبيق : visa-required | حسب التأشيرة (غالبًا 30 يوم) | ≈ 30 – 50$
+  المصدر  : Wikipedia: Visa policy of Tunisia (Egypt — visa required for ordinary passports)
+  ملاحظات : تونس مش معفية للمصريين (الإعفاء مقصور على حاملي الجوازات الدبلوماسية/الرسمية). منصة الفيزا الإلكترونية التونسية «متعثّرة» فمازال التقديم بيتم من السفارة. منظّمو الرحلات قد يحصلون على بعض التسهيلات.
+  ويكيبيديا: | | | | * Travelers traveling as a group of 10 or more people can obtain a visa on arrival. * Travelers must have a return/onward ticket and a confirmed hotel reservation.
+
+=== RS — صربيا ===
+  التطبيق : visa-required | حسب التأشيرة (غالبًا 30 – 90 يوم) | ≈ 40 – 60$
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: صربيا (Visa required) — مراجعة 2026
+  ملاحظات : صربيا (مش عضو في الاتحاد الأوروبي ومش في شنغن) — المصريون محتاجين تأشيرة من السفارة. [يحتاج تأكيد: حاملو تأشيرة شنغن/أمريكا/بريطانيا السارية ممكن يدخلوا بدون تأشيرة صربية لفترة محدودة].
+  ويكيبيديا: | | | 90 days | * 90 days within any 180-day period. Transfers allowed.
+
+=== LK — سريلانكا ===
+  التطبيق : e-visa | 30 يوم (ETA، قابلة للتمديد) | ≈ 20 – 50$ (تقديري)
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: سريلانكا (ETA) — مراجعة 2026
+  ملاحظات : سريلانكا نظامها ETA (تصريح سفر إلكتروني) بيتطلع أونلاين قبل السفر. [يحتاج تأكيد: الرسوم الحالية بعد إعادة هيكلة نظام ETA].
+  ويكيبيديا: | | | 30 days |
+
+=== BT — بوتان ===
+  التطبيق : visa-required | حسب التأشيرة (غالبًا 15 – 30 يوم) | ≈ 40$ رسوم + 100$ «رسوم التنمية المستدامة» لكل يوم (SDF)
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: بوتان (Visa required) — مراجعة 2026
+  ملاحظات : بوتان مش بتسمح بالسياحة الفردية — لازم منظّم رحلات معتمد، ومعاها «رسوم تنمية مستدامة» يومية. [يحتاج تأكيد: قيمة الـSDF الحالية والرسوم].
+  ويكيبيديا: | | | 90 days | * Visa fee is 40 [[USD]] per person and visa application may be processed within 5 business days with duration of stay of 90 days. * The [[Visa policy of Bhutan#Sustainable Development Fee|Sustainable Development Fee]] (SDF) of 200 [[USD]] per person, per night for almost all visitors to Bhutan. Additionally, if payment is made in US dollars from September 1, 20
+
+=== PK — باكستان ===
+  التطبيق : visa-required | حسب التأشيرة (غالبًا 30 يوم) | ≈ 60 – 100$
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: باكستان (Visa required) — مراجعة 2026
+  ملاحظات : باكستان محتاجة تأشيرة مسبقة. [يحتاج تأكيد: باكستان عندها نظام تأشيرة أونلاين (visa.nadra.gov.pk) بيغطي معظم الجنسيات — راجع لو مصر مؤهلة للفيزا الإلكترونية].
+  ويكيبيديا: | | | 3 months |
+
+=== ID — إندونيسيا ===
+  التطبيق : e-visa | 30 يوم (الـe-VOA بتتقدر تتمدّد 30 يوم مرة واحدة) — [يحتاج تأكيد] | ≈ 500,000 روبية (≈ 33$) للـe-VOA
+  المصدر  : Wikipedia — Visa policy of Indonesia (مصر مش في قائمة الإعفاء — اتلغى 2022) + البوابة الرسمية evisa.imigrasi.go.id — مراجعة 2026
+  ملاحظات : إعفاء مصر من تأشيرة إندونيسيا اتلغى في مارس 2022 ومارجعش في قوائم الإعفاء المحدّثة. المسار المتاح: فيزا إلكترونية (e-Visa) أو فيزا إلكترونية عند الوصول (e-VOA) لو مصر على قائمة الـVOA الحالية. [يحتاج تأكيد: هل مصر على قائمة الـe-VOA الحالية — راجع البوابة الرسمية].
+  ويكيبيديا: | | | 30 days | * Travelers arriving at Jakarta's Soekarno-Hatta International Airport (CGK), Bali's Ngurah Rai International Airport (DPS), Surabaya's Juanda International Airport (SUB), or Batam seaports must complete the ‘All Indonesia’ arrival form online within 3 days of arrival. * ravelers arriving at all other Indonesian airports and ports of entry must complete the sepa
+
+=== CU — كوبا ===
+  التطبيق : visa-required | 30 يوم (قابلة للتمديد) | ≈ 25 – 75$
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: كوبا (Visa required) — مراجعة 2026
+  ملاحظات : كوبا محتاجة تأشيرة مسبقة للمصريين. [يحتاج تأكيد: هل مصر مؤهلة لمنصة الفيزا الإلكترونية الكوبية الجديدة].
+  ويكيبيديا: | | | 90 days | * Can be extended up to 90 days with a fee. * Must be obtained prior to arrival from airline, Cuban embassy, or reputable third party.
+
+=== CO — كولومبيا ===
+  التطبيق : visa-required | 90 يوم | ≈ 60 – 100$ (تقديري)
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: كولومبيا (Visa required) — مراجعة 2026
+  ملاحظات : كولومبيا محتاجة تأشيرة مسبقة للمصريين، والتقديم بيبدأ أونلاين. [يحتاج تأكيد: نوع الفيزا والرسوم].
+  ويكيبيديا: | | | |
+
+=== VE — فنزويلا ===
+  التطبيق : visa-required | 90 يوم | ≈ 30 – 60$ (تقديري)
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: فنزويلا (Visa required) — مراجعة 2026
+  ملاحظات : فنزويلا محتاجة تأشيرة مسبقة. [يحتاج تأكيد: وضع السفارة بالقاهرة/التمثيل، والأوضاع الأمنية موصى بمراجعتها قبل السفر].
+  ويكيبيديا: | | | |
+
+=== ZA — جنوب أفريقيا ===
+  التطبيق : visa-required | حسب التأشيرة (عادة 30 – 90 يوم) | ≈ 40 – 80$ (تقديري)
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: جنوب أفريقيا (Visa required) — مراجعة 2026
+  ملاحظات : جنوب أفريقيا محتاجة تأشيرة مسبقة للمصريين. [يحتاج تأكيد: الرسوم ومراكز التقديم المعتمدة].
+  ويكيبيديا: | | | | * e-Visa holders must arrive via [[O. R. Tambo International Airport]].
+
+=== SC — سيشل ===
+  التطبيق : e-visa | 90 يوم (تصريح إقامة الزائر مجانًا عند الوصول) | ≈ 10 يورو (ETA عادي) – 70 يورو (سريع)
+  المصدر  : Wikipedia — Visa policy of Seychelles (ETA إلزامي لكل الجنسيات + Visitor Permit مجاني 90 يوم) — مراجعة 2026
+  ملاحظات : سيشل ملهاش «تأشيرة» بالمعنى المعتاد: كل الزوار (ومنهم مصر) لازم ETA إلكتروني مدفوع قبل السفر، وبعدها تصريح إقامة مجاني عند الوصول حتى 3 شهور. [يحتاج تأكيد: الرسوم الحالية].
+  ويكيبيديا: | | | 3 months |
+
+=== GH — غانا ===
+  التطبيق : e-visa | 90 يوم | مجانًا (تصريح سفر إلكتروني ETA بدون رسوم)
+  المصدر  : Wikipedia — Visa policy of Ghana (ETA مجاني 90 يوم لدول الاتحاد الأفريقي) — مراجعة 2026
+  ملاحظات : غانا بتدّي «تصريح سفر إلكتروني» (ETA) مجاني لمدة 90 يوم لكل دول الاتحاد الأفريقي ومنها مصر (الإعفاء الكامل لدول الإيكواس + 3 دول بس). شهادة الحمى الصفراء مطلوبة. [يحتاج تأكيد: خطوات البوابة الرسمية].
+  ويكيبيديا: | | | 60 days | * Gratis visa issued on arrival free of charge.
+
+=== NG — نيجيريا ===
+  التطبيق : visa-required | حسب التأشيرة (عادة 30 – 90 يوم) | ≈ 100 – 200$ (تقديري)
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: نيجيريا (Visa required) — مراجعة 2026
+  ملاحظات : نيجيريا محتاجة تأشيرة مسبقة للمصريين؛ الطلب بيبدأ أونلاين لكن الموافقة/الختم من السفارة. [يحتاج تأكيد: الرسوم ونظام الفيزا عند الوصول للأعمال].
+  ويكيبيديا: | | | 30 days |
+
+=== SY — سوريا ===
+  التطبيق : visa-required | حسب التأشيرة (عادة 30 يوم) | [يحتاج تأكيد] (فيزا عند الوصول/رسوم بالمثل)
+  المصدر  : Wikipedia — Visa policy of Syria (سياسة بالمثل؛ e-Visa متوقفة؛ فيزا عند الوصول حسب الجنسية) — مراجعة 2026
+  ملاحظات : سوريا بتطبّق «مبدأ التعامل بالمثل» وسياستها غير مستقرة: بعض الجنسيات بتدخل بدون تأشيرة أو بفيزا عند الوصول عبر دمشق وحلب، والباقي محتاج تأشيرة من السفارة (منصة الـe-Visa متوقفة حاليًا). [يحتاج تأكيد: وضع المصريين تحديدًا].
+  ويكيبيديا: | | | |
+
+=== SD — السودان ===
+  التطبيق : visa-free (مشروط) | فترة غير محددة (بدون تأشيرة) | مجانًا (بدون رسوم تأشيرة)
+  المصدر  : Wikipedia — Visa policy of Sudan (قائمة الإعفاء: مصر — فترة غير محددة باستثناء الرجال 18–49) — مراجعة 2026
+  ملاحظات : المصريون معفيون من تأشيرة السودان لفترة غير محددة، مع استثناء الرجال من 18 لـ49 سنة (دول محتاجين تأشيرة مسبقة). ⚠️ تنبيه: الأوضاع الأمنية غير مستقرة — راجع توصيات وزارة الخارجية قبل أي سفر.
+  ويكيبيديا: | | | | * Only men between 18 and 49 years require a visa.
+
+=== LY — ليبيا ===
+  التطبيق : visa-required | حسب التأشيرة (عادة 30 يوم) | [يحتاج تأكيد]
+  المصدر  : Wikipedia — Visa policy of Libya (مصر غير مدرجة في الإعفاء؛ eVisa بكفيل/راعي) — مراجعة 2026
+  ملاحظات : ليبيا محتاجة تأشيرة للمصريين (مصر مش في قائمة الإعفاء). فيه منصة e-Visa ليبية لكنها مشروطة بكفيل/راعي رسمي. ⚠️ تنبيه: وزارة الخارجية المصرية بتحذّر من السفر لليبيا حاليًا. [يحتاج تأكيد: هل مصر مؤهلة للـe-Visa الليبي].
+  ويكيبيديا: | | | | * Visa not required for male nationals aged under 18 or older than 45 and all females. * Persons with passports indication previous travel to Israel will be denied entry to Libya.
+
+=== TW — تايوان ===
+  التطبيق : visa-required | حسب التأشيرة (غالبًا 30 – 90 يوم) | ≈ 50$ (تقديري)
+  المصدر  : Wikipedia — Visa policy of Taiwan (قائمة Travel Authorization Certificate: مصر غير مدرجة) — مراجعة 2026
+  ملاحظات : تايوان محتاجة تأشيرة مسبقة للمصريين. «تصريح السفر الإلكتروني» (Travel Authorization Certificate) متاح حاليًا لجنسيات الهند وإندونيسيا ولاوس وميانمار وفيتنام فقط (وبشروط تأشيرة/إقامة سارية من دول محددة) — مصر مش على القائمة. [يحتاج تأكيد: الرسوم ومكان التقديم].
+  ويكيبيديا: مفيش صف
+
+=== HK — هونج كونج ===
+  التطبيق : visa-free | 90 يوم | مجانًا (بدون رسوم تأشيرة)
+  المصدر  : Wikipedia — Visa policy of Hong Kong (قائمة الإعفاء: مصر = 90 يوم) + immd.gov.hk — مراجعة 2026
+  ملاحظات : مصر على قائمة إعفاء هونج كونج لمدة 90 يوم. هونج كونج منطقة إدارية خاصة بتأشيرات مستقلة عن البر الصيني الرئيسي. [يحتاج تأكيد: المدة النهائية بتتحدد في ختم الدخول].
+  ويكيبيديا: مفيش صف
+
+=== TL — تيمور الشرقية ===
+  التطبيق : on-arrival | 30 يوم (قابلة للتمديد) | ≈ 30$
+  المصدر  : Wikipedia — Visa requirements for Egyptian citizens: تيمور الشرقية (Visa on arrival) — مراجعة 2026
+  ملاحظات : تيمور الشرقية بتدي تأشيرة عند الوصول لمعظم الجنسيات. [يحتاج تأكيد: هل مصر على القائمة الحالية + الرسوم].
+  ويكيبيديا: مفيش صف
+
+=== MO — ماكاو ===
+  التطبيق : visa-free | 90 يوم | مجانًا (بدون رسوم تأشيرة)
+  المصدر  : Wikipedia — Visa policy of Macau (قائمة الإعفاء بدون تأشيرة: مصر = 90 يوم) — مراجعة 2026
+  ملاحظات : ماكاو منطقة إدارية خاصة تابعة للصين وبتطبّق سياسة تأشيرات مستقلة عن البر الرئيسي. مصر على قائمة الإعفاء 90 يوم. [يحتاج تأكيد: المدة النهائية بتحددها سلطات الهجرة في ختم الدخول].
+  ويكيبيديا: مفيش صف
+
+=== CI — كوت ديفوار ===
+  التطبيق : e-visa | 90 يوم | ≈ 73 يورو
+  المصدر  : Wikipedia — Visa policy of Ivory Coast (e-Visa في المطار 90 يوم / 73 يورو) — مراجعة 2026
+  ملاحظات : كوت ديفوار محتاجة فيزا للمصريين، ومتاح تقديم أونلاين (e-Visa) واستلامها في مطار أبيدجان بورت بوييه، وصالحة 90 يوم. [يحتاج تأكيد: الرسوم الحالية + هل مطلوب موافقة أمنية مسبقة لبعض الجنسيات].
+  ويكيبيديا: مفيش صف

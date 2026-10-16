@@ -618,8 +618,8 @@ const cssFile = fs.readFileSync(path.join(DIR, 'styles.css'), 'utf8');
 });
 
 const swFile = fs.readFileSync(path.join(DIR, 'service-worker.js'), 'utf8');
-if (swFile.indexOf("'v1.0.23'") !== -1) ok('SW_VERSION اترفع لـ v1.0.23');
-else bad('SW_VERSION ما اترفعش لـ v1.0.23');
+if (swFile.indexOf("'v1.0.24'") !== -1) ok('SW_VERSION اترفع لـ v1.0.24');
+else bad('SW_VERSION ما اترفعش لـ v1.0.24');
 
 const appFile = fs.readFileSync(path.join(DIR, 'app.js'), 'utf8');
 [
@@ -948,6 +948,96 @@ if (navHomeBtn.classList.contains('active') && !navExpBtn.classList.contains('ac
   ok('زرار «الرئيسية» بيفضل مضيء في صفحات الخدمات (السفارات)');
 } else {
   bad('حالة الـ bottom nav غلط في صفحة السفارات');
+}
+
+/* ---------- (21) قسم التأشيرات: visa-data.js ---------- */
+head('21) قسم التأشيرات (visa-data.js)');
+
+const vEnv = vm.createContext({});
+vm.runInContext(fs.readFileSync(path.join(DIR, 'visa-data.js'), 'utf8'), vEnv, { filename: 'visa-data.js' });
+const vData = vm.runInContext('visaData', vEnv);
+const vCodes = Object.keys(vData.countries);
+
+if (vCodes.length === 100) ok('عدد الدول في visa-data.js = 100 دولة');
+else bad('عدد الدول في visa-data.js = ' + vCodes.length + ' (المتوقع 100)');
+
+/* (أ) كل الحقول المطلوبة في كل دولة */
+const V_FIELDS = ['code', 'name', 'visaType', 'duration', 'cost', 'processingTime', 'notes',
+  'officialLink', 'bestTime', 'currency', 'currencyPerUSD', 'language', 'timezone',
+  'emergencyNumber', 'source'];
+const V_TYPES = ['visa-free', 'e-visa', 'on-arrival', 'visa-required', 'schengen'];
+const vProblems = [];
+const vNames = {};
+vCodes.forEach(function (code) {
+  const c = vData.countries[code];
+  if (c.code !== code) vProblems.push(code + ' (code غلط)');
+  V_FIELDS.forEach(function (f) { if (!c[f]) vProblems.push(code + ' (' + f + ' ناقص)'); });
+  if (!Array.isArray(c.requirements) || c.requirements.length < 3) vProblems.push(code + ' (requirements)');
+  if (V_TYPES.indexOf(c.visaType) === -1) vProblems.push(code + ' (visaType=' + c.visaType + ')');
+  if (!/^https?:\/\//.test(c.officialLink || '')) vProblems.push(code + ' (officialLink)');
+  const e = c.embassyInEgypt || {};
+  if (e.address === undefined || e.website === undefined || e.phone === undefined ||
+    typeof e.verified !== 'boolean' || !/^https?:\/\//.test(e.website || '')) {
+    vProblems.push(code + ' (embassyInEgypt)');
+  }
+  if (c.conditional === true && !c.conditionalTip) vProblems.push(code + ' (conditionalTip ناقص)');
+  if (vNames[c.name]) vProblems.push(code + ' (اسم مكرر: ' + c.name + ')');
+  vNames[c.name] = 1;
+});
+if (vProblems.length === 0) ok('كل الـ100 دولة فيها كل الحقول المطلوبة (كود/نوع/مستندات/سفارة/مصدر)');
+else bad('دول ناقصة حقول (' + vProblems.length + '): ' + vProblems.slice(0, 6).join(' | '));
+
+/* (ب) مطابقة التصنيفات (categories) مع visaType */
+const V_MAP = { visaFree: 'visa-free', eVisa: 'e-visa', onArrival: 'on-arrival', visaRequired: 'visa-required', schengen: 'schengen' };
+const vCatProblems = [];
+const vInCat = {};
+Object.keys(V_MAP).forEach(function (cat) {
+  if (!Array.isArray(vData.categories[cat])) { vCatProblems.push('التصنيف ' + cat + ' مش موجود'); return; }
+  vData.categories[cat].forEach(function (code) {
+    if (!vData.countries[code]) vCatProblems.push(cat + ' فيه كود غير موجود: ' + code);
+    else if (vData.countries[code].visaType !== V_MAP[cat]) vCatProblems.push(code + ' في ' + cat + ' لكن نوعه ' + vData.countries[code].visaType);
+    if (vInCat[code]) vCatProblems.push(code + ' مكرر في التصنيفات');
+    vInCat[code] = cat;
+  });
+});
+vCodes.forEach(function (code) { if (!vInCat[code]) vCatProblems.push(code + ' مش في أي تصنيف'); });
+if (vCatProblems.length === 0) ok('التصنيفات (visaFree/eVisa/onArrival/visaRequired/schengen) مطابقة لـ visaType بدون تكرار');
+else bad('مشاكل في التصنيفات: ' + vCatProblems.slice(0, 5).join(' | '));
+
+/* (ج) شنغن: 24 دولة بنفس المستندات الموحّدة */
+const vSchengen = vData.categories.schengen || [];
+const vSchBad = vSchengen.filter(function (code) {
+  const c = vData.countries[code];
+  return !c || c.visaType !== 'schengen' || !Array.isArray(c.requirements) || c.requirements.length !== 8 ||
+    String(c.notes).indexOf('شنغن') === -1;
+});
+if (vSchengen.length === 24 && vSchBad.length === 0) ok('تصنيف شنغن: 24 دولة بنفس المستندات الموحّدة والملاحظة الموحّدة');
+else bad('مشكلة في تصنيف شنغن (' + vSchengen.length + ' دولة، ' + vSchBad.length + ' فيها مشكلة)');
+
+const vSchengenCodes = ['gr', 'pt', 'ch', 'at', 'be', 'nl', 'se', 'no', 'dk', 'pl', 'cz', 'hu',
+  'ro', 'hr', 'bg', 'si', 'sk', 'ee', 'lv', 'lt', 'fi', 'is', 'lu', 'mt'];
+const vSchMissing = vSchengenCodes.filter(function (c) { return vSchengen.indexOf(c) === -1; });
+if (vSchMissing.length === 0) ok('كل دول شنغن المطلوبة موجودة في التصنيف');
+else bad('ناقص من شنغن: ' + vSchMissing.join(', '));
+
+/* (د) الربط بالتطبيق والواجهة */
+if (appFile.indexOf("'schengen': 'تأشيرة شنغن'") !== -1) ok('app.js: getVisaLabel بتترجم schengen');
+else bad('app.js: getVisaLabel مش بتتعامل مع schengen');
+if (/countVisaTypes\(\)/.test(appFile) && appFile.indexOf("'schengen': 0") !== -1) ok('app.js: العدّادات (countVisaTypes) شاملة شنغن');
+else bad('app.js: العدّادات مش شاملة شنغن');
+if (/conditionalTip/.test(appFile)) ok('app.js: بيعرض conditionalTip بتاع التأشيرات المشروطة');
+else bad('app.js: conditionalTip مش مستخدم');
+
+if (htmlFile.indexOf('data-filter="schengen"') !== -1) ok('index.html: تاب/شريحة شنغن موجودة (data-filter="schengen")');
+else bad('index.html: تاب شنغن ناقص');
+if (htmlFile.indexOf('id="vs-schengen"') !== -1) ok('index.html: عدّاد شنغن (vs-schengen) موجود');
+else bad('index.html: عدّاد شنغن ناقص');
+
+if (cssFile.indexOf('--visa-schengen:#8B5CF6') !== -1 && cssFile.indexOf('.vc-badge.schengen') !== -1 &&
+  cssFile.indexOf('.chip-schengen') !== -1) {
+  ok('styles.css: ألوان شنغن (بنفسجي) + شارة + شريحة');
+} else {
+  bad('styles.css: ناقص ستايل شنغن (--visa-schengen / .vc-badge.schengen / .chip-schengen)');
 }
 
 /* ---------- النتيجة ---------- */
